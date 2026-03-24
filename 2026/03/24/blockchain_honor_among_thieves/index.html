@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>honor_among_thieves | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="blockchain_honor_among_thieves目标调用isSolved()输入玩家地址时，返回玩家的地址 思路 调用talk()函数，传入满足条件的key即可使solver &#x3D; msg.sender。此时msg.sender是player,满足检查条件  bytes32 _flag &#x3D; _key ^ encryptedFlag; keccak256(abi.encode(_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="honor_among_thieves">
+<meta property="og:url" content="http://example.com/2026/03/24/blockchain_honor_among_thieves/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="blockchain_honor_among_thieves目标调用isSolved()输入玩家地址时，返回玩家的地址 思路 调用talk()函数，传入满足条件的key即可使solver &#x3D; msg.sender。此时msg.sender是player,满足检查条件  bytes32 _flag &#x3D; _key ^ encryptedFlag; keccak256(abi.encode(_">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251220181826211.png">
+<meta property="og:image" content="c:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251220181834230.png">
+<meta property="og:image" content="c:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251220181901497.png">
+<meta property="og:image" content="c:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251220181938083.png">
+<meta property="article:published_time" content="2026-03-24T02:49:52.000Z">
+<meta property="article:modified_time" content="2026-03-24T03:47:56.522Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ctf">
+<meta property="article:tag" content="hack_the_box">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251220181826211.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-blockchain_honor_among_thieves" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/24/blockchain_honor_among_thieves/" class="article-date">
+  <time class="dt-published" datetime="2026-03-24T02:49:52.000Z" itemprop="datePublished">2026-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      honor_among_thieves
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="blockchain-honor-among-thieves"><a href="#blockchain-honor-among-thieves" class="headerlink" title="blockchain_honor_among_thieves"></a>blockchain_honor_among_thieves</h1><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>调用<code>isSolved()</code>输入玩家地址时，返回玩家的地址</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li><p>调用<code>talk()</code>函数，传入满足条件的<code>key</code>即可使<code>solver = msg.sender</code>。此时<code>msg.sender</code>是player,满足检查条件</p>
+<ul>
+<li>bytes32 _flag &#x3D; _key ^ encryptedFlag;</li>
+<li>keccak256(abi.encode(_flag)) &#x3D;&#x3D; hashedFlag</li>
+</ul>
+</li>
+<li><p>我们可以通过<code>cast  storage</code>查出<code>hashedFlag</code>和<code>encryptedFlag</code>的值，但是无法破解keccak256的明文</p>
+</li>
+<li><p>查询插槽2，我们可以发现<code>slover != address(0)</code>，可以知道曾经有人调用<code>talk()</code>并输入了正确的<code>key</code>。在实现<code>solver = msg.sender</code>后，会返回event Voice(5)</p>
+</li>
+<li><p>查询日志寻找Voice(5)的区块</p>
+<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251220181826211.png" alt="image-20251220181826211"></p>
+<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251220181834230.png" alt="image-20251220181834230"></p>
+</li>
+<li><p>cast tx 查询交易的详细信息</p>
+<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251220181901497.png" alt="image-20251220181901497"></p>
+</li>
+<li><p>将calldata解码成人类可读的参数</p>
+<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251220181938083.png" alt="image-20251220181938083"></p>
+<p>返回的值即为<code>key</code></p>
+</li>
+<li><p>调用<code>talk() </code>并传入我们找到的key</p>
+</li>
+<li><p>成功</p>
+</li>
+</ul>
+<h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><p>Rivals.sol</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: UNLICENSED</span><br><span class="line">//0x4Bb8dA1727FB63BBf88E7a4DE182a6EfC8cD3F54</span><br><span class="line">pragma solidity ^0.8.13;</span><br><span class="line"></span><br><span class="line">contract Rivals &#123;</span><br><span class="line">    event Voice(uint256 indexed severity);</span><br><span class="line"></span><br><span class="line">    bytes32 private encryptedFlag;</span><br><span class="line">    bytes32 private hashedFlag;</span><br><span class="line">    address public solver;</span><br><span class="line"></span><br><span class="line">    constructor(bytes32 _encrypted, bytes32 _hashed) &#123;</span><br><span class="line">        encryptedFlag = _encrypted;</span><br><span class="line">        hashedFlag = _hashed;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function talk(bytes32 _key) external &#123;</span><br><span class="line">        bytes32 _flag = _key ^ encryptedFlag;</span><br><span class="line">        if (keccak256(abi.encode(_flag)) == hashedFlag) &#123;</span><br><span class="line">            solver = msg.sender;</span><br><span class="line">            emit Voice(5);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            emit Voice(block.timestamp % 5);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Setup.sol</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: UNLICENSED</span><br><span class="line">pragma solidity ^0.8.13;</span><br><span class="line"></span><br><span class="line">import &#123;Rivals&#125; from &quot;../src/Rivals.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract Setup &#123;</span><br><span class="line">    Rivals public immutable TARGET;</span><br><span class="line"></span><br><span class="line">    constructor(bytes32 _encryptedFlag, bytes32 _hashed) payable &#123;</span><br><span class="line">        TARGET = new Rivals(_encryptedFlag, _hashed);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function isSolved(address _player) public view returns (bool) &#123;</span><br><span class="line">        return TARGET.solver() == _player;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Poc"><a href="#Poc" class="headerlink" title="Poc"></a>Poc</h2><p>Hack.s.sol</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: UNLICENSED</span><br><span class="line">//0x4da6F9250659fC9b78f21703e2aAc3f9cCEe3E8b</span><br><span class="line">pragma solidity ^0.8.13;</span><br><span class="line">import &#123;Rivals&#125; from &quot;../src/Rivals.sol&quot;;</span><br><span class="line">import &#123;Script,console&#125; from &quot;forge-std/Script.sol&quot;;</span><br><span class="line">import &#123;Setup&#125; from &quot;../src/Setup.sol&quot;;</span><br><span class="line">contract Hack is Script &#123;</span><br><span class="line">    function run() external&#123;</span><br><span class="line">        vm.startBroadcast();</span><br><span class="line">        Rivals target = Rivals(0x94a965F367f852cD1078D0b77332B4075064E947);</span><br><span class="line">        Setup setup = Setup(0x2Aba0E6Ad1f09166Cf76b7bbDb4efd2bf7C4b760);</span><br><span class="line">        bytes32 key = 0xe7796b4fa25a89c1ddc62815509a194e9ed3edffec0f12db323178684420fedc;</span><br><span class="line">        target.talk(key);</span><br><span class="line">        console.log(setup.isSolved(msg.sender));</span><br><span class="line">        vm.stopBroadcast();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/24/blockchain_honor_among_thieves/" data-id="cuidOL1rdWRFNVps4_PAM_98k" data-title="honor_among_thieves" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/" rel="tag">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hack-the-box/" rel="tag">hack_the_box</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/03/24/0xGame/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          25 0xGame
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/03/24/Points/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">25极客大挑战</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0xGame/" rel="tag">0xGame</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ethernaut/" rel="tag">Ethernaut</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ctf/" rel="tag">ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack-the-box/" rel="tag">hack_the_box</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/" rel="tag">极客大挑战</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/0xGame/" style="font-size: 10px;">0xGame</a> <a href="/tags/Ethernaut/" style="font-size: 13.33px;">Ethernaut</a> <a href="/tags/ctf/" style="font-size: 20px;">ctf</a> <a href="/tags/hack-the-box/" style="font-size: 16.67px;">hack_the_box</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/" style="font-size: 10px;">极客大挑战</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/03/24/My-New-Post/">My New Post</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/24/3%E6%9C%88%E4%BB%BD%E8%80%83%E6%A0%B8%E8%B5%9B/">26三月份考核赛</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/24/9%E6%9C%88%E8%80%83%E6%A0%B8%E8%B5%9B/">25九月份考核赛</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/24/0xGame/">25 0xGame</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/24/blockchain_honor_among_thieves/">honor_among_thieves</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

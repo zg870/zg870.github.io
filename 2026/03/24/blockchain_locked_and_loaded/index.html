@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>locked_and_loaded | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869hs@localhost:~&#x2F;HTB&#x2F;blockchain_locked_and_loaded$ cast storage 0x27b66f0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="locked_and_loaded">
+<meta property="og:url" content="http://example.com/2026/03/24/blockchain_locked_and_loaded/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869hs@localhost:~&#x2F;HTB&#x2F;blockchain_locked_and_loaded$ cast storage 0x27b66f0">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-24T02:49:52.000Z">
+<meta property="article:modified_time" content="2026-03-24T03:48:48.447Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ctf">
+<meta property="article:tag" content="hack_the_box">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-blockchain_locked_and_loaded" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/24/blockchain_locked_and_loaded/" class="article-date">
+  <time class="dt-published" datetime="2026-03-24T02:49:52.000Z" itemprop="datePublished">2026-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      locked_and_loaded
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85b --rpc-url $RPC_URL</span><br><span class="line">0x50756d6b696e4661636500000000000000000000000000000000000000000014  PumkinFace</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85c --rpc-url $RPC_URL</span><br><span class="line">0x706572666563746c7972656d6e616e7400000000000000000000000000000020 perfectlyremnant</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85d --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000002</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85e --rpc-url $RPC_URL</span><br><span class="line">0x52616262697441726d6f72000000000000000000000000000000000000000016  RabbitArmor</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85f --rpc-url $RPC_URL</span><br><span class="line">0x666f726573747265706561740000000000000000000000000000000000000018  forestrepeat</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f860 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000001</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f861 --rpc-url $RPC_URL</span><br><span class="line">0x537472616e6765436172726f740000000000000000000000000000000000001a  StrangeCarrot</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f862 --rpc-url $RPC_URL</span><br><span class="line">0x7175697a696e636f6d706c65746500000000000000000000000000000000001c quizincomplete</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f863 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000001</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f864 --rpc-url $RPC_URL</span><br><span class="line">0x426967426f6f7473000000000000000000000000000000000000000000000010  BigBoots</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f865 --rpc-url $RPC_URL</span><br><span class="line">0x6d697474656e7373686164650000000000000000000000000000000000000018  mittensshade</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f866 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000000</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f867 --rpc-url $RPC_URL</span><br><span class="line">0x42696f6d65747269635363657074657200000000000000000000000000000020  BiometricScepter</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f868 --rpc-url $RPC_URL</span><br><span class="line">0x63616c6c756e7468696e6b696e6700000000000000000000000000000000001c  callunthinking</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f869 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000002</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86a --rpc-url $RPC_URL</span><br><span class="line">0x436f7272757074656453776f726400000000000000000000000000000000001c  CorruptedSword</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86b --rpc-url $RPC_URL</span><br><span class="line">0x706572666563746c7972656d6e616e7400000000000000000000000000000020  pertlyremnant</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86c --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000000</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86d --rpc-url $RPC_URL</span><br><span class="line">0x57697a617264735363657074657200000000000000000000000000000000001c  WizardsScepter</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86e --rpc-url $RPC_URL</span><br><span class="line">0x62656c6965667370616365000000000000000000000000000000000000000016  beliefspace</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86f --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000003</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f870 --rpc-url $RPC_URL</span><br><span class="line">0x436f6d6d6f6e4461676765720000000000000000000000000000000000000018  CommonDagger</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f871 --rpc-url $RPC_URL</span><br><span class="line">0x646f7665737377696d6d696e670000000000000000000000000000000000001a  dovesswimming</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f872 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000000</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f873 --rpc-url $RPC_URL</span><br><span class="line">0x556e636f6d6d6f6e4b61736b6f6c00000000000000000000000000000000001c  UncommonKaskol</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f874 --rpc-url $RPC_URL</span><br><span class="line">0x666162756c6f7573707566666572666973680000000000000000000000000024  fabulouspufferfish</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f875 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000001</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f876 --rpc-url $RPC_URL</span><br><span class="line">0x426967426f74746c650000000000000000000000000000000000000000000012  BigBottle</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f877 --rpc-url $RPC_URL</span><br><span class="line">0x7772697465726166746572000000000000000000000000000000000000000016  writerafter</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f878 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000002</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>owner</th>
+<th>rarity;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PumkinFace</td>
+<td>perfectlyremnant</td>
+<td>2</td>
+</tr>
+<tr>
+<td>RabbitArmor</td>
+<td>forestrepeat</td>
+<td>1</td>
+</tr>
+<tr>
+<td>StrangeCarrot</td>
+<td>quizincomplete</td>
+<td>1</td>
+</tr>
+<tr>
+<td>BigBoots</td>
+<td>mittensshade</td>
+<td>0</td>
+</tr>
+<tr>
+<td>BiometricScepter</td>
+<td>callunthinking</td>
+<td>2</td>
+</tr>
+<tr>
+<td>CorruptedSword</td>
+<td>pertlyremnant</td>
+<td>0</td>
+</tr>
+<tr>
+<td>WizardsScepter</td>
+<td>beliefspace</td>
+<td>3</td>
+</tr>
+<tr>
+<td>CommonDagger</td>
+<td>dovesswimming</td>
+<td>0</td>
+</tr>
+<tr>
+<td>UncommonKaskol</td>
+<td>fabulouspufferfish</td>
+<td>1</td>
+</tr>
+<tr>
+<td>BigBottle</td>
+<td>writerafter</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x00000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000014000000000000000000000000000000000000000000000000000000000000001e000000000000000000000000000000000000000000000000000000000000002c000000000000000000000000000000000000000000000000000000000000003a00000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000656656e646f7200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010706572666563746c7972656d6e616e7400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000707616e6f74686572000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000e7034737377307264537472306e67000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e7034737377307264537472306e670000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e7034737377307264537472306e6700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000a50756d6b696e4661636500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a50756d6b696e466163650000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a50756d6b696e466163650000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a50756d6b696e466163650000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a50756d6b696e4661636500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000010706572666563746c972656d6e616e7400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010706572666563746c972656d6e616e7400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010706572666563746c972656d6e616e7400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010706572666563746c972656d6e616e7400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010706572666563746c972656d6e616e74000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000500000000000000000000000000000000000000000000000000000000000000030303030300000000000000000000000000000000000000000000000000000000</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/24/blockchain_locked_and_loaded/" data-id="cuidol_pO6etBc4VDEVYnA3WI" data-title="locked_and_loaded" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/" rel="tag">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hack-the-box/" rel="tag">hack_the_box</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/03/24/Points/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          25极客大挑战
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/03/24/blockchain_magic_vault/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">magic_valut</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0xGame/" rel="tag">0xGame</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ethernaut/" rel="tag">Ethernaut</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ctf/" rel="tag">ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack-the-box/" rel="tag">hack_the_box</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/" rel="tag">极客大挑战</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/0xGame/" style="font-size: 10px;">0xGame</a> <a href="/tags/Ethernaut/" style="font-size: 13.33px;">Ethernaut</a> <a href="/tags/ctf/" style="font-size: 20px;">ctf</a> <a href="/tags/hack-the-box/" style="font-size: 16.67px;">hack_the_box</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/" style="font-size: 10px;">极客大挑战</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/03/24/My-New-Post/">My New Post</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/24/3%E6%9C%88%E4%BB%BD%E8%80%83%E6%A0%B8%E8%B5%9B/">26三月份考核赛</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/24/9%E6%9C%88%E8%80%83%E6%A0%B8%E8%B5%9B/">25九月份考核赛</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/24/0xGame/">25 0xGame</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/24/blockchain_honor_among_thieves/">honor_among_thieves</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
