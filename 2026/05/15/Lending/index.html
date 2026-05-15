@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="LendingLender(出借人):存入资金的人，获得利息收益 Borrower(借款人):借入资金的人，需要支付利息，并提供抵押 Protocol(协议):只能合约自动执行借贷逻辑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lending">
+<meta property="og:url" content="http://example.com/2026/05/15/Lending/index.html">
+<meta property="og:site_name" content="AUV wordmaya">
+<meta property="og:description" content="LendingLender(出借人):存入资金的人，获得利息收益 Borrower(借款人):借入资金的人，需要支付利息，并提供抵押 Protocol(协议):只能合约自动执行借贷逻辑">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-15T03:02:07.739Z">
+<meta property="article:author" content="wordmaya">
+<meta property="article:tag" content="DeFi">
+<meta property="article:tag" content="blockchain">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2026/05/15/Lending/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Lending | AUV wordmaya</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="AUV wordmaya" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">AUV wordmaya</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">玩得开心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/05/15/Lending/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Lending
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-05-15 00:00:00 / 修改时间：11:02:07" itemprop="dateCreated datePublished" datetime="2026-05-15T00:00:00+08:00">2026-05-15</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Lending"><a href="#Lending" class="headerlink" title="Lending"></a>Lending</h1><p><strong>Lender(出借人)</strong>:存入资金的人，获得利息收益</p>
+<p><strong>Borrower(借款人)</strong>:借入资金的人，需要支付利息，并提供抵押</p>
+<p><strong>Protocol(协议)</strong>:只能合约自动执行借贷逻辑</p>
+<span id="more"></span>
+
+<hr>
+<p><strong>流程</strong></p>
+<p>&#x3D;&#x3D;存款&#x3D;&#x3D;</p>
+<ol>
+<li>用户将加密资产存入协议</li>
+<li>协议发放对应代表代币表示用户的存款份额和利息权利</li>
+<li>利息随时间积累，份额不变，但可兑换的代币增加</li>
+</ol>
+<p>&#x3D;&#x3D;借款&#x3D;&#x3D;</p>
+<ol>
+<li><p>借款人先抵押一定数量的资产</p>
+</li>
+<li><p>协议根据抵押率(Collateral Factor)决定可借额度</p>
+<p>1 ETH（价值2000 USDC），抵押率75%，可借1500USDC</p>
+</li>
+<li><p>借款人支付利息，利息随市场供需浮动</p>
+</li>
+</ol>
+<hr>
+<p><strong>核心机制</strong></p>
+<p>&#x3D;&#x3D;超额抵押&#x3D;&#x3D;</p>
+<p>DeFi借贷大多要求借款人抵押比借款更高的资产，防止违约</p>
+<p>抵押率一般为50% - 80%</p>
+<p>&#x3D;&#x3D;利率模型&#x3D;&#x3D;</p>
+<ol>
+<li><p>算法利率，利率随供需变化</p>
+<ol>
+<li>借款需求高 -&gt; 利率上升 -&gt; 吸引更多存款</li>
+<li>借款需求低 -&gt; 利率下降 -&gt; 降低借款成本</li>
+</ol>
+</li>
+<li><p>常见公式</p>
+<p>$\Large r_{borrow} &#x3D; r_{base} + k\cdot utilization$</p>
+<p>$\Large utilization &#x3D; \frac {已借出} {总借款}$</p>
+</li>
+</ol>
+<p>&#x3D;&#x3D;清算&#x3D;&#x3D;(Liquidation)</p>
+<ul>
+<li>如果借款人抵押率下降到安全线以下，协议会部分或全部清算借款</li>
+<li>清算者(Liquidator)可以折扣价购买抵押资产，借款人承担损失</li>
+</ul>
+<p>&#x3D;&#x3D;$\Large 安全线 &#x3D; \frac{抵押资产价值}{借款金额} \cdot 100%$&#x3D;&#x3D;</p>
+<hr>
+<h1 id="GMX"><a href="#GMX" class="headerlink" title="GMX"></a>GMX</h1><p>GMX是去中心化杠杆交易平台（去中心化的永续合约+ 现货交易平台）</p>
+<p>GMX支持杠杆交易和做空，用户可以在链上直接进行高达50x的杠杆交易</p>
+<ul>
+<li>主网：Arbitrum&amp;Avalanche</li>
+<li>类型：去中心化永续交易所</li>
+<li>特点：无资金费率操控、无滑点（使用链上预言机定价）</li>
+</ul>
+<hr>
+<p><strong>核心机制</strong></p>
+<ul>
+<li><strong>Trader</strong>（交易者）：做多&#x2F;做空交易</li>
+<li><strong>Liquidity Provider</strong>（GLP）：提供资金池流动性，赚手续费</li>
+<li><strong>Oracle</strong>（预言机）：提供价格</li>
+</ul>
+<p>&#x3D;&#x3D;做多&#x2F;做空交易&#x3D;&#x3D;</p>
+<ol>
+<li>做多交易(Long)<ol>
+<li>ETH当前的价格2000USDT</li>
+<li>预期ETH会涨</li>
+<li>买1ETH，用2000USDT</li>
+<li>价格涨到2500USDT，卖出</li>
+<li>盈利500USDT</li>
+</ol>
+</li>
+<li>做空交易（Short）<ol>
+<li>ETH当前的价格是2000USDT</li>
+<li>认为ETH会跌</li>
+<li>从市场借1ETH然后卖出，获得2000USDT</li>
+<li>ETH降价到1500USDT</li>
+<li>用1500USDT买回1ETH还掉</li>
+<li>盈利500USDT</li>
+</ol>
+</li>
+</ol>
+<p><strong>GLP机制</strong></p>
+<p>GLP是GMX的流动性代币，代表一个多资产资金池</p>
+<p>这个池子为所有交易者提供对手方流动性</p>
+<ul>
+<li>GLP由多种资产组成（例如ETH、BTC、USDT、DAI等）</li>
+<li>用户随意存入任意资产即可获得GLP</li>
+<li>GLP价格代表整个池子的净资产价值</li>
+</ul>
+<p>&#x3D;&#x3D;对手流动性&#x3D;&#x3D;</p>
+<p>想买（做多）或卖（做空）某个资产时，必须有人在另一边与你交易</p>
+<p>你拿1000USDT作为保证金，系统需要借出一部分资金给你买ETH，这笔借出的ETH来自流动性池。对手方并不是另一个交易者，而是GLP持有人；GLP池子承担价格风险、赚取手续费和资金费率。</p>
+<p><strong>GLP的收益来源</strong></p>
+<ul>
+<li>交易手续费（开仓、平仓、换币）</li>
+<li>清算收益（交易者被清算）</li>
+<li>借贷利息（杠杆头寸的借款费）</li>
+</ul>
+<p>&#x3D;&#x3D;头寸&#x3D;&#x3D;：头寸就是你当前所持有的仓位，包括方向（多&#x2F;空）、数量、入场价格、杠杆、未实现盈亏等。多头(Long Position)，押注价格上涨，持有ETH，看涨；空头(Short Position)，押注价格下跌，借ETH卖出，等跌后买回。</p>
+<p>例：</p>
+<p>​	以2000USDT开多1ETH，杠杆5x，当前价格2200</p>
+<p>​	头寸价值 &#x3D; 2200 USDT</p>
+<p>​	盈利 &#x3D; (2200 - 2000) x 1 &#x3D; 200 USDT </p>
+<p><strong>头寸 &#x3D; 市场方向 + 持仓规模 + 开仓价格 + 未实现盈亏</strong></p>
+<p>&#x3D;&#x3D;开仓&#x3D;&#x3D;</p>
+<p>开仓 &#x3D; 建立一个新的头寸</p>
+<ol>
+<li>存入保证金（Colletral)</li>
+<li>指定方向（做多&#x2F;做空）</li>
+<li>系统按杠杆倍数放大仓位</li>
+<li>成交后，记录为一个活跃头寸</li>
+</ol>
+<p>例：</p>
+<p>用500USDT做5x多头：</p>
+<p>​	实际仓位规模：500 x 5 &#x3D; 2500 USDT</p>
+<p>​	系统帮你<strong>买入</strong>2500USDT价值的<strong>ETH</strong></p>
+<p>​	你此时持有**[多头头寸]**</p>
+<p><strong>开仓 &#x3D; 存钱 + 借钱 + 买&#x2F;卖资产 + 记录仓位</strong></p>
+<p>&#x3D;&#x3D;平仓&#x3D;&#x3D;</p>
+<p>平仓 &#x3D; 结束你的头寸，把借入的资产还回去，结算盈亏</p>
+<p>例：</p>
+<p>以前以2000USDT买入1ETH（做多）</p>
+<p>​	当ETH涨到2200USDT –&gt; 你卖出ETH</p>
+<p>​	获利200USDT</p>
+<p>​	剩下的钱（本金 + 利润）回到你的账户</p>
+<p>如果跌到1800USDT –&gt; 亏损200USDT –&gt;  平仓后账户减少</p>
+<p>&#x3D;&#x3D;换币（Swap&#x2F;交换）&#x3D;&#x3D;</p>
+<p>换币就是把一种代币兑换成另一种，比如USDT –&gt; ETH。本质是一次无杠杆的即刻交易（spot trade)</p>
+<p>用1000USDT直接换0.5ETH，这叫Swap，没有借贷，没有杠杆，不会被清算</p>
+<p>用1000USDT做多ETH，用杠杆买更多ETH，这叫开多头仓位，有借贷，有杠杆，可能被清算</p>
+<p><strong>平仓 &#x3D; 反向交易 + 归还借款 + 结算盈亏</strong></p>
+<p><strong>GLP的风险</strong></p>
+<ul>
+<li>交易者亏钱–&gt;GLP收益</li>
+<li>交易者赚钱–&gt;GLP亏损</li>
+</ul>
+<p>&#x3D;&#x3D;GLP的收益和交易者表现负相关&#x3D;&#x3D;</p>
+<p><strong>GMX交易流程</strong></p>
+<p>以做多ETH为例</p>
+<ol>
+<li>交易者存入抵押物（例如1000USDC）</li>
+<li>GMX根据抵押额和杠杆倍数创建一个头寸</li>
+<li>平台从GLP池借出资金（4000USDC）补足杠杆</li>
+<li>ETH价格上涨–&gt; 交易者盈利</li>
+<li>ETH下跌 –&gt; 交易者亏损，如果跌幅超过保证金 –&gt; 清算</li>
+</ol>
+<p>&#x3D;&#x3D;定价机制（无滑点）&#x3D;&#x3D;</p>
+<ul>
+<li>使用Chainlink预言机价格，而不是AMM价格曲线</li>
+<li>这样交易者不会因滑点损失，流动性提供者承担真实盈亏</li>
+</ul>
+<p><strong>GMX代币双系统</strong></p>
+<p>GMX主要有两个代币</p>
+<p><strong>GMX</strong>是平台的治理代币，同时也是“协议利润的分红凭证”，持有者不直接参与交易，而是分享平台交易产生的收入</p>
+<p>主要的收入来源是：</p>
+<ul>
+<li>交易手续费（Swap + 开仓 + 平仓）</li>
+<li>借贷利息（杠杆交易借出的资金利息）</li>
+<li>资金费率</li>
+</ul>
+<p><strong>GLP</strong>是GMX的流动性池代币，代表在池子中的份额。</p>
+<p>本质：当交易者做多或做空时，对手方就是GLP池，GLP池赚手续费但同时承担价格波动风险。</p>
+<p>主要收入来源是：</p>
+<ul>
+<li>交易手续费</li>
+<li>借贷利息</li>
+<li>清算收益（交易者爆仓时）</li>
+<li>资金费率</li>
+</ul>
+<p>收益分配机制：</p>
+<table>
+<thead>
+<tr>
+<th>收入来源</th>
+<th>分配对象</th>
+<th>比例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>交易&#x2F;借贷手续费</td>
+<td>GMX持有人&amp;GLP持有人</td>
+<td>各占50%</td>
+</tr>
+<tr>
+<td>收益形式</td>
+<td>ETH&#x2F;AVAX（原生代币）</td>
+<td>直接分红</td>
+</tr>
+</tbody></table>
+<p>GMX是一个跨链协议，目前主要部署在：</p>
+<ul>
+<li>Arbitrum链（主链），收益以ETH结算</li>
+<li>Avalanche链，收益以AVAX结算</li>
+</ul>
+<p>质押GMX或持有GLP不会拿到额外代币奖励，而是拿到链上真实赚到的原生代币（ETH或AVAX）</p>
+<p>每笔交易（Swap &#x2F; 开仓 &#x2F; 平仓 &#x2F; 借贷 &#x2F; 清算）都会产生手续费：</p>
+<ul>
+<li>比如用户在 Arbitrum 链上交易 → 收的手续费是 ETH；</li>
+<li>系统定期把这些 ETH 累积到一个分红池；</li>
+<li>然后按照比例（50%&#x2F;50%）分配给 GMX 质押者和 GLP 持有人。</li>
+</ul>
+<p>&#x3D;&#x3D;直接分红&#x3D;&#x3D;：质押GMX或GLP后，系统会自动周期性地把协议产生地ETH&#x2F;AVAX分红到你的地址，无需手动领取代币或参与通胀活动。</p>
+<p><strong>清算机制</strong></p>
+<p>GMX使用保证金比率控制风险：</p>
+<ul>
+<li>清算金比例 &lt; 阈值 （一般 10% - 13%）—&gt; 清算触发</li>
+<li>清算者会偿还债务，获得清算奖励</li>
+<li>多余抵押返给用户</li>
+</ul>
+<p><strong>GMX收费模式</strong></p>
+<p>开仓费：0.1%</p>
+<p>平仓费：0.1%</p>
+<p>借款费：按小时计算</p>
+<p>兑换费：Swap时的手续费（0.2%~0.8%)</p>
+<h1 id="Aave"><a href="#Aave" class="headerlink" title="Aave"></a>Aave</h1><p>Aave的核心是一个去中心化的借贷协议（去中心化资金池），</p>
+<ul>
+<li>用户可以存入资产赚取利息（作为出借方）；</li>
+<li>抵押资产借出其他代币（作为借款方）</li>
+</ul>
+<p>&#x3D;&#x3D;完全通过智能合约运作，无需银行或中介&#x3D;&#x3D;</p>
+<h2 id="核心机制"><a href="#核心机制" class="headerlink" title="核心机制"></a>核心机制</h2><p><strong>资金池</strong></p>
+<p>每个支持的资产（如ETH，USDT、DAI、WBTC）都有独立的资金池</p>
+<p>存入者将资产打入池子，借款者从池子中借走</p>
+<p>Aave是池化借贷，不需要匹配出借人和借贷人</p>
+<p><strong>aToken收益凭证</strong></p>
+<p>在Aave存入资产时，会获得对应的aToken</p>
+<ul>
+<li>存入ETH —&gt;  得到aETH</li>
+<li>存入USDC —&gt; 得到aUSDC</li>
+</ul>
+<p>存入资产后，aToken（存款证明&amp;利息增长凭证）的余额会自动增长，反映存款利息</p>
+<p><strong>借款与抵押</strong></p>
+<p>借款需要抵押足额资产</p>
+<ul>
+<li>抵押1ETH （价值2000USDT）</li>
+<li>最多可以借出约1500USDT</li>
+</ul>
+<p>如果ETH价格下跌，健康因子下降，一旦跌破清算底线，就会被清算人执行操作，卖出抵押品偿还债务</p>
+<p><em>健康因子</em>：衡量借款人的账户安全程度，也就是你的抵押资产能否安全覆盖当前债务的比率</p>
+<p>它由Aave合约实时计算</p>
+<p>$\Large Health Factor &#x3D; \frac{抵押资产价清算阈值}{借款资产价值}$</p>
+
+    </div>
+
+    
+    
+    
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+        <div class="reward-container">
+  <div>KFC V我 50</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="wordmaya 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="wordmaya 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>wordmaya
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2026/05/15/Lending/" title="Lending">http://example.com/2026/05/15/Lending/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/blockchain/" rel="tag"># blockchain</a>
+              <a href="/tags/DeFi/" rel="tag"># DeFi</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/05/15/UniswapV3/" rel="prev" title="UniswapV3">
+      <i class="fa fa-chevron-left"></i> UniswapV3
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/05/15/EOA%E6%A3%80%E6%B5%8B%E7%BB%95%E8%BF%87&tx.origin%E9%92%93%E9%B1%BC/" rel="next" title="EOA检测绕过&tx.origin钓鱼">
+      EOA检测绕过&tx.origin钓鱼 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lending"><span class="nav-number">1.</span> <span class="nav-text">Lending</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GMX"><span class="nav-number">2.</span> <span class="nav-text">GMX</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Aave"><span class="nav-number">3.</span> <span class="nav-text">Aave</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6"><span class="nav-number">3.1.</span> <span class="nav-text">核心机制</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wordmaya"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">wordmaya</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zg870" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zg870" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://chat.openai.com/" title="https:&#x2F;&#x2F;chat.openai.com&#x2F;" rel="noopener" target="_blank">ChatGPT</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.baidu.com/" title="https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">百度</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wordmaya</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:06</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共79k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

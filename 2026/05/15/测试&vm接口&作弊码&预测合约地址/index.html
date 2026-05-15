@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FuzzingTest">
+<meta property="og:url" content="http://example.com/2026/05/15/%E6%B5%8B%E8%AF%95&vm%E6%8E%A5%E5%8F%A3&%E4%BD%9C%E5%BC%8A%E7%A0%81&%E9%A2%84%E6%B5%8B%E5%90%88%E7%BA%A6%E5%9C%B0%E5%9D%80/index.html">
+<meta property="og:site_name" content="AUV wordmaya">
+<meta property="og:description" content="测试">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-15T02:36:13.271Z">
+<meta property="article:author" content="wordmaya">
+<meta property="article:tag" content="blockchain">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2026/05/15/%E6%B5%8B%E8%AF%95&vm%E6%8E%A5%E5%8F%A3&%E4%BD%9C%E5%BC%8A%E7%A0%81&%E9%A2%84%E6%B5%8B%E5%90%88%E7%BA%A6%E5%9C%B0%E5%9D%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>FuzzingTest | AUV wordmaya</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="AUV wordmaya" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">AUV wordmaya</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">玩得开心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/05/15/%E6%B5%8B%E8%AF%95&vm%E6%8E%A5%E5%8F%A3&%E4%BD%9C%E5%BC%8A%E7%A0%81&%E9%A2%84%E6%B5%8B%E5%90%88%E7%BA%A6%E5%9C%B0%E5%9D%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          FuzzingTest
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-05-15 00:00:00 / 修改时间：10:36:13" itemprop="dateCreated datePublished" datetime="2026-05-15T00:00:00+08:00">2026-05-15</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><span id="more"></span>
+
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>单元测试是针对程序中最小的可测试单元来进行的测试，目标是验证这个单元的行为是否符合预期。</p>
+<p><strong>特点</strong></p>
+<p>粒度小：测试的是单个函数&#x2F;模块</p>
+<p>快速运行：通常不依赖数据库、网络等外部资源</p>
+<p><strong>目标</strong></p>
+<p>验证函数逻辑是否正确</p>
+<p>检查状态变量更新是否符合预期</p>
+<p>测试错误处理是否符合预期</p>
+<h2 id="集成测试"><a href="#集成测试" class="headerlink" title="集成测试"></a>集成测试</h2><p>集成测试是将多个模块或组件组合起来一起测试，验证它们之间是否按预期工作。（测试多个合约间的交互是否正常）</p>
+<p><strong>特点</strong></p>
+<p>关注模块之间的协作：函数之间、合约之间、服务之间的调用</p>
+<p>可能涉及数据库、网络、真实合约部署等外部依赖</p>
+<p><strong>目标</strong></p>
+<p>验证合约之间的调用链是否有效（<code>vm.expectCall</code>）</p>
+<p>验证依赖数据是否正确流动：确保关键数据在传递过程中保持准确、一致，并未被篡改或丢失。</p>
+<p>验证权限&#x2F;角色转移是否符和业务规则</p>
+<h2 id="Fuzzing（模糊测试）"><a href="#Fuzzing（模糊测试）" class="headerlink" title="Fuzzing（模糊测试）"></a>Fuzzing（模糊测试）</h2><p><code>Fuzzing</code>是一种自动化测试技术，主要用于发现软件中的安全漏洞、崩溃点和未处理的异常情况。它通过向程序输入随机、异常或格式化错误的数据</p>
+<p>Fuzz测试的核心在于生成大量的随机输入，以测试智能合约在各种条件下的行为，为了帮助开发者发现边界情况和潜在安全漏洞。</p>
+<p><strong>特点</strong></p>
+<p>随机性强：自动生成大量输入组合</p>
+<p>善于发现边界问题、崩溃、未处理的异常</p>
+<p><strong>目标</strong></p>
+<p>发现不可预见的bug</p>
+<p>覆盖极端数值边界（0，2^256^-1)</p>
+<p>验证合约咋让任何输入下都不会出现revert、溢出或陷入错误状态</p>
+<hr>
+<p>用<code>forge test</code>命令运行测试</p>
+<p><strong>作用</strong></p>
+<ul>
+<li>编译项目中的测试合约</li>
+<li>自动执行以<code>test</code>开头的函数</li>
+<li>输出测试结果（通过&#x2F;失败）、gas用量、错误日志等信息</li>
+</ul>
+<p>contract</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: UNLICENSED</span><br><span class="line">pragma solidity ^0.8.13;</span><br><span class="line">import &#123;Test,console&#125; from &quot;froge-std/Test.sol&quot;;</span><br><span class="line">contract Counter&#123;</span><br><span class="line">	uint256 public count;//默认为0</span><br><span class="line">	function fun() public&#123;</span><br><span class="line">		count+=1;//count更改为1</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Test</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: UNLICENSED</span><br><span class="line">pragma solidity ^0.8.13;</span><br><span class="line">import &#123;Test,console&#125; from &quot;froge-std/Test.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract CounterTest is Test&#123;</span><br><span class="line">	function setUp() public  &#123;</span><br><span class="line">		counter = new COunter;</span><br><span class="line">	&#125;</span><br><span class="line">	function testfun() public&#123;</span><br><span class="line">		counter.fun();</span><br><span class="line">		assertEq(counter.count(), 1);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>counter.count()</code>:读取合约<code>Counter</code>合约中的状态变量<code>count</code></p>
+<p><code>assertEq</code>:是<code>forge-std</code>测试库提供的断言函数，使用<code>==</code>判断，若比较<code>string</code>或<code>bytes</code>等复杂类型，<code>assertEq</code>会调用哈希对比</p>
+<ul>
+<li>相等时，断言成功，测试继续执行或结束</li>
+<li>不相等，断言失败，<code>Test</code>库会触发<code>TestAssertionFailure</code>,本质上是<code>revert</code>,并标记测试为失败<ul>
+<li><code>Foundry</code>测试框架会在终端打印对比值、文件名、行号，方便定位问他；如果在命令行加<code>-vv</code>，还会看到更详细的堆栈信息（<code>v</code>的个数越多，信息越详细）</li>
+</ul>
+</li>
+</ul>
+<h2 id="断言函数"><a href="#断言函数" class="headerlink" title="断言函数"></a>断言函数</h2><p>除了<code>assertEq(a,b)</code>,<code>forge-std</code>库内还有以下断言函数</p>
+<ul>
+<li><code>assertTrue(bool condition)</code>:断言表达式为真，即<code>bool</code>值为<code>true</code>时，返回成功；<code>bool</code>值为<code>false</code>时，返回失败–&gt;<code>revert</code></li>
+<li><code>assertFalse(bool condition)</code>:断言表达式为真，即<code>bool</code>值为<code>false</code>时，返回成功；<code>bool</code>值为<code>true</code>时，返回失败–&gt;<code>revert</code></li>
+<li><code>assertGt(a, b)</code>:断言a&gt;b</li>
+<li><code>assertLt(a, b)</code>:断言a&lt;b</li>
+<li><code>assertGe(a, b)</code>:断言a&gt;&#x3D;b</li>
+<li><code>assertLe(a, b)</code>:断言a&lt;&#x3D;b</li>
+<li><code>assertApprovxEqRel(a, b, maxPercent)</code>:相对误差断言，断言<code>|(a-b)|/max(a,b)) &lt;= maxPercent</code>，允许的最大相对误差，按照18位定点百分比表示<code>（1e16 = 1%, 1e14 = 0.01%, 1e18 = 100%)</code></li>
+<li><code>assertApproxEqAbs(a, b, maxDelta)</code>:相对误差近似断言，即断言<code>|a-b|&lt;=maxDelta</code>,当实际值于期望值绝对差不超过阈值<code>maxDelta</code>时，视为成功，否则<code>revert</code>(a为实际值，b为期望值)</li>
+<li><code>fail()</code>:强制让合约失败（例如放在不应执行的路径中）</li>
+</ul>
+<h2 id="Cheatcodes-作弊码（测试环境控制）"><a href="#Cheatcodes-作弊码（测试环境控制）" class="headerlink" title="Cheatcodes 作弊码（测试环境控制）"></a>Cheatcodes 作弊码（测试环境控制）</h2><p>来自<code>Vm</code>接口，用于模拟区块链环境行为，<code>Foundry</code>内部使用<code>vm.*</code>实现</p>
+<p>是一组特殊指令，允许</p>
+<ol>
+<li>控制EVM状态</li>
+<li>伪造信息发送者（park)、签名、链上事件</li>
+<li>读取或写入任意合约存储</li>
+<li>调用外部命令行脚本</li>
+<li>构造攻击场景&#x2F;重现边界状态&#x2F;加速测试</li>
+</ol>
+<ul>
+<li><code>vm.prank(addr)</code>:模拟下一次<code>msg.sender</code>是<code>addr</code>(只影响下一个外部调用)</li>
+<li><code>vm.startPrank(addr)</code>&#x2F;<code>vm.stopPrank()</code>:持续模拟多个调用<code>msg.sender</code></li>
+<li><code>vm.deal(addr, amount)</code>:给地址<code>addr</code>设置余额（单位wei）</li>
+<li><code>vm.warp(timestamp)</code>:设置<code>block.timestamp</code></li>
+<li><code>vm.roll(blockNumber)</code>:设置<code>block.number</code></li>
+<li><code>vm.expectRevert()</code>:期待下一次调用<code>revert</code>，否则失败</li>
+<li><code>vm.expectRevert(bytes4)</code>:指定错误选择器的<code>revert</code></li>
+<li><code>vm.expectEmit()</code>:期待下一次<code>emit</code>事件</li>
+<li><code>vm.recordLogs()</code>+<code>vm.getRecordedLogs</code>:捕获日志事件，用于检查某事件是否被发出</li>
+<li><code>vm.startBroadcast()</code>:启用该广播</li>
+<li><code>vm.stopBroadcast()</code>:停止广播</li>
+<li><code>vm.load(addr, solt)</code>&#x2F; <code>vm.store(addr, solt, value)</code>:读取或写入合约存储槽</li>
+</ul>
+<h2 id="vm-Prank"><a href="#vm-Prank" class="headerlink" title="vm.Prank()"></a>vm.Prank()</h2><p>在测试合约中引入标准库：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &quot;forge-std/Test.sol&quot;;</span><br></pre></td></tr></table></figure>
+
+<p><code>vm.prank(address)</code>:指定下一次调用的<code>msg.sender</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: UNLICENSED</span><br><span class="line">pragma solidity ^0.8.13;</span><br><span class="line">import &quot;forge-std/Test.sol&quot;;</span><br><span class="line"></span><br><span class="line">error Unauthorized();</span><br><span class="line"></span><br><span class="line">contract OwnerOnly &#123;</span><br><span class="line">    address public constant owner = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;</span><br><span class="line">    uint256 public count;</span><br><span class="line"></span><br><span class="line">    function increment() external &#123;</span><br><span class="line">        if (msg.sender != owner) &#123;</span><br><span class="line">            revert Unauthorized();</span><br><span class="line">        &#125;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract OwnerOnlyTest is Test &#123;</span><br><span class="line">    OwnerOnly ownerOnly;</span><br><span class="line"></span><br><span class="line">    function setUp() public &#123;</span><br><span class="line">        ownerOnly = new OwnerOnly();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function testIncrementAsOwner() public &#123;</span><br><span class="line">        vm.prank(0x5B38Da6a701c568545dCfcB03FcB875f56beddC4);</span><br><span class="line">        ownerOnly.increment();</span><br><span class="line">        assertEq(ownerOnly.count(), 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>OwnerOnly</code>指定了调用<code>increment()</code>的调用者必须是<code>0x5B38Da6a701c568545dCfcB03FcB875f56beddC4</code></p>
+<p>但是我们在进行测试的时候，<code>increment()</code>的实际调用者是<code>OwnerOnlyTest</code>，在这种情况下，我们可以使用<code>vm.prank(0x5B38Da6a701c568545dCfcB03FcB875f56beddC4)</code>指定<code>msg.sender</code>完成测试</p>
+<p>也可以使用<code>vm.Pank(address msgSender, address txOrigin)</code></p>
+<p><strong>对于多次调用，使用<code>vm.startPark()</code>在后续调用保持身份，使用<code>vm.stopPark()</code>结束它</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vm.startPrank(address addr);</span><br><span class="line">...</span><br><span class="line">vm.stopPrank(addresss addr);</span><br></pre></td></tr></table></figure>
+
+<h2 id="vm-expectRevert"><a href="#vm-expectRevert" class="headerlink" title="vm.expectRevert()"></a>vm.expectRevert()</h2><p><code>vm.expectRevert()</code>是一个预期失败的断言工具，用于确保某个操作必须失败，否则测试就失败</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vm.expectRevert();  // 允许任意 revert 原因</span><br><span class="line">contractInstance.someFunction(); // 必须 revert，否则测试失败</span><br></pre></td></tr></table></figure>
+
+<p>也可以内置<code>revert</code>原因（require报错的字符串）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function testRevertWhenNotOwner() public &#123;</span><br><span class="line">    vm.prank(nonOwner);</span><br><span class="line">    vm.expectRevert(&quot;Ownable: caller is not the owner&quot;);</span><br><span class="line">    contractInstance.ownerOnlyFunction(); // 必须 revert 且字符串匹配</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>自定义错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.13;</span><br><span class="line"></span><br><span class="line">contract Vault &#123;</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    error NotOwner(); // 自定义错误声明</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function withdraw() external &#123;</span><br><span class="line">        if (msg.sender != owner) &#123;</span><br><span class="line">            revert NotOwner(); // 抛出自定义错误</span><br><span class="line">        &#125;</span><br><span class="line">        // 实际的提取逻辑</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试合约</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">contract VaultTest is Test &#123;</span><br><span class="line">    Vault vault;</span><br><span class="line">    address attacker = address(0xBEEF);</span><br><span class="line"></span><br><span class="line">    function setUp() public &#123;</span><br><span class="line">        vault = new Vault();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function testRevertWithCustomError() public &#123;</span><br><span class="line">        vm.prank(attacker); // 模拟非 owner 的调用者</span><br><span class="line"></span><br><span class="line">        // 预期抛出 NotOwner() 错误</span><br><span class="line">        vm.expectRevert(Vault.NotOwner.selector);</span><br><span class="line">        vault.withdraw();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>Vault.NotOwner.selector</code>表示兹定于错误的函数选择器，相当于<code>bytes4(keccak259(&quot;NotOwner()&quot;))</code>,只有下一次调用的返回值与这个选择器完全匹配时，测试才通过</p>
+<p>如果使用了参数自定义错误，需要提供完整编码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">error Unauthorized(address caller);</span><br><span class="line"></span><br><span class="line">function sensitiveAction() external &#123;</span><br><span class="line">    if (msg.sender != owner) &#123;</span><br><span class="line">        revert Unauthorized(msg.sender);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vm.expectRevert(abi.encodeWithSelector(Vault.Unauthorized.selector,attackr));</span><br><span class="line">vm.prank(attacker);</span><br><span class="line">vault.sensitiveAction();</span><br></pre></td></tr></table></figure>
+
+<h2 id="vm-expectEmit"><a href="#vm-expectEmit" class="headerlink" title="vm.expectEmit()"></a>vm.expectEmit()</h2><p><code>vm.expectEmit()</code>用于验证事件是否正确地被触发，包括：</p>
+<ul>
+<li>事件名称与参数</li>
+<li>是否使用<code>indexed</code>参数（即是否成为topic)</li>
+<li>发出事件的顺序，按写入的顺序对比</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">contract Bank &#123;</span><br><span class="line">    event Deposit(address indexed user, uint256 amount); // 有 indexed 参数</span><br><span class="line"></span><br><span class="line">    function deposit() external payable &#123;</span><br><span class="line">        emit Deposit(msg.sender, msg.value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function testEmitDeposit() public &#123;</span><br><span class="line">	vm.expectEmit(true,false,false,true);//四个参数，topic1,topic2,topic3,data</span><br><span class="line">	emit Bank.Deposit(address(this), 1 ether);</span><br><span class="line">	bank.deposit&#123;value: 1 ether&#125;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>topic1 indexed第一个参数（此处是，user)</p>
+<p>topic2 indexed第二个参数（此处没有，默认为false）</p>
+<p>topic3 indexed第三个参数（此处没有，默认为false）</p>
+<p>data  非indexted参数+整个非topic（amount）的编码</p>
+<p>我们测试时，应满足<code>true false false true</code>（但不会返回，<code>vm.expectEmit()</code>没有返回值）否则测试失败</p>
+<h2 id="vm-expectCall"><a href="#vm-expectCall" class="headerlink" title="vm.expectCall()"></a>vm.expectCall()</h2><p><code>vm.expectCall()</code>断言外部交互，它能验证：</p>
+<ul>
+<li>某个合约地址是否被调用了</li>
+<li>是否使用特定的<code>msg.sender</code></li>
+<li>是否带了特定的calldata(函数选择器+参数)</li>
+</ul>
+<p><strong>不是在测试中对目标函数进行调用，而是验证目标函数有没有被其他函数外部调用</strong></p>
+<p>被调用合约</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">contract Receiver&#123;</span><br><span class="line">	function ping(uint256 a) external &#123;</span><br><span class="line">		a++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Caller</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">contract Caller&#123;</span><br><span class="line">	constructor(address _receiver) &#123;</span><br><span class="line">        receiver = Receiver(_receiver);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function doCall() external &#123;</span><br><span class="line">        receiver.ping(123);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"> function testExpectCall() public &#123;</span><br><span class="line">    Receiver receiver = new Receiver();</span><br><span class="line">    Caller caller = new Caller(address(receiver));</span><br><span class="line"></span><br><span class="line">    // 断言 receiver.ping() 会被调用</span><br><span class="line">    vm.expectCall(address(receiver));</span><br><span class="line">    caller.doCall();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="vm-roll"><a href="#vm-roll" class="headerlink" title="vm.roll()"></a>vm.roll()</h2><p><code>vm.roll()</code>用于在测试环境中控制当前区块号</p>
+<p>将当前的<code>block.number</code>设置为<code>newBlockNumber</code>，仅用于测试环境，在链上合约中无法使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">contract Reward&#123;</span><br><span class="line">	mapping(address =&gt; uint256) public lastClaimBlock;</span><br><span class="line">	</span><br><span class="line">	function claim() external &#123;</span><br><span class="line">		require(block.number - lastClaimBlock[msg.sender] &gt;= 100, &quot;you must wait 100 blocks&quot;);</span><br><span class="line">		lastClaimBlock[msg.sender] = block.number;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function setUp() public&#123;</span><br><span class="line">	reward = new Reward();</span><br><span class="line">	vm.roll(1000);//设置初始区块号为1000</span><br><span class="line">&#125;</span><br><span class="line">function testclaim() public&#123;</span><br><span class="line">	reward.claim();//第一次调用成功</span><br><span class="line">	vm.roll(1100);//快进100个区块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="vm-warp"><a href="#vm-warp" class="headerlink" title="vm.warp()"></a>vm.warp()</h2><p><code>vm.warp()</code>控制区块时间戳</p>
+<p>将区块链的当前block.timestamp设为newTime</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">contract TimeLock&#123;</span><br><span class="line">	function claim() external&#123;</span><br><span class="line">		require(block.timestamp - lastClaimTime[msg.sender] &gt;= 3600, &quot;must wait 1 hour&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function testclaim() public&#123;</span><br><span class="line">	vm.wrap(block.time+3600)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="vm-deal"><a href="#vm-deal" class="headerlink" title="vm.deal()"></a>vm.deal()</h2><p><code>vm.deal(address who, uint256 newBalance)</code>用来给指定地址设定以太币余额</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">address user = address(0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80);</span><br><span class="line">vm.deal(user,5 ether);//给user充值5 ether</span><br><span class="line">vm.prank(user);//模拟user给合约转1 ether</span><br><span class="line">(bool success, ) = address(balanceTest).call&#123;value: 1 ether&#125;(&quot;&quot;);</span><br><span class="line">        require(success, &quot;Transfer failed&quot;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>示例</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.8.2;</span><br><span class="line"></span><br><span class="line">contract CheatCodes&#123;</span><br><span class="line">    address public owner;</span><br><span class="line">    mapping(address =&gt; uint256) public lastClaimBlock;</span><br><span class="line">    mapping(address =&gt; uint256) public lastClaimTime;</span><br><span class="line">    mapping(address =&gt; uint256) public balance;</span><br><span class="line">    mapping(address =&gt; string) public username;</span><br><span class="line">    uint256 public count;</span><br><span class="line">    constructor() payable &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line">    error NotOwner();</span><br><span class="line">    function Reward() external payable&#123;</span><br><span class="line">        require(block.number - lastClaimBlock[msg.sender] &gt;= 100, &quot;you must wait 100 blocks&quot;);</span><br><span class="line">		lastClaimBlock[msg.sender] = block.number;</span><br><span class="line">    &#125;</span><br><span class="line">    event Counter(address indexed user,uint256 count);</span><br><span class="line">    function counter() external &#123;</span><br><span class="line">          if (msg.sender != owner) &#123;</span><br><span class="line">            revert NotOwner();</span><br><span class="line">        &#125;</span><br><span class="line">        count++;</span><br><span class="line">        emit Counter(msg.sender,count);</span><br><span class="line">    &#125;</span><br><span class="line">    function timelock() external &#123;</span><br><span class="line">        require(block.timestamp - lastClaimTime[msg.sender] &gt;= 3600, &quot;you must wait an hour&quot;);</span><br><span class="line">        lastClaimTime[msg.sender] = block.timestamp;</span><br><span class="line">    &#125;</span><br><span class="line">    function changeOwner() external&#123;</span><br><span class="line">        require(address(msg.sender).balance &gt;= 100e18 ether,&quot;your balance didn&#x27;t fit our needs&quot;);//最好是个巨大的数</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line">    function callme() external &#123;</span><br><span class="line">       balance[msg.sender] ++;</span><br><span class="line">    &#125;</span><br><span class="line">    function Add(uint256 a, uint256 b) external pure returns(uint256)&#123;</span><br><span class="line">        return a + b;</span><br><span class="line">    &#125;</span><br><span class="line">    function setname(string memory name) public &#123;</span><br><span class="line">        require(bytes(name).length &lt;= 20, &quot;Too long&quot;);</span><br><span class="line">        username[msg.sender] = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>caller</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.8.2;</span><br><span class="line">import&#123;CheatCodes&#125; from &quot;../src/CheatCodes.sol&quot;;</span><br><span class="line">contract Caller&#123;</span><br><span class="line">    CheatCodes public cheatcodes;</span><br><span class="line">    constructor(address _cheatcodes)&#123;</span><br><span class="line">        cheatcodes = CheatCodes(_cheatcodes);</span><br><span class="line">    &#125;</span><br><span class="line">    function doCall() external&#123;</span><br><span class="line">        cheatcodes.callme();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试合约</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.8.2;</span><br><span class="line">import&#123;CheatCodes&#125; from &quot;../src/CheatCodes.sol&quot;;</span><br><span class="line">import &#123;Caller&#125; from &quot;../src/Caller.sol&quot;;</span><br><span class="line">import &#123;Test,console&#125; from &quot;forge-std/Test.sol&quot;;</span><br><span class="line">contract CheatCodesTest is Test&#123;</span><br><span class="line">    CheatCodes public cheatcodes;</span><br><span class="line">    Caller public caller;</span><br><span class="line">    function setUp() public &#123;</span><br><span class="line">        cheatcodes = CheatCodes(0x5FbDB2315678afecb367f032d93F642f64180aa3);</span><br><span class="line">        caller = new Caller(0x5FbDB2315678afecb367f032d93F642f64180aa3);</span><br><span class="line">        vm.roll(1000);</span><br><span class="line">        vm.warp(3600);</span><br><span class="line">    &#125;//单元测试</span><br><span class="line">    function testReward() public&#123;</span><br><span class="line">        cheatcodes.Reward();</span><br><span class="line">        vm.expectRevert(&quot;you must wait 100 blocks&quot;);</span><br><span class="line">        cheatcodes.Reward();</span><br><span class="line">        vm.roll(1100);</span><br><span class="line">        cheatcodes.Reward();</span><br><span class="line">    &#125;//单元测试</span><br><span class="line">    function testcounter() public&#123;</span><br><span class="line">        vm.prank(0x70997970C51812dc3A010C7d01b50e0d17dc79C8);</span><br><span class="line">        vm.expectRevert(CheatCodes.NotOwner.selector);</span><br><span class="line">        cheatcodes.counter();</span><br><span class="line">    &#125;//单元测试</span><br><span class="line">    function testcounter2() public&#123;</span><br><span class="line">        vm.startPrank(address(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266));</span><br><span class="line">        vm.expectEmit(true,true,false,false);</span><br><span class="line">        emit CheatCodes.Counter(address(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266),1);</span><br><span class="line">        cheatcodes.counter();</span><br><span class="line">        assertEq(cheatcodes.count(),1);</span><br><span class="line">        vm.stopPrank();</span><br><span class="line">    &#125;//单元测试</span><br><span class="line">    function testtimelock() public &#123;</span><br><span class="line">        cheatcodes.timelock();</span><br><span class="line">        uint256 firstCallTime = block.timestamp;</span><br><span class="line">        vm.warp(firstCallTime + 3599);</span><br><span class="line">        vm.expectRevert(&quot;you must wait an hour&quot;);</span><br><span class="line">        cheatcodes.timelock();</span><br><span class="line">        vm.warp(firstCallTime + 3600);</span><br><span class="line">        cheatcodes.timelock();</span><br><span class="line">    &#125;//单元测试</span><br><span class="line">    function testchangeOwner() public&#123;</span><br><span class="line">        console.log(&quot;Test contract initial balance:&quot;, address(this).balance);</span><br><span class="line">        vm.expectRevert(&quot;your balance didn&#x27;t fit our needs&quot;);</span><br><span class="line">        cheatcodes.changeOwner();</span><br><span class="line">        uint256 amountToAdd = 100e18 ether;</span><br><span class="line">        vm.deal(address(this), amountToAdd);</span><br><span class="line">        cheatcodes.changeOwner();</span><br><span class="line">        console.log(cheatcodes.owner());</span><br><span class="line">        console.log(address(this));</span><br><span class="line">    &#125;//单元测试</span><br><span class="line">    function testcallme() public&#123;</span><br><span class="line">        vm.expectCall(address(cheatcodes),abi.encodeWithSelector(CheatCodes.callme.selector));</span><br><span class="line">        caller.doCall();</span><br><span class="line">        assertEq(cheatcodes.balance(address(caller)),1,&quot;Balance for user should be incremented by 1&quot;);</span><br><span class="line">    &#125;//集成测试</span><br><span class="line">    function testAdd(uint256 a, uint256 b) public&#123;</span><br><span class="line">        a = bound(a, 0, type(uint128).max);</span><br><span class="line">        b = bound(b, 0, type(uint128).max);//设定a,b的界限，防止a+b溢出</span><br><span class="line">        uint256 c = cheatcodes.Add(a, b);</span><br><span class="line">        assertEq(c,a+b);</span><br><span class="line">    &#125;//fuzzing测试</span><br><span class="line">    function testsetname(string memory name) public &#123;</span><br><span class="line">        vm.assume(bytes(name).length &lt;= 20);</span><br><span class="line">        cheatcodes.setname(name);</span><br><span class="line">        assertEq(cheatcodes.username(address(this)), name);</span><br><span class="line">    &#125;//fuzzing测试</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+        <div class="reward-container">
+  <div>KFC V我 50</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="wordmaya 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="wordmaya 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>wordmaya
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2026/05/15/%E6%B5%8B%E8%AF%95&vm%E6%8E%A5%E5%8F%A3&%E4%BD%9C%E5%BC%8A%E7%A0%81&%E9%A2%84%E6%B5%8B%E5%90%88%E7%BA%A6%E5%9C%B0%E5%9D%80/" title="FuzzingTest">http://example.com/2026/05/15/测试&vm接口&作弊码&预测合约地址/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/blockchain/" rel="tag"># blockchain</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/05/15/%E6%BB%91%E7%82%B9/" rel="prev" title="UniswapV2">
+      <i class="fa fa-chevron-left"></i> UniswapV2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/05/15/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" rel="next" title="数据存储">
+      数据存储 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="nav-number">1.1.</span> <span class="nav-text">单元测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95"><span class="nav-number">1.2.</span> <span class="nav-text">集成测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fuzzing%EF%BC%88%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">Fuzzing（模糊测试）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%AD%E8%A8%80%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">断言函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cheatcodes-%E4%BD%9C%E5%BC%8A%E7%A0%81%EF%BC%88%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E6%8E%A7%E5%88%B6%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">Cheatcodes 作弊码（测试环境控制）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vm-Prank"><span class="nav-number">1.6.</span> <span class="nav-text">vm.Prank()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vm-expectRevert"><span class="nav-number">1.7.</span> <span class="nav-text">vm.expectRevert()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vm-expectEmit"><span class="nav-number">1.8.</span> <span class="nav-text">vm.expectEmit()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vm-expectCall"><span class="nav-number">1.9.</span> <span class="nav-text">vm.expectCall()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vm-roll"><span class="nav-number">1.10.</span> <span class="nav-text">vm.roll()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vm-warp"><span class="nav-number">1.11.</span> <span class="nav-text">vm.warp()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vm-deal"><span class="nav-number">1.12.</span> <span class="nav-text">vm.deal()</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wordmaya"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">wordmaya</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zg870" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zg870" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://chat.openai.com/" title="https:&#x2F;&#x2F;chat.openai.com&#x2F;" rel="noopener" target="_blank">ChatGPT</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.baidu.com/" title="https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">百度</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wordmaya</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:06</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共79k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

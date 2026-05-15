@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="也是UniswapV2,不过是整理过的版本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UniswapV2">
+<meta property="og:url" content="http://example.com/2026/05/15/%E6%BB%91%E7%82%B9/index.html">
+<meta property="og:site_name" content="AUV wordmaya">
+<meta property="og:description" content="也是UniswapV2,不过是整理过的版本">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="h:\Blog\source\picture\V2-1.png">
+<meta property="og:image" content="h:\Blog\source\picture\V22-3.png">
+<meta property="og:image" content="h:\Blog\source\picture\V2-2.png">
+<meta property="og:image" content="h:\Blog\source\picture\V2-3.png">
+<meta property="og:image" content="h:\Blog\source\picture\V22-2.png">
+<meta property="og:image" content="h:\Blog\source\picture\V2-6.png">
+<meta property="og:image" content="h:\Blog\source\picture\V2-7.png">
+<meta property="og:image" content="h:\Blog\source\picture\V2-8.png">
+<meta property="og:image" content="h:\Blog\source\picture\V2-9.png">
+<meta property="og:image" content="h:\Blog\source\picture\V2-10.png">
+<meta property="og:image" content="h:\Blog\source\picture\V22-1.png">
+<meta property="og:image" content="h:\Blog\source\picture\V2-12.png">
+<meta property="og:image" content="h:\Blog\source\picture\V2-13.png">
+<meta property="og:image" content="c:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20250921170914577.png">
+<meta property="article:published_time" content="2026-05-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-15T03:08:59.662Z">
+<meta property="article:author" content="wordmaya">
+<meta property="article:tag" content="DeFi">
+<meta property="article:tag" content="blockchain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="h:\Blog\source\picture\V2-1.png">
+
+<link rel="canonical" href="http://example.com/2026/05/15/%E6%BB%91%E7%82%B9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>UniswapV2 | AUV wordmaya</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="AUV wordmaya" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">AUV wordmaya</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">玩得开心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/05/15/%E6%BB%91%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          UniswapV2
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-05-15 00:00:00 / 修改时间：11:08:59" itemprop="dateCreated datePublished" datetime="2026-05-15T00:00:00+08:00">2026-05-15</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>17k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>16 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>也是UniswapV2,不过是整理过的版本</p>
+<span id="more"></span>
+
+<h2 id="AMM"><a href="#AMM" class="headerlink" title="AMM"></a>AMM</h2><p><code>UniswapV2</code> 是一种去中心化交易协议，而它的底层原理就是 <strong>AMM（自动化市商）</strong></p>
+<p>AMM，是一种智能合约，允许用户直接和流动性池交易</p>
+<p>流动性池由用户存入两种（或多种）代币组成</p>
+<p>定价机制由算法决定</p>
+<p>Swap Contract Call</p>
+<p><strong>恒定乘积公式:<code>x*y&gt;=k</code></strong></p>
+<p><img src="H:\Blog\source\picture\V2-1.png" alt="V2-1"></p>
+<h2 id="恒定乘积自动做市商公式"><a href="#恒定乘积自动做市商公式" class="headerlink" title="恒定乘积自动做市商公式"></a>恒定乘积自动做市商公式</h2><p>一、</p>
+<p>$\Large x\cdot y &#x3D; k$</p>
+<p><code>x</code>：toke0的数量</p>
+<p><code>y</code>:  token1的数量</p>
+<p><code>k</code>: 流动性（在x与y交换时k不变）</p>
+<p><img src="H:\Blog\source\picture\V22-3.png" alt="V22-3"></p>
+<p>（不考虑手续费的情况下）</p>
+<p>$\Large (x + d_x)(y - d_y) &#x3D; x\cdot y$</p>
+<p>$\Large (x - d_x)(y + d_y) &#x3D; x\cdot y$</p>
+<p>二、案例</p>
+<p>假定一个交易对 <code>ETH/USDT</code></p>
+<p><strong>10 ETH</strong>  <strong>20000 USDT</strong></p>
+<p>$\Large k &#x3D; 10\cdot 20000 &#x3D; 200000$</p>
+<ol>
+<li><p>用户卖出5个ETH</p>
+<p>$\Large (10+5)\cdot(20000 - d_y) &#x3D; 20000$</p>
+<p>得$\Large d_y &#x3D; 20000 - \frac{200000}{15} &#x3D; 6666.67USDT$</p>
+</li>
+<li><p>用户持有10000USDT想买入ETH</p>
+<p>$\Large (10 - d_x)\cdot (2000 + 10000) &#x3D; 200000$</p>
+<p>$\Large d_x &#x3D; 10 - \frac{200000}{330000} &#x3D; 33.33ETH$</p>
+</li>
+<li><p>用户卖出100000个ETH</p>
+<p>$(10 + 100000)\cdot(20000 - d_y) &#x3D; 200000$</p>
+<p>$\Large d_y &#x3D; 20000 - \frac{200000}{100000 +10} &#x3D; 19998 USDT$</p>
+</li>
+</ol>
+<p>用户卖出token0 </p>
+<p>$\Large (x + d_x)\cdot(y - d_y) &#x3D; k$</p>
+<p>用户买入token1</p>
+<p>$\Large (x - d_x)\cdot(y + d_y) &#x3D; k$</p>
+<p>可以支持任何代币进行买卖，但是永远不会被掏空</p>
+<p>token价格是由市场来决定的（市场供需），否则会有套利机器人来套利</p>
+<p>三、定价机制与滑点问题</p>
+<p><code>定价机制</code></p>
+<p><strong>sport price</strong>(现货价格)</p>
+<p>$\Large P_x &#x3D; \frac {y}{x}$</p>
+<p>$\Large P_y &#x3D; \frac {x}{y}$</p>
+<p><strong>execution price</strong>(执行价格)</p>
+<p>指一次实际交易中，用户平均买入或卖出的真实成交价格</p>
+<p>$\Large P_\ exec &#x3D; \frac {amountIn} {aomuntOut}$</p>
+<p><strong>案例</strong></p>
+<p>用10个tokenA兑换tokenB (不考虑手续费)</p>
+<table>
+<thead>
+<tr>
+<th>池子</th>
+<th>A</th>
+<th>B</th>
+<th>K</th>
+<th>汇率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>100</td>
+<td>10</td>
+<td>1000</td>
+<td>10：1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1000</td>
+<td>100</td>
+<td>100000</td>
+<td>10：1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>10000</td>
+<td>1000</td>
+<td>10000000</td>
+<td>10：1</td>
+</tr>
+</tbody></table>
+<p><strong>池子1</strong></p>
+<p>$100\cdot 10 &#x3D; 110\cdot x$</p>
+<p>兑换后</p>
+<p>A 110</p>
+<p>B 9.0910</p>
+<p>A : B &#x3D; 12.0999</p>
+<p><strong>1B &#x3D; 12.0999A</strong></p>
+<p><strong>池子2</strong></p>
+<p>$1000\cdot 100 &#x3D; 1010\cdot  y$</p>
+<p>兑换后</p>
+<p>A 1010</p>
+<p>B 99.0099</p>
+<p>A ：B &#x3D; 10.2010</p>
+<p><strong>1B &#x3D; 10.2010A</strong></p>
+<p><strong>池子三</strong></p>
+<p>$10000\cdot 1000 &#x3D; 10010\cdot z$</p>
+<p>兑换后</p>
+<p>A 10010</p>
+<p>B 999.0010</p>
+<p>A : B &#x3D; 10.0200</p>
+<p><strong>1B &#x3D; 10.0200A</strong></p>
+<p>在该案例中，现货价格都是<strong>1B &#x3D; 10A</strong></p>
+<p>但实际交易中，执行价格&gt;现货价格，A变便宜了，B变贵了</p>
+<p><code>滑点问题</code></p>
+<p><strong>滑点</strong>（slippage) 指的是交易价格与期望价格之间的偏差，即执行价格和现货价格之间的偏差</p>
+<p><em>计算公式</em></p>
+<p>$\Large Slippage &#x3D; \frac{execution \ price - sport \ price} {execution \ price}$</p>
+<p>三个池子中的滑点大小依次为 20.999% 、2.010%、0.200%</p>
+<p>&#x3D;&#x3D;滑点大小与池子深度成反比&#x3D;&#x3D;</p>
+<p>四、流动性</p>
+<p>$ k &#x3D; L \cdot L$</p>
+<p><code>LP(Liquidity Privide)</code>流动性提供者</p>
+<p><code>LPT(Liquidity Provider Token)</code>流动性提供者凭证</p>
+<ol>
+<li><p>添加流动性，<strong>添加的比例要池子里原来的比例一致（不能影响市场价）</strong></p>
+<p>$\Large\frac{x + dx}{y+dy} &#x3D; \frac{x}{y}$,用户添加的是dx和dy</p>
+<p>$\Large k &#x3D; \frac{x + d_x}{y+d_y}$</p>
+<p>如果token是我们发的，添加初始流动性决定了这个token的发行价格</p>
+</li>
+<li><p>移除流动性，<strong>同样要按照比例移除</strong></p>
+<p>$\Large\frac{x - d_x}{y - d_y} &#x3D; \frac{x}{y}$</p>
+<p>$\Large k &#x3D; \frac{x - d_x}{y - d_y}$</p>
+<p>如果市场价发生了变化，要按新的市场价移除</p>
+</li>
+</ol>
+<p>&#x3D;&#x3D;k值在token交换的时候是恒定的，但是在添加流动性和移除流动性的时候是变化的&#x3D;&#x3D;</p>
+<p>k值（L的平方）决定池子的深浅（流动性的深度），交易占池子的比例越大会产生越大的滑点（k值小，池子对交易者来说太浅）；但是交易占池子的比例很小，交易的滑点越小。</p>
+<p>如果要交易一笔数量较多的token，最好找一个深度足够的交易池，能最大可能保证以市场价格成交（减少损失）。</p>
+<h2 id="swap操作"><a href="#swap操作" class="headerlink" title="swap操作"></a>swap操作</h2><p><strong>UniswapV2中代币兑换的流程（以DAI&#x2F;USDT为例）</strong></p>
+<p><img src="H:\Blog\source\picture\V2-2.png" alt="V2-2"></p>
+<ul>
+<li>用户调用<code>SwapExactTokensForTokens()</code>（用固定数量的token A 换尽量多的token B）或<code>SwapTokensForExactTokens()</code>（想要换固定数量的token B，允许Router花费尽量少的token A）</li>
+<li>Router调用<code>transferFrom()</code>把用户的输入代币转给Pair合约（前提是用户需要给路由合约授权使用自己的余额）</li>
+<li>Router再调用Pair的<code>swap()</code>,Pair根据恒定乘积公式计算出应该给用户多少目标代币(USDT)</li>
+<li>Pair调用<code>transfer()</code>把目标代币发给用户</li>
+</ul>
+<p><strong>UniswapV2多跳兑换流程</strong>(DAI —&gt;  USDT —&gt; MKR,没有直接的DAI&#x2F;MKR交易对)</p>
+<p><img src="H:\Blog\source\picture\V2-3.png" alt="V2-3"></p>
+<ul>
+<li>用户调用<code>SwapExactTokenForTokens()</code>或<code>swapTokenForExactTokens()</code>告诉Router要按照路径<code>[DAI, USDT, MKR]</code>，将DAI换成MKR</li>
+<li>Router调用<code>transferFrom()</code>将DAI转入第一个池子（DAI&#x2F;USDT Pair)</li>
+<li>Router调用第一个Pair的<code>swap()</code>，直接把计算后的USDT转到下一个池子（USDT&#x2F;MKR Pair），这一步是中间代币直接中转，Router不接触资金</li>
+<li>第二个Pair执行<code>swap()</code>池子根据恒定乘积公式算出应付多少MKR，把MKR转给用户</li>
+</ul>
+<p><strong>手续费</strong>：千三 0.3%</p>
+<p>$\Large\frac{x+d_x}{y-d_y} &#x3D; x_0\cdot y_0$</p>
+<p>$\Large d_y &#x3D; d_x\cdot y_0\cdot(x+d_x)$</p>
+<p><em><strong>已知dx的情况下求dy</strong></em></p>
+<p><strong>getamountIn()</strong>，输入amountIn数量的tokenA可以换得多少tokenB</p>
+<p>$\Large\text{amountOut} &#x3D; \frac{amountIn \times 997 \times reserveOut}{reserveIn \times 1000 + amountIn \times 997}$</p>
+<p><em><strong>SwapExactTokensForTokens()</strong></em></p>
+<p>池子中tokenA 的储备量  —reserveOut</p>
+<p>池子中tokenB的储备量</p>
+<p>用户想要交换的 $\Large d_x$  —amountIn</p>
+<p>实际用于交换的$\Large d_{x_1} &#x3D;  (1-f) d_x &#x3D; 0.997d_x$</p>
+<p>$\Large d_y &#x3D;  y_0\cdot\frac{(1-f)d_x }{x0+(1-f)\cdot d_x}$ </p>
+<p>​		$\Large &#x3D;  \frac{0.997\cdot d_x \cdot y_0}{x_0 + 0.997\cdot d_x} \cdot {\frac{1000}{1000}}$</p>
+<p>​		$\Large &#x3D; \frac{997\cdot d_x \cdot y_0}{1000\cdot x_0 + 997\cdot d_x}$</p>
+<p><code>X &lt;==&gt; In</code> <code>Y &lt;==&gt; Out</code></p>
+<p><img src="H:\Blog\source\picture\V22-2.png" alt="V22-2"></p>
+<p>$\Large amountOut &#x3D; \frac {997\cdot actualAmountIn\cdot reserveOutput}{1000\cdot reserveInput +997\cdot actualAmountIn}$</p>
+<p><em><strong>已知dy的情况下求dx</strong></em></p>
+<p><strong>getAmountOut()</strong>:想获得amountOut数量的tokenB需要支付多少tokenA</p>
+<p>$\Large\text{amountIn} &#x3D; \frac{reserveIn \times amountOut \times 1000}{(reserveOut - amountOut) \times 997} + 1$</p>
+<p><strong>SwapTokensForExactTokens</strong></p>
+<p>$\Large\begin{cases}<br>x_1 &#x3D; x_0 + (1 - f)d_x \[6pt]<br>y_1 &#x3D; y_0 - d_y<br>\end{cases}$</p>
+<p>$\Large x_1 \cdot y_1 &#x3D; x_0 \cdot y_0$</p>
+<p>​	(d<del>x</del>)                                (d<del>y</del>)</p>
+<p>$\Large x_0\cdot d_y + (1-f)\cdot d_x\cdot d_y &#x3D; (1-f)\cdot y_0\cdot d_x$</p>
+<p>$\Large x_0\cdot d_y &#x3D; [(1-f)\cdot y_0 - (1-f)\cdot d_y]\cdot d_x$</p>
+<p>​			   	$\Large &#x3D; [(1-f)\cdot (y_0 - d_y)]\cdot d_x$</p>
+<p>$\Large d_x &#x3D; \frac{x\cdot d_y}{y_0 -d_y} \cdot \frac{1}{1-f}$</p>
+<p>$\Large x &#x3D; \frac{x_0\cdot d_y}{y_0 - d_y}\cdot \frac{1}{1-f}$	</p>
+<p>​     $\Large &#x3D; \frac{ReserveIn\cdot Amount}{ReserveOut - AmountOut}\cdot \frac{1000}{0.997}$</p>
+<p>每笔交易收0.3%的手续费</p>
+<p>手续费会留在池子里，<code>k</code>值会变大，手续费不会直接分给<code>LP</code></p>
+<p>&#x3D;&#x3D;只要交易量大，池子里的代币是会缓慢增加的&#x3D;&#x3D;</p>
+<p>假设DAI和USDT市场价都是一美元一个</p>
+<p><img src="H:\Blog\source\picture\V2-6.png" alt="V2-6"></p>
+<p>每次用一个DAI换USDT</p>
+<p><img src="H:\Blog\source\picture\V2-7.png" alt="V2-7"></p>
+<p>出现价格不平衡的话会有套利空间，但不会存在时间太长，最终会变成类似情况</p>
+<p><img src="H:\Blog\source\picture\V2-8.png" alt="V2-8"></p>
+<p>只要池子里有交换，流动性一定会变大</p>
+<p><em><strong>如何让LP受益于手续费</strong></em></p>
+<p>整个池子流动性增大，但是份额没变，所以每个份额值钱了</p>
+<p><img src="H:\Blog\source\picture\V2-9.png" alt="V2-9"></p>
+<p>$LP价值 &#x3D; 份额比例\cdot 池子总价值$</p>
+<p>当新的 LP 加入、池子更大时：</p>
+<ul>
+<li>市场交易更多，<strong>手续费收入累积到池子里</strong>；</li>
+<li>因此$R_2 &gt;R_1$，总资产变多；</li>
+<li>虽然老 LP 的份额比例 $\frac{\sqrt{R_1}}{\sqrt{R_2}}$ 没变；</li>
+<li>但池子的 <strong>绝对价值变大</strong>，每一份份额代表更多的底层资产</li>
+</ul>
+<p>只有LP会受益，作为交换者注入手续费实际上是为LP注入收入</p>
+<p>&#x3D;&#x3D;LP将资产存在池子中(LPT)，交换者与池子里LP的资产集合做交易，LP只有在撤池子的时候才能获得手续费收益；但不是稳赚（无常损失）&#x3D;&#x3D;</p>
+<p>当外部市场价格变化时：</p>
+<ol>
+<li><strong>池子里的价格和市场价产生差异</strong>。</li>
+<li>套利者会进来买入或卖出，直到池子价格 &#x3D; 外部市场价。</li>
+<li>这个过程会改变池子里两种资产的比例。</li>
+<li>LP 最终拿到的资产组合和最初存入时不同。</li>
+<li>把这个新组合按市场价折算，总价值 &lt; 直接持有时的价值 → 产生<strong>无常损失</strong>。</li>
+</ol>
+<p>初始LP：$\Large \frac{100DAI}{ETH}$   ($100DAI + 1ETH &#x3D; 200DAI$)</p>
+<p>&#x3D;&#x3D;<strong>ETH涨价</strong>&#x3D;&#x3D;</p>
+<p>$\Large x\cdot y &#x3D; k$   $100\cdot 1 &#x3D;&#x3D;&gt; 120\cdot 0.83$</p>
+<p>$\Large P_E &#x3D; \frac{120}{0.83} &#x3D; 144.58 DAI&#x2F;ETH$</p>
+<p>对于LP来说：$120DAI + 0.83\cdot 144.58 &#x3D; 240 DAI$</p>
+<p>不做LP：$100DAI + 1ETH &#x3D; 100 + 144.58 &#x3D; 244.58DAI$</p>
+<p>少赚$244.58 - 240 &#x3D; 4.58DAI$</p>
+<p>&#x3D;&#x3D;市场价格发生变化时，池子的流动性不变&#x3D;&#x3D;</p>
+<p>$100 \cdot 1 &#x3D; 120 \cdot 0.83$</p>
+<p>&#x3D;&#x3D;<strong>ETH降价</strong>&#x3D;&#x3D;</p>
+<p>$\Large 100DAI : 1ETH$</p>
+<p>$x\cdot y &#x3D; k$   $&#x3D; 80DAI : 1.25ETH$</p>
+<p>$100\cdot 1 &#x3D; 80\cdot 1.25 &#x3D; 100$</p>
+<p>$\Large P_E &#x3D; \frac{80}{1.25} &#x3D; 64 DAI&#x2F;ETH$</p>
+<p>不做LP：$100DAI + 1\cdot64DAI &#x3D; 164 DAI$</p>
+<p>做LP：$80DAI + 1.25\cdot 64DAI &#x3D; 160DAI$</p>
+<p>多损失的部分：$164DAI - 160DAI &#x3D; 4DAI$</p>
+<p>&#x3D;&#x3D;涨价少赚的部分是无常损失，降价多亏的部分是无常损失&#x3D;&#x3D;</p>
+<p><em><strong>protocol fee</strong></em></p>
+<p>在<code>UniswapV1</code>时，所有手续费都归LP，但是<code>Uniswap</code>作为项目方并没有受益。在<code>UniswapV2</code>，提出了<code>protocol fee</code></p>
+<p>用户还是支付交易的千三手续费，但是项目方要在千三里抽取六分之一（即万五）作为<code>protocol fee</code>，剩下部分为LP的收益</p>
+<p>&#x3D;&#x3D;协议方不对任何初始流动性收取费用，只对增量部分收取费用&#x3D;&#x3D;</p>
+<p><strong>项目方不直接拿token，而是免费给自己增发了一些shares(minted shares，和普通LP的份额完全一样，就是来源不同)</strong></p>
+<p><img src="H:\Blog\source\picture\V2-10.png" alt="V2-10"></p>
+
+$\Large\frac{S_m}{S_m+S_1} = \frac{{\phi}(\sqrt{K_{now}-K_{last}})}{\sqrt{K_{now}}}$
+
+
+<p>$$\Large S_m &#x3D; \frac{\sqrt{K_{now}} - \sqrt{K_{last}}}{\left(\frac{1}{\phi} - 1\right)\sqrt{K_{now}} + \sqrt{K_{last}}} \cdot S_1$$ </p>
+<p>$$\Large S_m &#x3D; \frac{\sqrt{K_{now}} - \sqrt{K_{last}}}{5\sqrt{K_{now}} + \sqrt{K_{last}}} \cdot S_1$$</p>
+<p>$\Large S_m$—协议费份额</p>
+<p>$\Large S_1$—-当前LP的总份额</p>
+<p>根据 V2 的代码（<code>_mintFee</code> 函数），公式大致是：</p>
+<p>$\Large minted shares &#x3D; \frac{\sqrt{K_{now}}-\sqrt{K_{last}}}{5}\cdot LP total supply$</p>
+<p>$\Large\text{fee fraction} &#x3D; \frac{1}{n + 1} &#x3D; \frac{1}{6} &#x3D; 16.67%$</p>
+<ul>
+<li>其中：<ul>
+<li>$k &#x3D; x \cdot y$是池子两种代币的乘积。</li>
+<li>$\sqrt{k}$ 的变化表示池子因手续费累积而增长的真实价值。</li>
+<li>“&#x2F;5” 的原因就是项目方拿走 <strong>手续费收入的 1&#x2F;6</strong>，剩下的 5&#x2F;6 留给 LP。</li>
+</ul>
+</li>
+</ul>
+<p>换句话说：</p>
+<ul>
+<li>如果池子在 LP 提供流动性期间产生了手续费，那么在有人 mint&#x2F;burn 时，系统会先算出 <strong>增长部分对应多少手续费</strong>，再 mint 相应比例的 LP token 给 feeTo。</li>
+<li>项目方的 minted shares <strong>只来自手续费增长，不会稀释 LP 的本金</strong>。</li>
+</ul>
+<p><code>protocol fee</code>不会在每一笔交换后立即发生，只有下一次LP添加&#x2F;移除流动性时，才会触发<code>_mintFree</code>,此时协议才会把累积的手续费增值计算出来，并mint对应的 LP token给项目方。</p>
+<p><img src="H:\Blog\source\picture\V22-1.png" alt="V22-1"></p>
+<hr>
+<p><em><strong>FlashSwaps</strong></em></p>
+<p>闪电贷原生于区块链</p>
+<p>借贷后必须在同一笔交易之内将贷款于手续费还上</p>
+<p>&#x3D;&#x3D;Flash Swap&#x3D;&#x3D;</p>
+<p>$\Large amountOut$ : $\Large d_{x_0}$(用户借用的)</p>
+<p>$\Large amountIn$: $\Large d_{x_1} &#x3D; d_{x_0} + fee$（用户还来的）</p>
+<p>​				$\Large fee &#x3D; 0.003\cdot d_{x_1}$</p>
+<p>$\Large amountIn - fee &#x3D; 0.997d_{x_1}$</p>
+<p>​				$\Large fee &#x3D; \frac{3}{997}d_{x_0}$</p>
+<p><img src="H:\Blog\source\picture\V2-12.png" alt="V2-12"></p>
+<p>··		 </p>
+<p><img src="H:\Blog\source\picture\V2-13.png" alt="V2-13"></p>
+<ul>
+<li>用户发起一次FlashSwap调用</li>
+<li>FlashSwap调用DAI&#x2F;ETH池子</li>
+<li>UniswapV2Callee回调执行</li>
+<li>归还本金+手续费</li>
+</ul>
+<p><strong>TWAP（时间加权价格）</strong></p>
+<p>$\Large x\cdot y &#x3D; k$</p>
+<p>x y为两种token的储备量，池子里可以算出瞬时价格</p>
+<p>$\Large P &#x3D; \frac{y}{x}$</p>
+<p>瞬时价格容易被操控，比如攻击者在一个区块里用大量资金买入，把价格拉高，然后立刻读取这个价格作为预言机数据，最后再卖回去，把价格打回原位。这样合约里的其他逻辑（比如借贷清算）就会被误导。</p>
+<p>所以仅仅依赖瞬时价格是不安全的</p>
+<p>在每个区块，UniswapV2都会累计价格道一个状态变量里，通过记录累计值，用户可以在两个时间之间求出一个平均价格，这样价格就是跨时间段的平均值。</p>
+<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20250921170914577.png" alt="image-20250921170914577"></p>
+<hr>
+<p><code>UniswapV2 实现</code></p>
+<p><strong>ERC20.sol</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.20;</span><br><span class="line"></span><br><span class="line">contract MockERC20 &#123;</span><br><span class="line">    string public name;</span><br><span class="line">    string public symbol;</span><br><span class="line">    uint8 public decimals = 18;</span><br><span class="line">    uint public totalSupply;</span><br><span class="line">    mapping(address =&gt; uint) public balanceOf;</span><br><span class="line">    mapping(address =&gt; mapping(address =&gt; uint)) public allowance;</span><br><span class="line"></span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint value);</span><br><span class="line">    event Approval(address indexed owner, address indexed spender, uint value);</span><br><span class="line"></span><br><span class="line">    constructor(string memory _name, string memory _symbol, uint _supply) &#123;</span><br><span class="line">        name = _name;</span><br><span class="line">        symbol = _symbol;</span><br><span class="line">        balanceOf[msg.sender] = _supply;</span><br><span class="line">        totalSupply = _supply;</span><br><span class="line">        emit Transfer(address(0), msg.sender, _supply);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function approve(address spender, uint value) external returns (bool) &#123;</span><br><span class="line">        allowance[msg.sender][spender] = value;</span><br><span class="line">        emit Approval(msg.sender, spender, value);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function transfer(address to, uint value) external returns (bool) &#123;</span><br><span class="line">        require(balanceOf[msg.sender] &gt;= value, &quot;balance too low&quot;);</span><br><span class="line">        balanceOf[msg.sender] -= value;</span><br><span class="line">        balanceOf[to] += value;</span><br><span class="line">        emit Transfer(msg.sender, to, value);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function transferFrom(address from, address to, uint value) external returns (bool) &#123;</span><br><span class="line">        require(balanceOf[from] &gt;= value, &quot;balance too low&quot;);</span><br><span class="line">        require(allowance[from][msg.sender] &gt;= value, &quot;allowance too low&quot;);</span><br><span class="line">        </span><br><span class="line">        allowance[from][msg.sender] -= value;</span><br><span class="line">        balanceOf[from] -= value;</span><br><span class="line">        balanceOf[to] += value;</span><br><span class="line">        </span><br><span class="line">        emit Transfer(from, to, value);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>UniswapV2Factory.sol</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.20;</span><br><span class="line"></span><br><span class="line">import &quot;./UniswapV2Pair.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract UniswapV2Factory &#123;</span><br><span class="line">    mapping(address =&gt; mapping(address =&gt; address)) public getPair;</span><br><span class="line">    address[] public allPairs;</span><br><span class="line"></span><br><span class="line">    event PairCreated(address indexed token0, address indexed token1, address pair);</span><br><span class="line"></span><br><span class="line">    function createPair(address tokenA, address tokenB) external returns (address pair) &#123;</span><br><span class="line">        require(tokenA != tokenB, &quot;IDENTICAL_ADDRESSES&quot;);</span><br><span class="line">        require(getPair[tokenA][tokenB] == address(0), &quot;PAIR_EXISTS&quot;);</span><br><span class="line"></span><br><span class="line">        UniswapV2Pair newPair = new UniswapV2Pair(tokenA, tokenB);</span><br><span class="line">        pair = address(newPair);</span><br><span class="line"></span><br><span class="line">        getPair[tokenA][tokenB] = pair;</span><br><span class="line">        getPair[tokenB][tokenA] = pair;</span><br><span class="line"></span><br><span class="line">        allPairs.push(pair);</span><br><span class="line">        emit PairCreated(tokenA, tokenB, pair);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>UniswapV2Pair.sol</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.20;</span><br><span class="line"></span><br><span class="line">interface IERC20 &#123;</span><br><span class="line">    function transfer(address to, uint value) external returns (bool);</span><br><span class="line">    function transferFrom(address from, address to, uint value) external returns (bool);</span><br><span class="line">    function balanceOf(address) external view returns (uint);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">error InsufficientOutputAmount();</span><br><span class="line">error InsufficientInputAmount();</span><br><span class="line"></span><br><span class="line">contract UniswapV2Pair &#123;</span><br><span class="line">    address public token0;</span><br><span class="line">    address public token1;</span><br><span class="line"></span><br><span class="line">    uint112 private reserve0;</span><br><span class="line">    uint112 private reserve1;</span><br><span class="line"></span><br><span class="line">    uint public constant FEE_RATE = 3; // 0.3%</span><br><span class="line"></span><br><span class="line">    constructor(address _token0, address _token1) &#123;</span><br><span class="line">        token0 = _token0;</span><br><span class="line">        token1 = _token1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getReserves() public view returns (uint, uint) &#123;</span><br><span class="line">        return (reserve0, reserve1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function _update(uint balance0, uint balance1) private &#123;</span><br><span class="line">        reserve0 = uint112(balance0);</span><br><span class="line">        reserve1 = uint112(balance1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function addLiquidity(uint amount0, uint amount1) external &#123;</span><br><span class="line">        IERC20(token0).transferFrom(msg.sender, address(this), amount0);</span><br><span class="line">        IERC20(token1).transferFrom(msg.sender, address(this), amount1);</span><br><span class="line">        _update(IERC20(token0).balanceOf(address(this)), IERC20(token1).balanceOf(address(this)));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function swap(address inputToken, uint amountIn, address to) external &#123;</span><br><span class="line">        require(amountIn &gt; 0, &quot;INSUFFICIENT_INPUT_AMOUNT&quot;);</span><br><span class="line"></span><br><span class="line">        // 判断输入token是否为token0或token1</span><br><span class="line">        bool isToken0 = inputToken == token0;</span><br><span class="line">        (uint reserveInput, uint reserveOutput) = isToken0 ? (reserve0, reserve1) : (reserve1, reserve0);</span><br><span class="line"></span><br><span class="line">        // 计算实际转入的input token数量</span><br><span class="line">        uint balanceInput = IERC20(inputToken).balanceOf(address(this));</span><br><span class="line">        uint actualAmountIn = balanceInput - reserveInput;</span><br><span class="line"></span><br><span class="line">        // 按0.3%手续费计算output token</span><br><span class="line">        uint amountInWithFee = actualAmountIn * 997 / 1000;</span><br><span class="line">        uint amountOut = (amountInWithFee * reserveOutput) / (reserveInput + amountInWithFee);</span><br><span class="line"></span><br><span class="line">        // 转账output token</span><br><span class="line">        address outputToken = isToken0 ? token1 : token0;</span><br><span class="line">        IERC20(outputToken).transfer(to, amountOut);</span><br><span class="line"></span><br><span class="line">        // 更新储备</span><br><span class="line">        uint balance0New = IERC20(token0).balanceOf(address(this));</span><br><span class="line">        uint balance1New = IERC20(token1).balanceOf(address(this));</span><br><span class="line">        _update(balance0New, balance1New);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>UniswapV2Router.sol</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.20;</span><br><span class="line"></span><br><span class="line">import &quot;./UniswapV2Pair.sol&quot;;</span><br><span class="line"></span><br><span class="line">interface IUniswapV2Factory &#123;</span><br><span class="line">    function getPair(address tokenA, address tokenB) external view returns (address);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract UniswapV2Router &#123;</span><br><span class="line">    address public immutable factory;</span><br><span class="line"></span><br><span class="line">    constructor(address _factory) &#123;</span><br><span class="line">        factory = _factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function swapExactTokensForTokens(</span><br><span class="line">        uint amountIn,</span><br><span class="line">        uint amountOutMin,</span><br><span class="line">        address[] calldata path,</span><br><span class="line">        address to</span><br><span class="line">    ) external returns (uint[] memory amounts) &#123;</span><br><span class="line">        amounts = getAmountsOut(amountIn, path);</span><br><span class="line">        require(amounts[amounts.length - 1] &gt;= amountOutMin, &quot;INSUFFICIENT_OUTPUT_AMOUNT&quot;);</span><br><span class="line"></span><br><span class="line">        //将input转入第一个代币对</span><br><span class="line">        address firstPair = getPair(path[0], path[1]);</span><br><span class="line">        IERC20(path[0]).transferFrom(msg.sender, firstPair, amounts[0]);</span><br><span class="line"></span><br><span class="line">        // 沿path执行交换</span><br><span class="line">        _swap(amounts, path, to);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    function getAmountsOut(uint amountIn, address[] memory path) public view returns (uint[] memory amounts) &#123;</span><br><span class="line">        amounts = new uint[](path.length);</span><br><span class="line">        amounts[0] = amountIn;</span><br><span class="line">        for (uint i = 0; i &lt; path.length-1; i++) &#123;</span><br><span class="line">            address pair = getPair(path[i], path[i+1]);</span><br><span class="line">            (uint reserveIn, uint reserveOut) = getReserves(pair, path[i], path[i+1]);</span><br><span class="line">            amounts[i+1] = getAmountOut(amounts[i], reserveIn, reserveOut);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getAmountOut(uint amountIn, uint reserveIn, uint reserveOut) public pure returns (uint amountOut) &#123;</span><br><span class="line">        uint amountInWithFee = amountIn * 997;</span><br><span class="line">        amountOut = (amountInWithFee * reserveOut) / (reserveIn * 1000 + amountInWithFee);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function swapTokensForExactTokens(</span><br><span class="line">        uint amountOut,</span><br><span class="line">        uint amountInMax,</span><br><span class="line">        address[] calldata path,</span><br><span class="line">        address to</span><br><span class="line">    ) external returns (uint[] memory amounts) &#123;</span><br><span class="line">        amounts = getAmountsIn(amountOut, path);</span><br><span class="line">        require(amounts[0] &lt;= amountInMax, &quot;EXCESSIVE_INPUT_AMOUNT&quot;);</span><br><span class="line"></span><br><span class="line">        address firstPair = getPair(path[0], path[1]);</span><br><span class="line">        IERC20(path[0]).transferFrom(msg.sender, firstPair, amounts[0]);</span><br><span class="line">        _swap(amounts, path, to);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getAmountsIn(uint amountOut, address[] memory path) public view returns (uint[] memory amounts) &#123;</span><br><span class="line">        amounts = new uint[](path.length);</span><br><span class="line">        amounts[amounts.length - 1] = amountOut;</span><br><span class="line">        for (uint i = path.length - 1; i &gt; 0; i--) &#123;</span><br><span class="line">            address pair = getPair(path[i - 1], path[i]);</span><br><span class="line">            (uint reserveIn, uint reserveOut) = getReserves(pair, path[i - 1], path[i]);</span><br><span class="line">            amounts[i - 1] = getAmountIn(amounts[i], reserveIn, reserveOut);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    function getAmountIn(uint amountOut, uint reserveIn, uint reserveOut) public pure returns (uint amountIn) &#123;</span><br><span class="line">        require(amountOut &lt; reserveOut, &quot;INSUFFICIENT_LIQUIDITY&quot;);</span><br><span class="line">        uint numerator = reserveIn * amountOut * 1000;</span><br><span class="line">        uint denominator = (reserveOut - amountOut) * 997;</span><br><span class="line">        amountIn = (numerator / denominator) + 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    function _swap(uint[] memory amounts, address[] memory path, address to) internal &#123;</span><br><span class="line">        for (uint i = 0; i &lt; path.length - 1; i++) &#123;</span><br><span class="line">            address input = path[i];</span><br><span class="line">            address output = path[i + 1];</span><br><span class="line">            address pairAddr = getPair(input, output);</span><br><span class="line"></span><br><span class="line">            address toAddress = i &lt; path.length - 2 ? getPair(output, path[i+2]) : to;</span><br><span class="line"></span><br><span class="line">            UniswapV2Pair(pairAddr).swap(input, amounts[i], toAddress);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getPair(address tokenA, address tokenB) public view returns (address) &#123;</span><br><span class="line">        address pair = IUniswapV2Factory(factory).getPair(tokenA, tokenB);</span><br><span class="line">        require(pair != address(0), &quot;PAIR_NOT_EXISTS&quot;);</span><br><span class="line">        return pair;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getReserves(address pair, address tokenA, address tokenB) public view returns (uint reserveA, uint reserveB) &#123;</span><br><span class="line">        (uint reserve0, uint reserve1) = UniswapV2Pair(pair).getReserves();</span><br><span class="line">        (reserveA, reserveB) = tokenA &lt; tokenB ? (reserve0, reserve1) : (reserve1, reserve0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function sortTokens(address tokenA, address tokenB) public pure returns (address token0, address token1) &#123;</span><br><span class="line">        (token0, token1) = tokenA &lt; tokenB ? (tokenA, tokenB) : (tokenB, tokenA);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>TestSwap.t.sol</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.20;</span><br><span class="line"></span><br><span class="line">import &quot;forge-std/Test.sol&quot;;</span><br><span class="line">import &quot;../src/ERC20.sol&quot;;</span><br><span class="line">import &quot;../src/UniswapV2Factory.sol&quot;;</span><br><span class="line">import &quot;../src/UniswapV2Router.sol&quot;;</span><br><span class="line">import &quot;../src/UniswapV2Pair.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract SwapV2Test is Test &#123;</span><br><span class="line">    MockERC20 tokenA;</span><br><span class="line">    MockERC20 tokenB;</span><br><span class="line">    UniswapV2Factory factory;</span><br><span class="line">    UniswapV2Router router;</span><br><span class="line">    UniswapV2Pair pair;</span><br><span class="line">    address user = address(0xABCD);</span><br><span class="line"></span><br><span class="line">    function setUp() public &#123;</span><br><span class="line">        tokenA = new MockERC20(&quot;TokenA&quot;, &quot;A&quot;, 1_000_000 ether);</span><br><span class="line">        tokenB = new MockERC20(&quot;TokenB&quot;, &quot;B&quot;, 1_000_000 ether);</span><br><span class="line"></span><br><span class="line">        factory = new UniswapV2Factory();</span><br><span class="line">        router = new UniswapV2Router(address(factory));</span><br><span class="line"></span><br><span class="line">        factory.createPair(address(tokenA), address(tokenB));</span><br><span class="line">        address pairAddr = factory.getPair(address(tokenA), address(tokenB));</span><br><span class="line">        pair = UniswapV2Pair(pairAddr);</span><br><span class="line"></span><br><span class="line">        tokenA.approve(address(pair), type(uint).max);</span><br><span class="line">        tokenB.approve(address(pair), type(uint).max);</span><br><span class="line">        pair.addLiquidity(1000 ether, 1000 ether);</span><br><span class="line"></span><br><span class="line">        tokenA.transfer(user, 100 ether);</span><br><span class="line">    &#125;</span><br><span class="line">    function testSwapExactTokensForTokens() public &#123;</span><br><span class="line">    // 记录初始余额</span><br><span class="line">    uint initialTokenABalance = tokenA.balanceOf(user);</span><br><span class="line">    uint initialTokenBBalance = tokenB.balanceOf(user);</span><br><span class="line">    </span><br><span class="line">    emit log(&quot;=== Before Swap ===&quot;);</span><br><span class="line">    emit log_named_uint(&quot;User initial TokenA&quot;, initialTokenABalance);</span><br><span class="line">    emit log_named_uint(&quot;User initial TokenB&quot;, initialTokenBBalance);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    vm.startPrank(user);</span><br><span class="line">    tokenA.approve(address(router), 100 ether);</span><br><span class="line"></span><br><span class="line">    address[] memory path = new address[](2);</span><br><span class="line">    path[0] = address(tokenA);</span><br><span class="line">    path[1] = address(tokenB);</span><br><span class="line">    //使用tokenA兑换tokenB</span><br><span class="line"></span><br><span class="line">    // 执行交换</span><br><span class="line">    router.swapExactTokensForTokens(</span><br><span class="line">        1 ether,  // 使用 1 ether </span><br><span class="line">        0,</span><br><span class="line">        path,</span><br><span class="line">        user</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    vm.stopPrank();</span><br><span class="line"></span><br><span class="line">    // 记录最终余额</span><br><span class="line">    uint finalTokenABalance = tokenA.balanceOf(user);</span><br><span class="line">    uint finalTokenBBalance = tokenB.balanceOf(user);</span><br><span class="line"></span><br><span class="line">    emit log(&quot;=== After Swap ===&quot;);</span><br><span class="line">    emit log_named_uint(&quot;User final TokenA&quot;, finalTokenABalance);</span><br><span class="line">    emit log_named_uint(&quot;User final TokenB&quot;, finalTokenBBalance);</span><br><span class="line">    </span><br><span class="line">    uint tokenASpent = initialTokenABalance - finalTokenABalance;</span><br><span class="line">    emit log_named_uint(&quot;TokenA spent&quot;, tokenASpent);</span><br><span class="line">    emit log_named_uint(&quot;TokenB received&quot;, finalTokenBBalance);</span><br><span class="line"></span><br><span class="line">    // 验证 TokenA 减少</span><br><span class="line">    assertTrue(finalTokenABalance &lt; initialTokenABalance, &quot;TokenA should decrease&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+        <div class="reward-container">
+  <div>KFC V我 50</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="wordmaya 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="wordmaya 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>wordmaya
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2026/05/15/%E6%BB%91%E7%82%B9/" title="UniswapV2">http://example.com/2026/05/15/滑点/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/blockchain/" rel="tag"># blockchain</a>
+              <a href="/tags/DeFi/" rel="tag"># DeFi</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/05/15/x402&ERC-8004&ERC-4337&ERC-7962/" rel="prev" title="Web4">
+      <i class="fa fa-chevron-left"></i> Web4
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/05/15/%E6%B5%8B%E8%AF%95&vm%E6%8E%A5%E5%8F%A3&%E4%BD%9C%E5%BC%8A%E7%A0%81&%E9%A2%84%E6%B5%8B%E5%90%88%E7%BA%A6%E5%9C%B0%E5%9D%80/" rel="next" title="FuzzingTest">
+      FuzzingTest <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AMM"><span class="nav-number">1.</span> <span class="nav-text">AMM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%81%92%E5%AE%9A%E4%B9%98%E7%A7%AF%E8%87%AA%E5%8A%A8%E5%81%9A%E5%B8%82%E5%95%86%E5%85%AC%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">恒定乘积自动做市商公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#swap%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">swap操作</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wordmaya"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">wordmaya</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zg870" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zg870" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://chat.openai.com/" title="https:&#x2F;&#x2F;chat.openai.com&#x2F;" rel="noopener" target="_blank">ChatGPT</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.baidu.com/" title="https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">百度</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wordmaya</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:06</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共79k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

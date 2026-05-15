@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="不可预期的Ether还是基础漏洞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不可预期的Ether">
+<meta property="og:url" content="http://example.com/2026/05/15/%E4%B8%8D%E5%8F%AF%E9%A2%84%E6%9C%9F%E7%9A%84Ether/index.html">
+<meta property="og:site_name" content="AUV wordmaya">
+<meta property="og:description" content="不可预期的Ether还是基础漏洞">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.learnblockchain.cn/2025/04/05/29aa208cc5034a2eb6_qxCKRfd727GORQB78uTGrJstjR4.png">
+<meta property="og:image" content="c:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20250729104416436.png">
+<meta property="og:image" content="c:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20250729104828460.png">
+<meta property="og:image" content="c:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20250729112747829.png">
+<meta property="article:published_time" content="2026-05-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-15T02:35:41.814Z">
+<meta property="article:author" content="wordmaya">
+<meta property="article:tag" content="blockchain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.learnblockchain.cn/2025/04/05/29aa208cc5034a2eb6_qxCKRfd727GORQB78uTGrJstjR4.png">
+
+<link rel="canonical" href="http://example.com/2026/05/15/%E4%B8%8D%E5%8F%AF%E9%A2%84%E6%9C%9F%E7%9A%84Ether/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>不可预期的Ether | AUV wordmaya</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="AUV wordmaya" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">AUV wordmaya</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">玩得开心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/05/15/%E4%B8%8D%E5%8F%AF%E9%A2%84%E6%9C%9F%E7%9A%84Ether/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          不可预期的Ether
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-05-15 00:00:00 / 修改时间：10:35:41" itemprop="dateCreated datePublished" datetime="2026-05-15T00:00:00+08:00">2026-05-15</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="不可预期的Ether"><a href="#不可预期的Ether" class="headerlink" title="不可预期的Ether"></a>不可预期的Ether</h1><p>还是基础漏洞</p>
+<span id="more"></span>
+
+<ol>
+<li><p>违反不变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(address(this).balance == totalUserDeposits,&quot;Invariant broken&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>如果收到了意外的ETH，该判断就会错误地revert</p>
+</li>
+<li><p>绕过权限与限制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function deposit() external payable onlyWhitelisted &#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该存款函数只允许白名单用户调用，但是我们使用自毁函数，可以绕过限制，直接转账。</p>
+</li>
+<li><p>阻止某些逻辑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(address(this).balance &lt;= maxBalance, &quot;Max balance reached&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>一旦<code>address(this)</code>的余额超过<code>maxBalance</code>，下面的某些程序将无法进行</p>
+</li>
+</ol>
+<h2 id="常见攻击方法"><a href="#常见攻击方法" class="headerlink" title="常见攻击方法"></a>常见攻击方法</h2><p><strong>selfdestruct</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function destroy() external&#123;</span><br><span class="line">	selfdestruct(payadle(_to));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用<code>destroy()</code>将ETH转给目标地址</p>
+<p><strong>用以太币预加载合约地址</strong></p>
+<p>“以太预加载合约地址”又名“预加载Ether到未来合约地址”</p>
+<p>即使一个合约还没部署，我们可以提前预知它的地址，所以可以提前向它发送ETH</p>
+<p><strong>使用CREATE</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">address future = address(uint160(uint(keccak256(abi.encodePacked(</span><br><span class="line">    byte(0xd6), byte(0x94), deployer_address, byte(nonce)</span><br><span class="line">)))));</span><br><span class="line">payale(future).transfer(1 ether);</span><br></pre></td></tr></table></figure>
+
+<p>任何人都可以通过这种方式向合约地址转账（无论它是否存在）。</p>
+<p>&#x3D;&#x3D;一个合约还没部署，且部署后没有receive()、fallback()，构造函数不是payable,我们也可以提前向它转ETH&#x3D;&#x3D;</p>
+<h2 id="EtherGame-sol"><a href="#EtherGame-sol" class="headerlink" title="EtherGame.sol"></a><code>EtherGame.sol</code></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">contract EtherGame &#123;</span><br><span class="line"></span><br><span class="line">    uint public payoutMileStone1 = 3 ether;</span><br><span class="line">    uint public mileStone1Reward = 2 ether;</span><br><span class="line">    uint public payoutMileStone2 = 5 ether;</span><br><span class="line">    uint public mileStone2Reward = 3 ether;</span><br><span class="line">    uint public finalMileStone = 10 ether;</span><br><span class="line">    uint public finalReward = 5 ether;</span><br><span class="line"></span><br><span class="line">    mapping(address =&gt; uint) redeemableEther;</span><br><span class="line">    // Users pay 0.5 ether. At specific milestones, credit their accounts.</span><br><span class="line">    function play() external payable &#123;</span><br><span class="line">        require(msg.value == 0.5 ether); // each play is 0.5 ether</span><br><span class="line">        uint currentBalance = address(this).balance + msg.value;</span><br><span class="line">        // ensure no players after the game has finished</span><br><span class="line">        require(currentBalance &lt;= finalMileStone);</span><br><span class="line">        // if at a milestone, credit the player&#x27;s account</span><br><span class="line">        if (currentBalance == payoutMileStone1) &#123;</span><br><span class="line">            redeemableEther[msg.sender] += mileStone1Reward;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (currentBalance == payoutMileStone2) &#123;</span><br><span class="line">            redeemableEther[msg.sender] += mileStone2Reward;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (currentBalance == finalMileStone ) &#123;</span><br><span class="line">            redeemableEther[msg.sender] += finalReward;</span><br><span class="line">        &#125;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function claimReward() public &#123;</span><br><span class="line">        // ensure the game is complete</span><br><span class="line">        require(this.balance == finalMileStone);</span><br><span class="line">        // ensure there is a reward to give</span><br><span class="line">        require(redeemableEther[msg.sender] &gt; 0);</span><br><span class="line">        uint transferValue = redeemableEther[msg.sender];</span><br><span class="line">        redeemableEther[msg.sender] = 0;</span><br><span class="line">        msg.sender.transfer(transferValue);</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>每个玩家固定投入0.5ETH </li>
+<li>有三个奖励阶段<ul>
+<li>总金额达到3ETH，最后一个转入的玩家(2.5–&gt; 3)得到2ETH</li>
+<li>总金额达到5ETH，最后一个转入的玩家(4.5–&gt; 5)得到3ETH</li>
+<li>总金额达到10ETH，最后一个转入的玩家(9.5–&gt; 10)得到2ETH</li>
+</ul>
+</li>
+<li>总金额到达10ETH时开奖</li>
+</ul>
+<p><strong>漏洞点</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uint currentBalance = this.balance + msg.value;</span><br></pre></td></tr></table></figure>
+
+<p>后面三个<code>if</code>判断奖励阶段都使用的是<code>currentBalance</code>,主要判断合约余额是不是3、5、10。</p>
+<ul>
+<li>如果攻击者使用<code>selfdestruct()</code>直接转入10ETH,此时合约达到开奖标准，但玩家没有通过<code>play()</code>转账，导致没有获奖者，合约被锁（🤔没有人会这么做吧。。。），可以用来阻止别人获胜</li>
+<li>因为每个玩家投入固定为0.5ETH，如果攻击者使用<code>selfdestruct()</code>向合约转入0.1ETH,那么合约余额不再是0.5的倍数（if全为否），几个奖励阶段也将被跳过无法触发。合约被锁，造成玩家损失。</li>
+</ul>
+<h2 id="预防措施"><a href="#预防措施" class="headerlink" title="预防措施"></a>预防措施</h2><p>不将<code>address(this).balace</code>作为检查条件</p>
+<p>对于上述<code>EtherGame.sol</code>可做如下修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">contract EtherGame &#123;</span><br><span class="line"></span><br><span class="line">    uint public payoutMileStone1 = 3 ether;</span><br><span class="line">    uint public mileStone1Reward = 2 ether;</span><br><span class="line">    uint public payoutMileStone2 = 5 ether;</span><br><span class="line">    uint public mileStone2Reward = 3 ether;</span><br><span class="line">    uint public finalMileStone = 10 ether;</span><br><span class="line">    uint public finalReward = 5 ether;</span><br><span class="line">    uint public depositedWei;</span><br><span class="line"></span><br><span class="line">    mapping (address =&gt; uint) redeemableEther;</span><br><span class="line"></span><br><span class="line">    function play() external payable &#123;</span><br><span class="line">        require(msg.value == 0.5 ether);</span><br><span class="line">        uint currentBalance = depositedWei + msg.value;</span><br><span class="line">        // ensure no players after the game has finished</span><br><span class="line">        require(currentBalance &lt;= finalMileStone);</span><br><span class="line">        if (currentBalance == payoutMileStone1) &#123;</span><br><span class="line">            redeemableEther[msg.sender] += mileStone1Reward;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (currentBalance == payoutMileStone2) &#123;</span><br><span class="line">            redeemableEther[msg.sender] += mileStone2Reward;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (currentBalance == finalMileStone ) &#123;</span><br><span class="line">            redeemableEther[msg.sender] += finalReward;</span><br><span class="line">        &#125;</span><br><span class="line">        depositedWei += msg.value;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function claimReward() public &#123;</span><br><span class="line">        // ensure the game is complete</span><br><span class="line">        require(depositedWei == finalMileStone);</span><br><span class="line">        // ensure there is a reward to give</span><br><span class="line">        require(redeemableEther[msg.sender] &gt; 0);</span><br><span class="line">        uint transferValue = redeemableEther[msg.sender];</span><br><span class="line">        redeemableEther[msg.sender] = 0;</span><br><span class="line">        msg.sender.transfer(transferValue);</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这里将检查条件换成了玩家转入的金额，即使有人通过<code>selfdestruct()</code>向合约转账，这一部分也不会被计算到约束条件中；</p>
+<p>同样，这部分不可预期的ether不会有任何玩家拿到，它们会被永久地锁在合约中。</p>
+<h1 id="ECDSA"><a href="#ECDSA" class="headerlink" title="ECDSA"></a>ECDSA</h1><p>椭圆曲线数字签名算法，是区块链中广泛使用地非对称加密算法。它是一种基于椭圆曲线密码学(ECC)的签名算法，具有密钥短、效率高、安全性强的特点。</p>
+<p><code>secp256k1</code>椭圆曲线</p>
+<p><img src="https://img.learnblockchain.cn/2025/04/05/29aa208cc5034a2eb6_qxCKRfd727GORQB78uTGrJstjR4.png" alt="椭圆曲线数字签名算法的曲线图"></p>
+<p><strong>签名格式</strong></p>
+<p>以太坊签名包含(r,v,s)三部分</p>
+<ul>
+<li><code>r</code>是基于曲线随机点R的x坐标</li>
+<li><code>s</code>作为部署者知晓私钥的证据，是使用随机唯一nonce计算的（对应x的y坐标）</li>
+<li><code>v</code>是恢复签名者地址所需的恢复位，通常是27或28</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">address signer = ecrecover(hash, v, r, s);</span><br></pre></td></tr></table></figure>
+
+<p>但是ECDSA存在一定的安全问题(没有强制低s的情况下)</p>
+<p><code>secp256k1</code>每个x对应两个y</p>
+<p>即每个r对应两个s</p>
+<p>我们只要拥有一个合法签名<code>(r,s)</code>,就可以构造另一个合法签名<code>(r, -s mod n)</code>进行交易</p>
+<h2 id="预防措施-1"><a href="#预防措施-1" class="headerlink" title="预防措施"></a>预防措施</h2><p>EIP-2中强制“低s值”以防止malleability(签名可变性问题)</p>
+<p>&#x3D;&#x3D;签名中的s值必须小于secp256k1的阶n的一半(s&lt;n&#x2F;2)&#x3D;&#x3D;</p>
+<h1 id="拒绝服务攻击（DoS）"><a href="#拒绝服务攻击（DoS）" class="headerlink" title="拒绝服务攻击（DoS）"></a>拒绝服务攻击（DoS）</h1><p>DoS攻击是指攻击者通过合约或交易机制的漏洞，使某些功能无法执行，或者使整个合约、合约群、甚至链上关键操作失效或受阻</p>
+<h2 id="转账失败型"><a href="#转账失败型" class="headerlink" title="转账失败型"></a>转账失败型</h2><p>目标合约没有<code>receive()</code>或<code>fallback()</code>,转账会失败，触发<code>revert()</code></p>
+<p><strong>King</strong></p>
+<p>成为King，并阻止下一个人成为King</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract King &#123;</span><br><span class="line">    address king;</span><br><span class="line">    uint256 public prize;</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    constructor() payable &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">        king = msg.sender;</span><br><span class="line">        prize = msg.value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    receive() external payable &#123;</span><br><span class="line">        require(msg.value &gt;= prize || msg.sender == owner);</span><br><span class="line">        payable(king).transfer(msg.value);</span><br><span class="line">        king = msg.sender;</span><br><span class="line">        prize = msg.value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function _king() public view returns (address) &#123;</span><br><span class="line">        return king;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>cast storage slot1 ,读取prize的值</li>
+<li>传入一个&gt;&#x3D;prize的金额，成为king</li>
+<li>在攻击合约不写<code>receive()</code>和<code>fallback()</code>,或者在<code>receive()</code>和<code>fallback()</code>内部写<code>revert()</code>,阻止别人转账夺取king</li>
+</ul>
+<h2 id="循环遍历型"><a href="#循环遍历型" class="headerlink" title="循环遍历型"></a>循环遍历型</h2><p>合约中通过<code>for</code>遍历数组执行操作，攻击者提前加入大量数据，让任何遍历都耗尽gas</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function register() public &#123;</span><br><span class="line">    participants.push(msg.sender);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function rewardAll() public &#123;</span><br><span class="line">    for (uint i = 0; i &lt; participants.length; i++) &#123;</span><br><span class="line">        payable(participants[i]).transfer(1 ether);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>register()</code>是注册函数，<code>rewardAll()</code>是奖励分发函数</p>
+<p><code>reward()</code>给每个注册的用户分发1ETH,但是没有限制重复注册。攻击者多次调用<code>register()</code>，会耗尽合约的gas，使合约无法执行转账逻辑。最终奖金被锁死在合约中。</p>
+<h2 id="Pull-Push转账陷阱"><a href="#Pull-Push转账陷阱" class="headerlink" title="Pull&#x2F;Push转账陷阱"></a>Pull&#x2F;Push转账陷阱</h2><p><strong>PUSH</strong>模式指的是合约主动将ETH发送给用户。</p>
+<p>限制是受益人太多时，PUSH循环发送，容易超过区块gas限制，交易回滚</p>
+<p><code>transfer()</code>&#x2F;<code>send()</code>限制：gas限制为2300，如果接收方是合约，有复杂的逻辑，导致转账失败</p>
+<p>如果有任何一个人地址无法接收ETH，整个奖励循环失败，所有人都拿不到奖励</p>
+<p><strong>易DoS</strong></p>
+<p><strong>PULL</strong>模式指的是用户主动调用函数领取奖励</p>
+<p>用户接收失败只会影响当前调用</p>
+<p>gas 友好，只处理一个用户</p>
+<p><strong>抗DoS</strong></p>
+<h2 id="永久状态锁定"><a href="#永久状态锁定" class="headerlink" title="永久状态锁定"></a>永久状态锁定</h2><p>合约限制某些i行为只能执行一次，而攻击者提前进入，使他人无法操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">address public winner;</span><br><span class="line"></span><br><span class="line">function claim() public &#123;</span><br><span class="line">    require(winner == address(0), &quot;Already claimed&quot;);//第一个调用claim()的地址将成为winner</span><br><span class="line">    winner = msg.sender;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>攻击者提前调用，所有人永久无法参与</p>
+<h2 id="重入锁死DoS"><a href="#重入锁死DoS" class="headerlink" title="重入锁死DoS"></a>重入锁死DoS</h2><p>攻击者在转账时进行重入调用，在回调函数中反复调用合约函数，阻断或重复操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mapping(address =&gt; bool) public isClaimed;</span><br><span class="line"></span><br><span class="line">function claim() external &#123;</span><br><span class="line">    require(!isClaimed[msg.sender]);</span><br><span class="line">    payable(msg.sender).transfer(1 ether); // 攻击者在 transfer 中重入 claim</span><br><span class="line">    isClaimed[msg.sender] = true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>攻击合约</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">contract Attack &#123;</span><br><span class="line">    address victim;</span><br><span class="line">    constructor(address _victim) &#123; victim = _victim; &#125;</span><br><span class="line"></span><br><span class="line">    fallback() external payable &#123;</span><br><span class="line">        if (gasleft() &gt; 10000) &#123;</span><br><span class="line">            victim.call(abi.encodeWithSignature(&quot;claim()&quot;));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function attack() external &#123;</span><br><span class="line">        victim.call(abi.encodeWithSignature(&quot;claim()&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>防御措施</strong></p>
+<p>使用<code>ReebtrancyGuard</code>修饰器</p>
+<p>先修改状态再进行转账</p>
+<h1 id="类型转换遇到的问题"><a href="#类型转换遇到的问题" class="headerlink" title="类型转换遇到的问题"></a>类型转换遇到的问题</h1><h2 id="数值转换"><a href="#数值转换" class="headerlink" title="数值转换"></a>数值转换</h2><p>向上类型转换前补0</p>
+<p>向下类型转换可能会截断数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uint256 a = 300;</span><br><span class="line">uint8 b = uint8(a);//结果为44</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20250729104416436.png" alt="image-20250729104416436"></p>
+<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20250729104828460.png" alt="image-20250729104828460"></p>
+<p><strong>在转换前检查范围</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(a &lt;= type(uint8).max, &quot;Overflow&quot;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="address和uint160转换"><a href="#address和uint160转换" class="headerlink" title="address和uint160转换"></a>address和uint160转换</h2><p>以太坊地址是20字节&#x3D;160位.</p>
+<p>但是address不能直接转换为uint256,需要先转化成uint160</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">address a = 0x100;</span><br><span class="line">uint256 b = uint256(uint160(address(a)));</span><br></pre></td></tr></table></figure>
+
+<h2 id="bytes-address-uint-bytes32"><a href="#bytes-address-uint-bytes32" class="headerlink" title="bytes - address&#x2F;uint&#x2F;bytes32"></a>bytes - address&#x2F;uint&#x2F;bytes32</h2><p>bytes20 –&gt; address</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">address a = address(bytes20(b));</span><br></pre></td></tr></table></figure>
+
+<p>byte32 –&gt; uint256</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uint256 a = uint256(bytes32(b));</span><br></pre></td></tr></table></figure>
+
+<p>address –&gt; bytes32</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bytes32 a = bytes32(uint256(uint160(b)));//前补零</span><br></pre></td></tr></table></figure>
+
+<h2 id="string-bytes32"><a href="#string-bytes32" class="headerlink" title="string - bytes32"></a>string - bytes32</h2><p>string –&gt; bytes</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string s = &quot;hello&quot;;</span><br><span class="line">bytes b = bytes(s);</span><br></pre></td></tr></table></figure>
+
+<p>bytes –&gt; string</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bytes b = hex&quot;68656c6c6f&quot;;//&quot;hello&quot;</span><br><span class="line">string s = string(b);</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20250729112747829.png" alt="image-20250729112747829"></p>
+<p>string &lt;–&gt; bytes 不一定可逆</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string a = &quot;HelloWorldHelloWorldHelloWorld!!&quot;;//33字节</span><br><span class="line">bytes b = bytes32(a);//截断为32字节，一字节丢失</span><br></pre></td></tr></table></figure>
+
+<p>此时b再转换为string类型！&#x3D; a</p>
+<p><strong>其他不可逆例子</strong></p>
+<ul>
+<li><p><code>abi.encodePacked()</code>拼接多个字符串后再还原</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string memory a = &quot;abc&quot;;</span><br><span class="line">string memory b = &quot;def&quot;;</span><br><span class="line">bytes memory combined = abi.encodePacked(a, b); // 无分隔符</span><br></pre></td></tr></table></figure>
+
+<p>想从 combined 还原出 a、b 是不可能的，除非你知道边界在哪</p>
+</li>
+<li><p>Uincode字符串转换丢失信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string memory s = &quot;你好&quot;; // 占用 6 字节（UTF-8编码）</span><br><span class="line">bytes1 b = bytes(s)[0];  // 只取第一个字节：无法表示一个完整汉字</span><br><span class="line"></span><br><span class="line">string memory recovered = string(abi.encodePacked(b)); // 恢复后乱码</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过位操作、拼接、高低位截断，可以实现多种精细控制数据结构的方式"><a href="#通过位操作、拼接、高低位截断，可以实现多种精细控制数据结构的方式" class="headerlink" title="通过位操作、拼接、高低位截断，可以实现多种精细控制数据结构的方式"></a>通过位操作、拼接、高低位截断，可以实现多种精细控制数据结构的方式</h2><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>掩码截断</td>
+<td>x&amp;0xFFFFFFFF</td>
+<td>保留低32位（低4字节）</td>
+</tr>
+<tr>
+<td>高位拼接</td>
+<td>x&lt;&lt;128</td>
+<td></td>
+</tr>
+<tr>
+<td>提取高位</td>
+<td>x&gt;&gt;128</td>
+<td>取出高128位</td>
+</tr>
+<tr>
+<td>提取低位</td>
+<td>x&amp;((1&lt;&lt;128)-1)</td>
+<td>取出低128位</td>
+</tr>
+</tbody></table>
+<p><strong>以GateKeepOne为例</strong></p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">modifier gateThree(bytes8 _gateKey) &#123;</span><br><span class="line">        require(uint32(uint64(_gateKey)) == uint16(uint64(_gateKey)), &quot;GatekeeperOne: invalid gateThree part 		 one&quot;);</span><br><span class="line">        require(uint32(uint64(_gateKey)) != uint64(_gateKey), &quot;GatekeeperOne: invalid gateThree part two&quot;);</span><br><span class="line">        require(uint32(uint64(_gateKey)) == uint16(uint160(tx.origin)), &quot;GatekeeperOne: invalid gateThree 			part three&quot;);</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p><code>require(uint32(uint64(_gateKey)) == uint16(uint64(_gateKey))</code>表明<code>_gatekey</code>的低四字节与低二字节一致，即低四字节的高二字节是0</p>
+</li>
+<li><p><code>require(uint32(uint64(_gateKey)) != uint64(_gateKey)</code>,要求<code>_gatekey</code>的低四字节不等于全部的八字节，即<code>_gatekey</code>的高四字节为非0</p>
+</li>
+<li><p><code>require(uint32(uint64(_gateKey)) == uint16(uint160(tx.origin))</code></p>
+</li>
+</ol>
+<p>​	<code>_gatekey</code>的低32位（4字节）的低16位与<code>tx.origin</code>的低二字节一致</p>
+<p>所以，如果<code>tx.origin</code> &#x3D;&#x3D; 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266</p>
+<p><code>_gate</code>&#x3D;&#x3D;0x1111111100002266</p>
+<p><code>tx.origin</code>&#x3D;&#x3D;0x78aC353a65d0d0AF48367c0A16eEE0fbBC00aC88</p>
+<p><code>_gate</code>&#x3D;&#x3D;0x111111110000aC88</p>
+
+    </div>
+
+    
+    
+    
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+        <div class="reward-container">
+  <div>KFC V我 50</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="wordmaya 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="wordmaya 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>wordmaya
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2026/05/15/%E4%B8%8D%E5%8F%AF%E9%A2%84%E6%9C%9F%E7%9A%84Ether/" title="不可预期的Ether">http://example.com/2026/05/15/不可预期的Ether/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/blockchain/" rel="tag"># blockchain</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/05/15/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" rel="prev" title="数据存储">
+      <i class="fa fa-chevron-left"></i> 数据存储
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/05/15/%E4%BD%8E%E7%BA%A7%E8%B0%83%E7%94%A8&%E9%AB%98%E7%BA%A7%E8%B0%83%E7%94%A8/" rel="next" title="低级调用&高级调用">
+      低级调用&高级调用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E9%A2%84%E6%9C%9F%E7%9A%84Ether"><span class="nav-number">1.</span> <span class="nav-text">不可预期的Ether</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">常见攻击方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EtherGame-sol"><span class="nav-number">1.2.</span> <span class="nav-text">EtherGame.sol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8E%AA%E6%96%BD"><span class="nav-number">1.3.</span> <span class="nav-text">预防措施</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ECDSA"><span class="nav-number">2.</span> <span class="nav-text">ECDSA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8E%AA%E6%96%BD-1"><span class="nav-number">2.1.</span> <span class="nav-text">预防措施</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB%EF%BC%88DoS%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">拒绝服务攻击（DoS）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E8%B4%A6%E5%A4%B1%E8%B4%A5%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">转账失败型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E9%81%8D%E5%8E%86%E5%9E%8B"><span class="nav-number">3.2.</span> <span class="nav-text">循环遍历型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pull-Push%E8%BD%AC%E8%B4%A6%E9%99%B7%E9%98%B1"><span class="nav-number">3.3.</span> <span class="nav-text">Pull&#x2F;Push转账陷阱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%B8%E4%B9%85%E7%8A%B6%E6%80%81%E9%94%81%E5%AE%9A"><span class="nav-number">3.4.</span> <span class="nav-text">永久状态锁定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%85%A5%E9%94%81%E6%AD%BBDoS"><span class="nav-number">3.5.</span> <span class="nav-text">重入锁死DoS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">类型转换遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2"><span class="nav-number">4.1.</span> <span class="nav-text">数值转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#address%E5%92%8Cuint160%E8%BD%AC%E6%8D%A2"><span class="nav-number">4.2.</span> <span class="nav-text">address和uint160转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bytes-address-uint-bytes32"><span class="nav-number">4.3.</span> <span class="nav-text">bytes - address&#x2F;uint&#x2F;bytes32</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string-bytes32"><span class="nav-number">4.4.</span> <span class="nav-text">string - bytes32</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E4%BD%8D%E6%93%8D%E4%BD%9C%E3%80%81%E6%8B%BC%E6%8E%A5%E3%80%81%E9%AB%98%E4%BD%8E%E4%BD%8D%E6%88%AA%E6%96%AD%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%A7%8D%E7%B2%BE%E7%BB%86%E6%8E%A7%E5%88%B6%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">4.5.</span> <span class="nav-text">通过位操作、拼接、高低位截断，可以实现多种精细控制数据结构的方式</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wordmaya"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">wordmaya</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zg870" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zg870" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://chat.openai.com/" title="https:&#x2F;&#x2F;chat.openai.com&#x2F;" rel="noopener" target="_blank">ChatGPT</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.baidu.com/" title="https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">百度</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wordmaya</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:06</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共79k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

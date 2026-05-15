@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="UniswapV3一点点V3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UniswapV3">
+<meta property="og:url" content="http://example.com/2026/05/15/UniswapV3/index.html">
+<meta property="og:site_name" content="AUV wordmaya">
+<meta property="og:description" content="UniswapV3一点点V3">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251014204909575.png">
+<meta property="og:image" content="h:\Blog\source\picture\V3-1.png">
+<meta property="og:image" content="h:\Blog\source\picture\V3-2.png">
+<meta property="og:image" content="h:\Blog\source\picture\V3-3.png">
+<meta property="article:published_time" content="2026-05-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-15T03:00:34.855Z">
+<meta property="article:author" content="wordmaya">
+<meta property="article:tag" content="DeFi">
+<meta property="article:tag" content="blockchain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251014204909575.png">
+
+<link rel="canonical" href="http://example.com/2026/05/15/UniswapV3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>UniswapV3 | AUV wordmaya</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="AUV wordmaya" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">AUV wordmaya</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">玩得开心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/05/15/UniswapV3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          UniswapV3
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-05-15 00:00:00 / 修改时间：11:00:34" itemprop="dateCreated datePublished" datetime="2026-05-15T00:00:00+08:00">2026-05-15</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="UniswapV3"><a href="#UniswapV3" class="headerlink" title="UniswapV3"></a>UniswapV3</h1><p>一点点V3</p>
+<span id="more"></span>
+
+<h2 id="UniswapV2资金利用率问题"><a href="#UniswapV2资金利用率问题" class="headerlink" title="UniswapV2资金利用率问题"></a>UniswapV2资金利用率问题</h2><p>在某一段价格区间内，池子中的流动性被交易实际使用的比例。它反映了价格变动过程中，有多少资金参与了交易</p>
+<p><strong>案例</strong></p>
+<p>假设ETH&#x2F;DAI交易对的实时价格为1500DAI&#x2F;ETH，交易对流动池中共有4500DAI和3ETH，根据$x\cdot y &#x3D; k$可以算出池内的K值：$k &#x3D; 4500\cdot 3 &#x3D; 13500$</p>
+<p>用x表示DAI，y表示ETH</p>
+<p>初始阶段：$x_1 &#x3D; 4500$，$y_1 &#x3D; 3$</p>
+<p><strong>当价格下降到1300 DAI&#x2F;ETH时有：</strong></p>
+<p>$x_2\cdot y_2 &#x3D; 13500$</p>
+<p>$\Large\frac{x_2}{y_2} &#x3D; 1300$</p>
+<p>得出$x_2 &#x3D; 4192.54$，$y_2 &#x3D; 3.22$</p>
+<p>资金利用率：$\Large\frac{(x_1 - x_2)}{x_1} &#x3D; 6.84%$</p>
+<p><strong>当价格上升到2200 DAI&#x2F;ETH时有：</strong></p>
+<p>$x_2\cdot y_2 &#x3D; 13500$</p>
+<p>$\Large\frac{x_2}{y_2} &#x3D; 2200$</p>
+<p>得出$x_2 &#x3D; 5449.77$，$y_2 &#x3D; 2.48$</p>
+<p>资金利用率：$\Large\frac{(x_1 - x_2)}{x_1} &#x3D; 21.11%$</p>
+<p>&#x3D;&#x3D;价格波动，资金利用率很难高于25%&#x3D;&#x3D;</p>
+<p><em><strong>UniswapV3是为了解决资金利用率过低的问题</strong></em></p>
+<p>UniswapV3可以减少LP损失</p>
+<p>如果ETH初始价格是 2000DAI</p>
+<p>LP设置的价格区间是[1500,2500]</p>
+<p>当ETH价格降低到0的时候，因为价格区间限制，ETH到达1000DAI就不再降低。那也就是说，不论外界价格如何，LP最低拥有1000DAI；</p>
+<p>如果在UniswapV2中，LP最低拥有的DAI能降低到0，从而亏损较大</p>
+<h2 id="集中流动性-虚拟流动性"><a href="#集中流动性-虚拟流动性" class="headerlink" title="集中流动性&#x2F;虚拟流动性"></a>集中流动性&#x2F;虚拟流动性</h2><p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251014204909575.png" alt="image-20251014204909575"></p>
+<p>在UniswapV3中，LP不再需要在整个价格区间提供流动性，而是可以指定一个价格区间</p>
+<p>$[P_\min, P_\max]$,来集中提供流动性</p>
+<ul>
+<li>流动性只在$[P_\min, P_\max]$范围内有效</li>
+<li>当价格超出该范围，LP的一侧资产全部转化为单一资产</li>
+<li>资金只有在市场价格进入该区间时才参与交易，赚取手续费</li>
+<li>资金利用率极大提高</li>
+</ul>
+<p><video src="H:\谷歌下载\DeltaPriceRayC.mp4"></video></p>
+<hr>
+<p><img src="H:\Blog\source\picture\V3-1.png" alt="V3-1"></p>
+<p>价格区间$[P_a, P_b]$</p>
+<p>$\Large x\cdot y &#x3D; k &#x3D; L^2$</p>
+<p>$\Large P &#x3D; \frac {y}{x}$</p>
+<p>$\Large x &#x3D; \frac {L} {\sqrt{P}}$</p>
+<p>$\Large y &#x3D; L\sqrt{P}$</p>
+<p><strong>$\Large P &#x3D; P_b$时</strong></p>
+<p>$\Large x &#x3D; x_v + x_r &#x3D; \frac {L}{\sqrt{P_b}}$</p>
+<p>因$x_r &#x3D; 0$得出 $x_v &#x3D; \frac{L}{\sqrt{P_b}}$</p>
+<p><strong>$\Large P &#x3D; P_a$时</strong></p>
+<p>$\Large y &#x3D; y_r + y_v &#x3D; L\sqrt{P_a}$</p>
+<p>因$y_r &#x3D; 0$得出$y_v &#x3D; L\sqrt{P_a}$</p>
+<p>$\Large x\cdot y &#x3D; L^2$ —-&gt; $\Large (x_r+x_v)\cdot(y_r + y_v) &#x3D; L^2$</p>
+<hr>
+<p><strong>限价订单</strong></p>
+<hr>
+<p><em><strong>V3 中的 价格和tick</strong></em></p>
+<p><img src="H:\Blog\source\picture\V3-2.png" alt="V3-2"></p>
+<p>价格也是由tick表示的</p>
+<p><img src="H:\Blog\source\picture\V3-3.png" alt="V3-3"></p>
+<ul>
+<li><p>价格离散为tick（整数索引）</p>
+</li>
+<li><p>每一个tick对应一个价格</p>
+<p>$P &#x3D; 1.0001^{tick}$</p>
+</li>
+<li><p>流动性和价格变化以tick为单位计算</p>
+</li>
+</ul>
+<p>例子</p>
+<p>tick &#x3D; 0     P &#x3D; 1</p>
+<p>tick &#x3D; 100 P ~ 1.01005 (上涨约1%)</p>
+<p>tick &#x3D; -100 P ~ 0.99005 (下跌约1%)</p>
+<ul>
+<li>将价格空间分割成离散格子</li>
+<li>每个LP可以选择再特定tick区间提供流动性</li>
+<li>计算swap或LP资产时方便定位价格区间</li>
+</ul>
+<p>Tick与流动性的关系</p>
+<p>在价格区间$\Large [P_{lower}, P_{upper}]$,流动性为<code>L</code>价格<code>P</code>在区间内</p>
+<p>高价代币y的数量</p>
+<p>$\Large y &#x3D; L\cdot (\sqrt{P} - \sqrt{P_{lower}})$</p>
+<p>低价代币x的数量</p>
+<p>$\Large x &#x3D; L\cdot (\frac{1}{\sqrt{P}} - \frac{1}{\sqrt{P_{upper}}})$</p>
+<p>在区间$[P_{lower}, P_{upper}]$内，L保持不变，x,y的比例随价格变化</p>
+<p>当价格到达边界，tick流动性耗尽，系统自动切换到下一个tick区间</p>
+
+    </div>
+
+    
+    
+    
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+        <div class="reward-container">
+  <div>KFC V我 50</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="wordmaya 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="wordmaya 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>wordmaya
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2026/05/15/UniswapV3/" title="UniswapV3">http://example.com/2026/05/15/UniswapV3/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/blockchain/" rel="tag"># blockchain</a>
+              <a href="/tags/DeFi/" rel="tag"># DeFi</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/05/15/Uniswap%20V2/" rel="prev" title="UniswapV2">
+      <i class="fa fa-chevron-left"></i> UniswapV2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/05/15/Lending/" rel="next" title="Lending">
+      Lending <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UniswapV3"><span class="nav-number">1.</span> <span class="nav-text">UniswapV3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UniswapV2%E8%B5%84%E9%87%91%E5%88%A9%E7%94%A8%E7%8E%87%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">UniswapV2资金利用率问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E4%B8%AD%E6%B5%81%E5%8A%A8%E6%80%A7-%E8%99%9A%E6%8B%9F%E6%B5%81%E5%8A%A8%E6%80%A7"><span class="nav-number">1.2.</span> <span class="nav-text">集中流动性&#x2F;虚拟流动性</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wordmaya"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">wordmaya</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zg870" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zg870" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://chat.openai.com/" title="https:&#x2F;&#x2F;chat.openai.com&#x2F;" rel="noopener" target="_blank">ChatGPT</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.baidu.com/" title="https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">百度</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wordmaya</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:06</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共79k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

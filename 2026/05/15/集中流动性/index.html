@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="集中流动性UniswapV3 续">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UniswapV3">
+<meta property="og:url" content="http://example.com/2026/05/15/%E9%9B%86%E4%B8%AD%E6%B5%81%E5%8A%A8%E6%80%A7/index.html">
+<meta property="og:site_name" content="AUV wordmaya">
+<meta property="og:description" content="集中流动性UniswapV3 续">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="h:\Blog\source\picture\V32-1.png">
+<meta property="og:image" content="h:\Blog\source\picture\V32-2.png">
+<meta property="og:image" content="h:\Blog\source\picture\V32-3.png">
+<meta property="og:image" content="https://rareskills.io/wp-content/uploads/2025/03/LibraryTickMath.png">
+<meta property="og:image" content="https://rareskills.io/wp-content/uploads/2025/07/functionScreenShot.png">
+<meta property="og:image" content="https://rareskills.io/wp-content/uploads/2025/07/getSqrtRatioAtTick.png">
+<meta property="og:image" content="h:\Blog\source\picture\V32-4.png">
+<meta property="og:image" content="https://rareskills.io/wp-content/uploads/post-media/uniswap-v3-virtual-reserves/image-01.png">
+<meta property="og:image" content="https://rareskills.io/wp-content/uploads/post-media/uniswap-v3-virtual-reserves/image-02.png">
+<meta property="og:image" content="https://rareskills.io/wp-content/uploads/post-media/uniswap-v3-virtual-reserves/image-03.png">
+<meta property="og:image" content="https://rareskills.io/wp-content/uploads/post-media/uniswap-v3-virtual-reserves/image-04.png">
+<meta property="og:image" content="https://rareskills.io/wp-content/uploads/post-media/uniswap-v3-virtual-reserves/image-06.png">
+<meta property="og:image" content="https://rareskills.io/wp-content/uploads/post-media/uniswap-v3-virtual-reserves/image-07.png">
+<meta property="og:image" content="c:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251118210136860.png">
+<meta property="og:image" content="h:\Blog\source\picture\V32-5.png">
+<meta property="og:image" content="h:\Blog\source\picture\V32-6.png">
+<meta property="og:image" content="h:\Blog\source\picture\V32-7.png">
+<meta property="og:image" content="h:\Blog\source\picture\V32-8.png">
+<meta property="article:published_time" content="2026-05-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-15T03:00:45.901Z">
+<meta property="article:author" content="wordmaya">
+<meta property="article:tag" content="DeFi">
+<meta property="article:tag" content="blockchain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="h:\Blog\source\picture\V32-1.png">
+
+<link rel="canonical" href="http://example.com/2026/05/15/%E9%9B%86%E4%B8%AD%E6%B5%81%E5%8A%A8%E6%80%A7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>UniswapV3 | AUV wordmaya</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="AUV wordmaya" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">AUV wordmaya</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">玩得开心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/05/15/%E9%9B%86%E4%B8%AD%E6%B5%81%E5%8A%A8%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          UniswapV3
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-05-15 00:00:00 / 修改时间：11:00:45" itemprop="dateCreated datePublished" datetime="2026-05-15T00:00:00+08:00">2026-05-15</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>17k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>15 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="集中流动性"><a href="#集中流动性" class="headerlink" title="集中流动性"></a>集中流动性</h1><p>UniswapV3 续</p>
+<span id="more"></span>
+
+<p>&#x3D;&#x3D;核心思想&#x3D;&#x3D;</p>
+<p><strong>LP可以选择一个价格区间$[P_a, P_b]$，只在这一个区间提供流动性，当价格离开这个区间，LP的资金会自动转换为单一资产并停止交易</strong></p>
+<p>&#x3D;&#x3D;数学思想&#x3D;&#x3D;</p>
+<p>价格区间$[P_a, P_b]$，P是当前真实价格</p>
+<p>$\Large x\cdot y &#x3D; k &#x3D; L^2$</p>
+<p>$\Large P &#x3D; \frac {y}{x}$</p>
+<p>$\Large x &#x3D; \frac {L} {\sqrt{P}}$</p>
+<p>$\Large y &#x3D; L\sqrt{P}$</p>
+<p>x<del>r</del> ,y<del>r</del>活跃区间的实际持仓量</p>
+<p>x<del>v</del>，y<del>v</del>来自区间边界的“虚拟、边界量”</p>
+<ol>
+<li><strong>$\Large P &#x3D; P_b$时</strong></li>
+</ol>
+<p>​	$\Large x &#x3D; x_v + x_r &#x3D; \frac {L}{\sqrt{P_b}}$</p>
+<p>​	因$x_r &#x3D; 0$得出 $\Large x_v &#x3D; \frac{L}{\sqrt{P_b}}$</p>
+<ol start="2">
+<li><strong>$\Large P &#x3D; P_a$时</strong></li>
+</ol>
+<p>​	$\Large y &#x3D; y_r + y_v &#x3D; L\sqrt{P_a}$</p>
+<p>​	因$y_r &#x3D; 0$得出$\Large y_v &#x3D; L\sqrt{P_a}$</p>
+<p>​	$\Large x\cdot y &#x3D; L^2$ —-&gt; $\Large (x_r+x_v)\cdot(y_r + y_v) &#x3D; L^2$</p>
+<p> &#x3D;&#x3D;价格与原点的角度&#x3D;&#x3D;</p>
+<p><video src="H:\谷歌下载\SweepRayC.mp4"></video></p>
+<p>θ角度越大，价格越高</p>
+<p>LP不能根据任意价格边界提供流动性，而只能在一组预定义价格点上执行</p>
+<p>tick：价格曲线与一组预定义射线相交的位置</p>
+<p>换句话说，UniswapV3把连续的价格区间离散化成一系列刻度，每个tick对应一个具体的价格边界，LP只能在这个价格区间添加或移除流动性</p>
+<p><img src="H:\Blog\source\picture\V32-1.png" alt="V32-1"></p>
+<p><strong>交叉的ticks不会造成干扰</strong></p>
+<p>尽管每段流动性曲线不连续，交易者仍然可以在报价之间无缝交易，一旦跨越一个价格变动点，UniswapV3就会重新计算剩余交易可用的流动性数量</p>
+<p><video src="H:\谷歌下载\crossingGap.mp4"></video></p>
+<p>&#x3D;&#x3D;ticks&#x3D;&#x3D;</p>
+<p>集中流动性的LP可以选择价格曲线的部分来放置流动性</p>
+<p>比如，ETH: 2000 USDC</p>
+<p>那么多数的LP会选择在价格区间<code>1800~2200</code>放置流动性，ETH的价格波动较小，所以市场价在&#96;&#96;1800~2200&#96;波动的可能性较大，LP收取手续费的可能性更大（只有市场价在预设的价格区间内，流动性才会被启用）</p>
+<p><img src="H:\Blog\source\picture\V32-2.png" alt="V32-2"></p>
+<p>价格区间允许在ticks之间波动，但不能在非刻度区间调整</p>
+<p><img src="H:\Blog\source\picture\V32-3.png" alt="V32-3"></p>
+<p>代币Y相当于代币X的价格由$\Large P_y &#x3D; \frac{x}{y}$得出，</p>
+<p><strong>报价公式</strong></p>
+<p>价格是这样定义的</p>
+<p>$p(tick) &#x3D; 1.0001^{tick}$</p>
+<ol>
+<li>tick &#x3D; 0, p &#x3D; 1</li>
+<li>tick &#x3D; 1, p &#x3D; 1.001</li>
+<li>tick &#x3D; 2, p &#x3D; 1.00020001</li>
+<li>tick &#x3D; -1, p &#x3D; 0.99990001</li>
+</ol>
+<p>允许tick索引范围为 $[-887272, 887272]$</p>
+<p>“协议不要求资产具有与价格相匹配的值“</p>
+<ul>
+<li>协议并不会检查或验证池子中代币的真实价格是否与曲线上计算出的价格一致</li>
+<li>它只根据V3的流动性公式和当前池子的资产数量x,y推导出一个价格</li>
+</ul>
+<p>&#x3D;&#x3D;AMM协议只关心公式定义的价格关系，而不是资产的真实市场价值。价格的一致性最终是通过时长套利者来维持的，而不是协议主动确保的&#x3D;&#x3D;</p>
+<p><strong>选择1.0001作为tick的基本单位</strong></p>
+<ol>
+<li>选择相对差，而不是绝对差<ol>
+<li>使用绝对差对于不同价格水平的代币会造成巨大影响，对于一个价值100000美元的代币来说，0.1美分几乎可以忽略；但对于一个价值0.001的代币来说，0.1美分意味着价格翻了十倍</li>
+</ol>
+</li>
+<li>UniswapV3采用了相对比例差（即百分比差异），每个tick之间的价格变化是相对价格的0.01%,不论代币的绝对价格高低，都有相同的”相对意义“</li>
+</ol>
+<hr>
+<p><strong>小数如何影响价格</strong></p>
+<p>Base网络上ETH:USDT交易池</p>
+<p>假设真实世界价格是：</p>
+<p>1 ETH &#x3D; 1000 USDT</p>
+<p>USDT和ETH的小数位不同</p>
+<p>&#x3D;&#x3D;假设1 ETH &#x3D; 1000美元(人类真实价格 $P_{real}$)&#x3D;&#x3D;</p>
+<p>ETH有18个小数位</p>
+<p>最小单位价值 $\Large\frac{1000}{10^{18}} &#x3D; 10 ^{-15}美元$</p>
+<p>USDT有6个小数位</p>
+<p>最小单位价值$\Large\frac{1}{10^{-6}} &#x3D; 10^{-6}美元$</p>
+<p>尽管1 ETH 的价格远高于1 USDC，但从最小单位来说，USDC的最小单位实际上比ETH的最小单位更值钱。为了弥补小数位差异，我们需要将价格乘上一个$10^{(18-6)} &#x3D; 10^{12}$的比例因子</p>
+<p><strong>$\Large比例因子 &#x3D; 10^{decimals of token0 - decimals of token1}$</strong></p>
+<p>于是，$\Large P_{pool} &#x3D; \frac{1000}{10^{12}} &#x3D; 10^{-9}$（合约用来计算tick的价格）</p>
+<p>$\Large P_{real} &#x3D; P_{pool} \times 10^{\text{decimals}_0 - \text{decimals}_1}$</p>
+<p>$\Large{tick} &#x3D; \frac{\ln(P_{pool})}{\ln(1.0001)} \approx \frac{-20.723}{0.0001} &#x3D; -207,230$</p>
+<p>在链上执行的时候tick决定$\Large P_{pool}$</p>
+<hr>
+<p><strong>Q number Format</strong></p>
+<p><em>定点数</em></p>
+<p>在solidity中，由于语言本身不支持浮点数，所以常常采用定点数(fixed-point numbers)来存储小数，核心思想是将小数乘以一个固定的“放大系数”（10^n^或者2^n^），从而把小数部分转化为整数来存储。</p>
+<p>例如，我们无法直接存储0.5,但是可以将其乘以10^18^，这样0.5以整数的形式被间接保存下来。</p>
+<p><em>Ether小数 vs Q Numbers</em></p>
+<p>1 Ether &#x3D; 10^18^Wei,如果想表示0.5 Ether，我们存储 $0.5\cdot 10^{10} &#x3D; 500000000000000000$</p>
+<p>这种方法能保留小数部分，但无法表示比10^-18^更小的数</p>
+<p>&#x3D;&#x3D;Q Numbers使用的是2的幂作为倍率&#x3D;&#x3D;</p>
+<p>在EVM中乘或除以2^n^可以用位移运算实现，比乘除10^n^更高效</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;&lt; 2 ---&gt; x*2**n</span><br><span class="line">x &gt;&gt; 2 ---&gt; x/2**n</span><br></pre></td></tr></table></figure>
+
+<p>Q Number的表示法</p>
+<p>Q Number通常写作<code>Qm.n</code>形式</p>
+<ul>
+<li><code>m</code>:用于整数部分的比特数</li>
+<li><code>n</code>:用于表示小数部分的比特数</li>
+</ul>
+<p><code>Qm.n</code>总共占用<code>m+n</code>位(<code>m+n</code>个比特)，其中n是小数位</p>
+<ul>
+<li>整数部分可以表示的范围是  0 ~ 2^m^-1</li>
+<li>最大总值是2^m^ - 1 + (1 - 2^-n^) &#x3D; 2^m^ - 2^-n^</li>
+</ul>
+<p><strong>Q Number在Solidity中存储的大小</strong></p>
+<table>
+<thead>
+<tr>
+<th>Q Number</th>
+<th>位宽</th>
+<th>对应类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Q64.64</td>
+<td>128位</td>
+<td>uint128</td>
+</tr>
+<tr>
+<td>Q64.96</td>
+<td>160位</td>
+<td>uint160</td>
+</tr>
+<tr>
+<td>Q1228.128</td>
+<td>256位</td>
+<td>uint256</td>
+</tr>
+</tbody></table>
+<p><strong>Q Number的分数解释</strong></p>
+<p>Q1.1</p>
+<table>
+<thead>
+<tr>
+<th>实际存储值（二进制）</th>
+<th>实际存储值（十进制）</th>
+<th>实际值</th>
+<th>***</th>
+<th>实际值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>00</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>01</td>
+<td>1</td>
+<td>1(10)<del>2</del></td>
+<td>1&#x2F;2^1^</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>10</td>
+<td>2</td>
+<td>2(10)<del>2</del></td>
+<td>2&#x2F;2^1^</td>
+<td>1</td>
+</tr>
+<tr>
+<td>11</td>
+<td>3</td>
+<td>3(10)<del>2</del></td>
+<td>3&#x2F;2^1^</td>
+<td>1.5</td>
+</tr>
+</tbody></table>
+<p>Q1.2</p>
+<table>
+<thead>
+<tr>
+<th>实际存储值（二进制）</th>
+<th>实际存储值（十进制）</th>
+<th>实际值</th>
+<th>***</th>
+<th>实际值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>000</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>001</td>
+<td>1</td>
+<td>1(100)<del>2</del></td>
+<td>1&#x2F;2^2^</td>
+<td>0.25</td>
+</tr>
+<tr>
+<td>010</td>
+<td>2</td>
+<td>2(100)<del>2</del></td>
+<td>2&#x2F;2^2^</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>011</td>
+<td>3</td>
+<td>3(100)<del>2</del></td>
+<td>3&#x2F;2^2^</td>
+<td>0.75</td>
+</tr>
+<tr>
+<td>100</td>
+<td>4</td>
+<td>4(100)<del>2</del></td>
+<td>4&#x2F;2^2^</td>
+<td>1</td>
+</tr>
+<tr>
+<td>101</td>
+<td>5</td>
+<td>5(100)<del>2</del></td>
+<td>5&#x2F;2^2^</td>
+<td>1.25</td>
+</tr>
+<tr>
+<td>110</td>
+<td>6</td>
+<td>6(100)<del>2</del></td>
+<td>6&#x2F;2^2^</td>
+<td>1.5</td>
+</tr>
+<tr>
+<td>111</td>
+<td>7</td>
+<td>7(100)<del>2</del></td>
+<td>7&#x2F;2^2^</td>
+<td>1.75</td>
+</tr>
+</tbody></table>
+<p>$\Large 实际值 &#x3D; 存储值(10^n)_2$</p>
+<p>$\Large实际值 &#x3D; \frac{存储整数值}{2^n}$</p>
+<p><strong>整数与Q Number之间的转换</strong></p>
+<p>整数 —&gt; Q Number</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q_num = int_num &lt;&lt; n</span><br></pre></td></tr></table></figure>
+
+<p>Q Number —&gt; 整数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int_num = Q_num &gt;&gt; n</span><br></pre></td></tr></table></figure>
+
+<p><strong>构造定点数</strong></p>
+<p>1.5的Q64.96</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.5 &lt;&lt; 96 ---&gt; 1*2**96 + 2**96 / 2</span><br></pre></td></tr></table></figure>
+
+<p><strong>加法与减法</strong></p>
+<p>两个Q数相加&#x2F;相减时，小数位数必须要一致</p>
+<p>不一致时：</p>
+<ul>
+<li><p>将小数位少的左移</p>
+</li>
+<li><p>或将小数位多的右移（但会损失精度）</p>
+<ul>
+<li><p>a &#x3D; Q16.16,b&#x3D;Q8.8</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// b 的小数位少 8 位，所以左移 8 位</span><br><span class="line">b = b &lt;&lt; (16 - 8);</span><br><span class="line"></span><br><span class="line">// 然后再加</span><br><span class="line">sum = a + b;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p><strong>乘法</strong></p>
+<p>若<code>x = 1</code>（Q64.96中存储为<code>1&lt;&lt;96</code>):</p>
+<ul>
+<li><p>实际计算时<code>x * x = (1 &lt;&lt; 96) * (1 &lt;&lt; 96)</code></p>
+</li>
+<li><p>结果要右移n位(&gt;&gt; 96),得到正确比例</p>
+<ul>
+<li><p>x&#x3D;1.5 存储为1.5 *2^16^ &#x3D; 98304</p>
+</li>
+<li><p>y&#x3D;2.0 存储为2.0 * 2^16^ &#x3D; 131072</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z = 98304 * 131072 = 12,884,901,888</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>两个数都被放大了2^16^倍，结果被放大了2^32^倍</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">z = (x * y) &gt;&gt; 16;//右移一半比例，否则会溢出</span><br><span class="line">z = (98304 * 131072) &gt;&gt; 16 = 196608</span><br><span class="line">//转回实数</span><br><span class="line">196608 / 2^16 = 3.0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p><strong>除法</strong></p>
+<p>若<code>x/y</code>:</p>
+<ul>
+<li><p>为避免精度丢失，先左移分子</p>
+<p><code>result = (x &lt;&lt; n) / y</code></p>
+<ul>
+<li><p>x&#x3D;3.0 存储为3.0 *2^16^ &#x3D; 196608</p>
+</li>
+<li><p>y&#x3D;1.5 存储为1.5 * 2^16^ &#x3D; 98304</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//先把分子左移一倍小数位，否则回精度损失为1</span><br><span class="line">z = (x &lt;&lt; 16) / y;</span><br><span class="line">z = (196608 &lt;&lt; 16) / 131072 = 98,304</span><br><span class="line">//转回实数</span><br><span class="line">98,304 / 2^16 =1.5</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>UniswapV3的平方根价格</strong></p>
+<p>UniswapV3实际上存储的是价格的平方根$\sqrt{P}$而不是价格本身，提高了gas效率</p>
+<p>这种方法不会损失精度，价格P可以从平方根恢复</p>
+<p><strong>sqrtPriceX96</strong></p>
+<p>价格的平方根存储在池合约的<code>slot0</code>结构体中的变量<code>sqrtPriceX96</code>里</p>
+<p><code>slot0</code>结构体还包含其他字段，例如<code>tick</code>（代表当前tick）</p>
+<p><code>slot0</code>中的其他变量主要与预言机、手续费、或合约安全机制相关</p>
+<ul>
+<li><code>sqrtPrice</code>表示价格的平方根</li>
+<li><code>X96</code>表示它采用Q64.96固定点数格式</li>
+</ul>
+<p>$\Large 实际值 &#x3D; \frac{Q64.96表示值}{2^{96}}$</p>
+<p>$\sqrt{P}$ 表示实际价格的平方根</p>
+<p>$\Large sqrtPriceX96 &#x3D; \sqrt{P} \cdot 2^{96}$</p>
+<p><em>从slot0查询sqrtPriceX64以计算池的价格</em></p>
+<p> USDC：ETH池</p>
+<p>查询到的<code>sqrtPriceX96 = 1506673274302120988651364689808458</code></p>
+<p>$\Large\sqrt{P} &#x3D; \frac{1506673274302120988651364689808458}{2^{96}}$</p>
+<p>该价格表达“1 USDC价值多少ETH”</p>
+<p><strong>Q64.96</strong></p>
+<ul>
+<li>最大值 2^64^-1</li>
+<li>最小值 1-2^-96^</li>
+</ul>
+<hr>
+<p><strong>Uniswap V3中的价格变动限制</strong></p>
+<p>tick的区间是[-887272, 8872272]</p>
+<p>最高tick对应协议中能表示的最高价格</p>
+<p>也就是说至少需要21位来表示tick，但是因为solidity的整数类型必须是8的倍数，所以在UniswapV3中用int24存储tick</p>
+<p><strong>价格上限</strong></p>
+<p>所有价格的平方根以Q64.96的形式存储，所能存储的最大价格是2^64^-1</p>
+<p>所以协议能存储的最高价格为：2^128^</p>
+<p>也就是说协议无法处理超过2^128^的价格</p>
+<p>最高tick应该是对应于价格2^128^的那个tick</p>
+<p><em>最高tick</em></p>
+<p>$\Large P &#x3D; 1.0001^{tick}$</p>
+<p>$\Large tick &#x3D; log_{1.0001}(P)$</p>
+<p>$\Large P_{max} &#x3D; 2^{128}$</p>
+<p>$\Large tick &#x3D; log_{1.0001}(2^{128})$</p>
+<p>—&gt; $\Large tick &#x3D; 887272$</p>
+<p>&#x3D;&#x3D;因此tick &#x3D; 887272是协议允许的最高tick&#x3D;&#x3D;</p>
+<p><em>最低tick</em></p>
+<p>最低的tick值被设置为-887272，即最高tick的相反数</p>
+<p>代币X相对于代币Y的价格是代币Y相对于代币X价格的倒数</p>
+<p>所最低tick索引为-887272</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//TickMath库</span><br><span class="line">int24 constant MIN_TICK = -887272;</span><br><span class="line">int24 constant MAX_TICK = 887272;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//可存储的平方根价格的最小与最大值</span><br><span class="line">uint160 constant MIN_SQRT_RATIO;</span><br><span class="line">uint160 constant MAX_SQRT_RATIO;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://rareskills.io/wp-content/uploads/2025/03/LibraryTickMath.png" alt="Screenshot of the min tick and max tick in Uniswap V3 TickMath library"></p>
+<p>&#x3D;&#x3D;计算最小平方根价格的时候要向上取整&#x3D;&#x3D;</p>
+<p>$\text{MIN_SQRT_RATIO} &#x3D; \lceil 1.0001^{-887272&#x2F;2} \times 2^{96} \rceil$</p>
+<p>$1.0001^{-887272&#x2F;2} \times 2^{96} &#x3D; 4295128738.152353$</p>
+<p>取整数部分，sqrtPriceX64.96 &#x3D; 4295128738，对应的tick实际上是-887273，这是不被允许的，因此sqrtPriceX64.96 &#x3D; 4295128739</p>
+<p>&#x3D;&#x3D;计算最大平方根价格的时候要向下取整&#x3D;&#x3D;</p>
+<p>$\text{MAX_SQRT_RATIO} &#x3D; \lfloor 1.0001^{887272&#x2F;2} \times 2^{96} \rfloor$</p>
+<p>这里用向下取整以避免超出范围</p>
+<hr>
+<p><strong>Uniswap V3 Factory 与 Tick间距和手续费的关系</strong></p>
+<p>tick（价格刻度）将价格曲线离散化（即把连续的价格区间切分为离散的价格点）</p>
+<p>tick的取值范围[-887272, 887272],因此价格曲线上有1774545个tick</p>
+<p>tick是流动性可能发生变化的点</p>
+<p>LP可以在两个tick之间添加流动性，但不能在非tick对应的任意价格之间添加</p>
+<p>并非所有1774545个tick都能被某个池子使用，具体使用的tick集合取决于池在创建时的设置。</p>
+<p><strong>tick间距</strong></p>
+<p>每个池子里都定义了一个<code>tickSpacing</code>，用于决定相邻可用tick之间的距离</p>
+<ul>
+<li>如果某个池子中的<code>tickSpacing = 10</code>，则只有10的倍数才是合法tick<ul>
+<li>…-20,-10,0,10,20…</li>
+</ul>
+</li>
+<li>如果某个池子中的<code>tickSpacing = 60</code>，则只有60的倍数才是合法tick<ul>
+<li>…-120,-60,0,60,120…</li>
+</ul>
+</li>
+</ul>
+<p><em>tickSpacing越大，tick越稀疏；tickSpacing越大，tick越密集</em></p>
+<p><code>tickSpacing</code>在池子创建时设置，并且与池子的手续费相关，每个手续费等级对应一个<code>tick Spacing</code></p>
+<p><strong>Tick间距与波动性</strong></p>
+<p>UniswapV3支持不同的tick间距，以适应不同资产对的波动性</p>
+<ul>
+<li><em>高波动性对</em>：跨越tick的交易会产生gas消耗，因此尽量减少tick跨越次数。高波动性对适合<strong>较大的tick Spacing</strong></li>
+<li><em>低波动性对</em>：价格变化不大，可以使用<strong>较小的tick Spacing</strong>,使流动性提供者能精准地布置资金</li>
+</ul>
+<p><strong>波动性与手续费</strong></p>
+<ul>
+<li>高波动性资产—&gt; 高的无常损失风险 —&gt; 流动性提供者要求更高的手续费</li>
+<li>低波动性对（稳定币对）—&gt; 无常损失几乎为零 —&gt; 手续费可抵</li>
+</ul>
+<p>协议只定义 <strong>tick spacing 与手续费等级的关系</strong>，由用户决定哪些资产对更稳定或更波动。</p>
+<p>（协议不会说“这个资产对波动性大，，，”只会提供一个映射表：手续费等级 &lt;-&gt;tick Spacing；用户需要根据资产历史价格波动、交易量、市场特性等信息，判断这个交易对是高波动性还是低波动性）</p>
+<p>用户的选择直接影响池子参数：在创建新池子的时候，用户选择手续费等级（fee tier)，<code>tick Spacing</code>会根据这和手续费等级自动计算。</p>
+<p><strong>协议定义了规则（费率 ↔ tick spacing），用户根据资产特性判断波动性，并选择合适的费率，从而间接决定 tick spacing。</strong></p>
+<p><strong>代码中的手续费与Tick间距</strong></p>
+<p>UniswapV3 Factory合约中有一个映射<code>feeAmountTickSpacing</code>定义了手续费与tick spacing的对应关系</p>
+<p>初始关系在Factory部署时定义（构造函数中)</p>
+<table>
+<thead>
+<tr>
+<th>Fee Tier</th>
+<th>Basis Points（基点）</th>
+<th>Tick Spacing</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0.01%</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.05%</td>
+<td>5</td>
+<td>10</td>
+</tr>
+<tr>
+<td>0.3%</td>
+<td>30</td>
+<td>60</td>
+</tr>
+<tr>
+<td>1%</td>
+<td>100</td>
+<td>200</td>
+</tr>
+</tbody></table>
+<p><em>更新手续费等级</em>：可以通过<code>enableFeeAmount</code>函数由治理（Goverance）添加或更新</p>
+<p>不同的链可能有不同的手续费等级</p>
+<p><strong>使用Factory创建新池子</strong></p>
+<p>创建池子的时候需要：</p>
+<ol>
+<li>传入两个代币地址</li>
+<li>选择手续费等级</li>
+</ol>
+<p>Tick spacing会根据<code>feeAmountTickSpacing</code>映射自动计算。池子由这三个参数唯一确定</p>
+<p>创建池子无权限限制，只要同一代币对和手续费等级的池子尚未存在。</p>
+<hr>
+<p><strong>根据sqrtPriceX96计算当前Tick</strong></p>
+<p>协议存储的是价格的平方根，而不是价格本身。因此，需要将tick与固定点Q64.96格式的sqrtPriceX96联系起来</p>
+<p>协议存储的是tick索引，</p>
+<p>Tick是离散的价格，公式为：</p>
+<p>$\Large P &#x3D; 1.0001^{tickIndex}$</p>
+<p>存储tick索引比存储价格占用的位数更少，所以协议存储的是tick索引而不是tick价格</p>
+<p><strong>给定sqrtPriceX96计算tick索引</strong></p>
+<p>$\Large sqrtPriceX96 &#x3D; \sqrt{P} \cdot 2^{96}$</p>
+<p>$\Large P &#x3D; 1.0001^{tickIndex}$</p>
+<p>$\Large sqrtPriceX96 &#x3D; \sqrt{1.0001^{tickIndex}} \cdot 2^{96}$</p>
+<p>$\Large tickIndex &#x3D; \frac{2\cdot log(sqrtPriceX96&#x2F;2^{96})}{log(1.0001)}$</p>
+<p>对数可以用任意底数，最终结果一样，不同底数的对数只差一个常数因子，会被分子分母抵消</p>
+<p>&#x3D;&#x3D;tickIndex是离散整数，需要对计算结果向下取整&#x3D;&#x3D;</p>
+<p><em><strong>代码实现</strong></em></p>
+<p>主要函数：</p>
+<ul>
+<li><code>getSqrtRationAtTick(tickIndex)</code>:由tickIndex得到sqrtPriceX96</li>
+<li><code>getTickAtSqrtRatio(sqrtPricrX96)</code>:由sqrtPriceX96得到tickIndex</li>
+</ul>
+<hr>
+<p><strong>getSqrtPriceRatioAtTick()</strong></p>
+<p>&#x3D;&#x3D;（所有舍入误差是怎么产生的）&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;<code>Ratio</code>的输出是$\Large\sqrt{P}\cdot 2^{196}$&#x3D;&#x3D;</p>
+<p>也就是一个Q64.96的数字</p>
+<p><strong>tick → sqrt(price) → Q64.96 编码后的平方根价格</strong></p>
+<p><img src="https://rareskills.io/wp-content/uploads/2025/07/functionScreenShot.png" alt="screenshot of getsqrtratioattick()"></p>
+<p>函数执行以下步骤：</p>
+<ol>
+<li><p>计算tick的绝对值<code>absTick</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uint256 absTick = tick &lt; 0 ? uint256(-int256(tick)) : uint256(int256(tick));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检查tick是否在最小与最大tick范围内</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(absTick &lt;= uint256(MAX_TICK), &#x27;T&#x27;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用square-and-multiply（平方乘法）算法计算，内部使用Q128.128精度</p>
+</li>
+<li><p>如果原始tick为正数，则计算其倒数</p>
+</li>
+<li><p>把Q128.128转换为Q64.96，通过右移32位实现</p>
+</li>
+</ol>
+<p><img src="https://rareskills.io/wp-content/uploads/2025/07/getSqrtRatioAtTick.png" alt="Five steps in getsqrtratioattick"></p>
+<p><strong>一、为什么UniswapV3要计算tick的绝对值</strong></p>
+<p>函数首行代码为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uint256 absTick = tick &lt; 0 ? uint256(-int256(tick)) : uint256(int256(tick));</span><br></pre></td></tr></table></figure>
+
+<p>Tick可以为正也可以为负，为了避免针对正负两种情况分别处理，<strong>square-and-multiply</strong>计算部分只计算负tick的价格。</p>
+<p>如果原始tick为正，则通过负tick的结果取倒数得到：</p>
+<p>如 tick &#x3D; +5 时：</p>
+<p>算法先计算 tick &#x3D; -5 的价格：</p>
+<p>$\Large ratio &#x3D; \sqrt{1.0001^{-5}}$</p>
+<p>然后再取倒数：</p>
+<p>$\Large \frac{1}{ratio}$</p>
+<p>一般而言：</p>
+<p>$\Large \sqrt{1.0001^{-i}} &#x3D; 1.0001^{- \frac{1}{2}} &#x3D; \frac{1}{1.0001^{\frac{1}{2}}} &#x3D; \frac{1}{\sqrt{1.0001^i}}$</p>
+<p>因此，先计算：</p>
+<p>$\Large\sqrt{1.0001^{-|i|}}$</p>
+<p>如果原始 tick 为正，则最终返回其倒数；若 tick 为负，则不用取倒数。</p>
+<p>$\Large\frac{1}{\sqrt{1.0001^{-|i|}}}$</p>
+<p><strong>二、检查tick是否在范围内</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(absTick &lt;= uint256(MAX_TICK), &#x27;T&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>最大tick常数为887272</p>
+<p><strong>三、使用square-and-multiply（平方乘法）计算价格</strong></p>
+<p>用于计算的变量是<code>ratio</code>，最终返回的值叫<code>sqrtPriceX96</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uint256 ratio = absTick &amp; 0x1 != 0 ? 0xfffcb933bd6fad37aa2d162d1a594001 : 0x100000000000000000000000000000000;</span><br><span class="line">if (absTick &amp; 0x2 != 0) ratio = (ratio * 0xfff97272373d413259a46990580e213a) &gt;&gt; 128;</span><br></pre></td></tr></table></figure>
+
+<p>每个固定数是被不断平方后得到</p>
+<p>为了保持精度，在执行平方乘法算法时在内部使用Q128.128数字，但返回结果为Q64.96.价格的内部表示是ratio变量。</p>
+<p>平方乘法依赖于基础的预计算能力。代码中的大常量是通过重复平方得出的。</p>
+<p>使用平方乘算法，预先计算：</p>
+<p>$\Large\sqrt{1.0001^0} &#x3D; 1$</p>
+<p>$\Large\sqrt{1.0001^{-2^{0}}} &#x3D; \sqrt{1.0001^{-1}}$</p>
+<p>$\Large\sqrt{1.0001^{-2^{1}}} &#x3D; \sqrt{1.0001^{-2}}$</p>
+<p>$\Large\sqrt{1.0001^{-2^{2}}} &#x3D; \sqrt{1.0001^{-4}}$</p>
+<p>…</p>
+<p>$\Large\sqrt{1.0001^{-2^{19}}} &#x3D; \sqrt{1.0001^{-524288}}$</p>
+<p>UniswapV3中的最小和最大刻度分别为-887272和887272。由于只直接计算负数部分，并通过倒数计算正数刻度，因此只需要计算刻度[-887272,0],编码最大887273的数字所需位数为20，这就是预先计算的值范围为$\sqrt{1.0001^0}$,$\sqrt{1.0001^{-2^{0}}}$,….,$\sqrt{1.0001^{-2^{19}}}$</p>
+<p> <strong>刻度0的平方根价格</strong></p>
+<p><img src="H:\Blog\source\picture\V32-4.png" alt="V32-4"></p>
+<p>相当于<code>2&lt;&lt;128</code>，这相当于刻度0，$\sqrt{1.0001^0}$</p>
+<p><strong>通过使用Decimal并重新排列除法来改进我们常数的计算</strong></p>
+<p>Decimal指的是高精度十进制计算库</p>
+<p>重新调整除法顺序指为了减少精度损失、提高效率、把除法的顺序或结构调整地更合理</p>
+<p><strong>四、计算正tick的倒数</strong></p>
+<p>如果原始tick为正，那么下面的代码行将计算倒数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (tick &gt; 0) ratio = type(uint256).max/ratio;</span><br></pre></td></tr></table></figure>
+
+<p>当一个定点数除以另一个定点数时，我们需要将分子乘以缩放因子，以防止缩放因子相互抵消</p>
+<p>​                                   $\Large\frac{x\cdot S}{y}$</p>
+<p>Q128.128中的值“1”为<code>1&lt;&lt;128</code>或者1^128^</p>
+<p>​							$\Large\frac{2^{128}}{ratio}$</p>
+<p>​                         $\Large\Large\frac{2^{128}\cdot 2^{128}}{ratio} &#x3D; \frac{2^{256}}{ratio}$</p>
+<p>因为solidity中无法对该值进行编码，可以编码的最大值是2^256^-1或<code>type(uint256).max</code></p>
+<p><strong>五、转换为向上舍入</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqrtPriceX96 = uint160((ratio &gt;&gt; 32) + (ratio % (1 &lt;&lt; 32) == 0 ? 0 : 1));</span><br></pre></td></tr></table></figure>
+
+<p>将Q128.128数字转换为Q64.96数字，同时向上舍入并返回该值。</p>
+<ul>
+<li>TickMath中存储的变量（例如tick对应的$\sqrt{P}\cdot 2^{128}$）在预计算时都是向上取整，但是tick &#x3D; -1是例外</li>
+<li>计算正刻度需要ratio的倒数；但solidity中用<code>type(uint256).max/ratio</code>来近似；因为$\Large\frac{max value}{ratio}$无法完全精确，所以结果会略微向下舍入</li>
+<li>计算中间结果是Q128.128，结果必须转换成Q64.96,转换方式是$\Large sqrtPriceX96 &#x3D; \frac{ratio}{2^{32}}$；如果$\Large \frac{ratio}{2^{32}}$不是整数，代码会加一，使最终结果向上舍入。</li>
+</ul>
+<p>也就是说：</p>
+<ul>
+<li><p><code>getSqrtRatioAtTick()</code>的数学目标本来应该计算：</p>
+<p>$\sqrt{1.0001^\text{tick}} \times 2^{96}$</p>
+</li>
+<li><p>但因为 Solidity 不能使用小数，只能用整数加移位（fixed point）</p>
+</li>
+<li><p>所以计算过程必须：</p>
+<ul>
+<li>使用 <strong>近似值</strong></li>
+<li>使用 <strong>预计算常量</strong></li>
+<li>使用 <strong>向上 &#x2F; 向下舍入</strong></li>
+<li>使用 <strong>Q128.128 → Q64.96 的截断</strong></li>
+<li>使用 <strong>type(uint256).max &#x2F; ratio 作为倒数</strong></li>
+</ul>
+</li>
+</ul>
+<p>最终导致这个函数的输出不是精确数学值，而是：</p>
+<blockquote>
+<p><strong>一个严格定义、可控范围内的“向上舍入版 sqrtPrice”</strong></p>
+</blockquote>
+<hr>
+<p><strong>UniswapV3中的真实和虚拟储备</strong></p>
+<p>UniswapV3有两种类型的储备金：真实储备金和虚拟储备金</p>
+<p>每个分段（segment）都有一个对真实储备：代币X的真实储备（X<del>r</del>），代币Y的真实储备（Y<del>r</del>）,其中一种代币的储备金可能为0，但两种代币的储备金不能同时为0，否则这部分就没有流动性</p>
+<p>虚拟储备代表了一个阶段将拥有的代币数量，如果这个阶段延伸到无穷大，就和UniswapV2一样</p>
+<p><strong>实际储备</strong></p>
+<p>显示了单个价格区间，当前价格由红色射线表示</p>
+<p><img src="https://rareskills.io/wp-content/uploads/post-media/uniswap-v3-virtual-reserves/image-01.png" alt="Real Reserves Depiction"></p>
+<p>代币X实际储备是价格x坐标与上方报价的X坐标之间的距离，对于代币Y也一样，但现在它是y到较低刻度的距离</p>
+<p><code>x_real</code> &#x3D; 当前价格与上界 tick 的水平距离（几何意义）</p>
+<p><code>y_real</code> &#x3D; 当前价格与下界 tick 的竖直距离（几何意义）</p>
+<p>UniswapV2使用的是无限曲线$x\cdot y &#x3D; k$，一个<code>segment</code>是有限曲线，它不能无限延伸</p>
+<p>通过swap，价格移动到下图所示的位置，在这种情况下，实际代币储备将仅由代币Y组成</p>
+<p><img src="https://rareskills.io/wp-content/uploads/post-media/uniswap-v3-virtual-reserves/image-02.png" alt="A Uniswap V3 segment only containing token Y"></p>
+<p>另一种可能是价格向较低的刻度移动，在这种情况下，该分段的实际储备将完全由代币X组成</p>
+<p><img src="https://rareskills.io/wp-content/uploads/post-media/uniswap-v3-virtual-reserves/image-03.png" alt="A Uniswap V3 segment only containing token X"></p>
+<p>实际场景下的交易池由多个段组成，在这种情况下，价格可能会跌破蓝色部分进入紫色部分</p>
+<p><img src="https://rareskills.io/wp-content/uploads/post-media/uniswap-v3-virtual-reserves/image-04.png" alt="Real reserves of an active and inactive segment"></p>
+<p>当价格低于蓝色曲线中的最低价格，蓝色曲线的Y代币将不再出售，只要价格继续低于最低刻度线，蓝色部分中的X代币数量就会保持不变</p>
+<p>每个<code>segment</code>都存在真实储备，即每个段都有一对值，其中一个可以为0，但不能同时为0</p>
+<p>当价格在一个区间内变动的时侯，代币X和Y通过互换进行交易。因此，当价格在其中时，每个分段的功能类似于UniswapV2。</p>
+<p><strong>虚拟储备</strong></p>
+<p>虚拟储备是指如果某个段是无限曲线的一部分而不仅仅是一段的情况下，该段将拥有的储备。</p>
+<p><img src="https://rareskills.io/wp-content/uploads/post-media/uniswap-v3-virtual-reserves/image-06.png" alt="Virtual reserves of a Uniswap V3 segment"></p>
+<p>虚拟储备就是我们在UniswapV2中的储备，</p>
+<p><code>x_virtual = L / price y_virtual = L * price</code></p>
+<p>这两个中不是segment 实际拥有的 token，而是假装这个segment是无限曲线时，它有多少token</p>
+<p><img src="https://rareskills.io/wp-content/uploads/post-media/uniswap-v3-virtual-reserves/image-07.png" alt="Real and Virtual Reserves of a Segment"></p>
+<p>随着曲线段的增长，该段的实际储量接近虚拟储量，如果曲线延伸至无穷大（如UniswapV2 中那样），虚拟储备和实际储备将变得相同</p>
+<p><video src="H:\谷歌下载\video-01.mp4"></video></p>
+<p><strong>根据当前的价格和流动性计算虚拟储备</strong></p>
+<p>$L^{2} &#x3D; x\cdot y$     $\Large p &#x3D;  \frac{y}{x}$</p>
+<p>$\Large\frac{L^{2}}{p} &#x3D; \frac{x\cdot y}{p}$</p>
+<p>$\Large\frac{L^{2}}{p} &#x3D; x^{2}$</p>
+<p>$\Large\frac{L}{\sqrt{p}} &#x3D;  x$</p>
+<p>$ y &#x3D; L\sqrt{p}$</p>
+<hr>
+<p><strong>UniswapV3中的实际储备</strong></p>
+<p>段的实际储备是该段中包含的代币数量—— 代币X ,代币Y或两者</p>
+<p>虚拟储备是该段拥有的代币数量（该段是无限曲线的一部分）。虚拟储备是必要的，因为UniswapV3中曲线段中的互换行为与UniswapV2中完全相同，也就是说，就好像这些段是UniswapV2池中无限曲线的一部分</p>
+<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20251118210136860.png" alt="image-20251118210136860"></p>
+<p>图中可以看出，具有相同流动性的两部分，它们的虚拟储备相同，但实际储备不同</p>
+<p>所以我们不仅能从价格和流动性中得出实际储备——还必须考虑细分边界</p>
+<p><strong>一个分段(segment)中的实际储备量</strong></p>
+<p>某个分段中X的实际储备量是在swap期间将离开该分段的代币数量，该交换使价格移至上限</p>
+<p><img src="H:\Blog\source\picture\V32-5.png" alt="V32-5"></p>
+<p>某个分段中代币Y的实际储备量是在swap期间价格移动到较低价格的阶段，如下图所示</p>
+<p><img src="H:\Blog\source\picture\V32-6.png" alt="V32-6"></p>
+<p>因此，如果我们可以计算第一个例子中有多少代币X离开了池子，以及第二个例子中有多少代币Y离开了池子，我们就可以得出实际储备的公式</p>
+<p><strong>推导代币X实际储备的公式</strong></p>
+<p><img src="H:\Blog\source\picture\V32-7.png" alt="V32-7"></p>
+<p>$x_r &#x3D; x - x_u$</p>
+<p>$x_u$是价格区间中，y的最高价格</p>
+<p>$\Large x_r &#x3D; \frac{L}{\sqrt{p}} - \frac{L}{\sqrt{p_u}}$</p>
+<p>当$x &#x3D; x_u$时，$p &#x3D; p_u$</p>
+<p>我们可以得出，x的实际储备量变为0</p>
+<p>当价格高于价格上限时，x的实际储备量为0</p>
+<p>$\Large x_r &#x3D; \frac{L}{\sqrt{p}} - \frac{L}{\sqrt{p_u}}$</p>
+<p>当价格低于价格下限时，y的实际储备量为0</p>
+<p>$\Large y_r &#x3D; y - y_l$</p>
+<p>$\Large y &#x3D; L\sqrt{p} - L\sqrt{p_l}$</p>
+<hr>
+<p><strong>UniswapV3中的常数乘积公式</strong></p>
+<p><img src="H:\Blog\source\picture\V32-8.png" alt="V32-8"></p>
+<hr>
+<p>UniswapV3Factory</p>
+<p>&#x3D;&#x3D;<code>Slot0</code>&#x3D;&#x3D;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">struct Slot0 &#123;</span><br><span class="line">    uint160 sqrtPriceX96;</span><br><span class="line">    int24 tick;</span><br><span class="line">    uint16 observationIndex;</span><br><span class="line">    uint16 observationCardinality;</span><br><span class="line">    uint16 observationCardinalityNext;</span><br><span class="line">    uint8 feeProtoco+l;</span><br><span class="line">    bool unlocked;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>sqrtPriceX96</th>
+<th>当前的价格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tick</td>
+<td>当前价格对应的的tick</td>
+</tr>
+<tr>
+<td>observationIndex</td>
+<td>价格观察点数组写入当前位置的索引</td>
+</tr>
+<tr>
+<td>observationCardinality</td>
+<td>当前oracle已分配存储的观测次数数组长度</td>
+</tr>
+<tr>
+<td>observationCardinalityNext</td>
+<td>将要拓展的观测数组目标容量</td>
+</tr>
+<tr>
+<td>feeProtocol</td>
+<td>协议费</td>
+</tr>
+<tr>
+<td>unlocked</td>
+<td>重入保护锁</td>
+</tr>
+</tbody></table>
+<p>每个池子维护一个<code>Observation[]</code>环形数组，包含：</p>
+<ul>
+<li><code>timestamp</code>-观测时间截止到uint32</li>
+<li><code>tickCumulative</code>-自池子初始化起，tick 每秒累加</li>
+<li><code>secondsPerLiquidityCumlativeX128</code>-自池子初始化起，(seconds &#x2F; liquidity)的累积值，乘以2^128^做定点存储</li>
+</ul>
+<p>当新的<code>observation</code>写入后，<code>observationIndex</code>会加一，如果到末尾会绕回0</p>
+<p><code>observationCardinality</code>当前ring buffer的实际长度，表示数组中有效观测点的数量，最大不会超过实际部署的数组大小，初始化为1，之后可拓展。增加方法：调用<code>increaseObservationCardinalityNext()</code></p>
+<p><code>observationCardinalityNext</code>将要扩容到的大小，这是一个请求扩容的变量，扩容不是立即完成的，下一次swap才是真正的扩容（初始化新的observation entries需要大量的gas），流程如下：</p>
+<ol>
+<li>用户调用increaseObservationCardinaryNext(N)</li>
+<li>pool只记录：<code>observationCardinarlityNext = N</code></li>
+<li>下次有人swap时：<ol>
+<li>pool检查需要扩容</li>
+<li>初始化新observation slot</li>
+<li>更新<code>observationCardinality = observationCardinalityNext</code></li>
+</ol>
+</li>
+</ol>
+<p><code>checkTicks(int24 tickLower, int24 tickUpper)</code></p>
+<p>tick的取值范围是[-887272, 887272],该函数检查tick是否位于这个区间,并且ticklower &lt; tickupper</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function checkTicks(int24 tickLower, int24 tickUpper) private pure &#123;</span><br><span class="line">        require(tickLower &lt; tickUpper, &#x27;TLU&#x27;);</span><br><span class="line">        //如果tickLower &gt; tickUpper，返回&#x27;TLU&#x27;</span><br><span class="line">        require(tickLower &gt;= TickMath.MIN_TICK, &#x27;TLM&#x27;);</span><br><span class="line">        //如果tickLower &lt; TickMath.MIN_TICK,返回‘TLM’</span><br><span class="line">        require(tickUpper &lt;= TickMath.MAX_TICK, &#x27;TUM&#x27;);</span><br><span class="line">        //如果tickUppr &gt; TickMath.MAX_TICK，返回&#x27;TUM&#x27;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>balance0()</code></p>
+<p>返回池子中token0的余额</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function balance0() private view returns (uint256) &#123;</span><br><span class="line">        (bool success, bytes memory data) =</span><br><span class="line">            token0.staticcall(abi.encodeWithSelector(IERC20Minimal.balanceOf.selector, address(this)));</span><br><span class="line">        require(success &amp;&amp; data.length &gt;= 32);</span><br><span class="line">        return abi.decode(data, (uint256));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>balance1()</code></p>
+<p>返回池子中token1的余额</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function balance1() private view returns (uint256) &#123;</span><br><span class="line">        (bool success, bytes memory data) =</span><br><span class="line">            token1.staticcall(abi.encodeWithSelector(IERC20Minimal.balanceOf.selector, address(this)));</span><br><span class="line">        require(success &amp;&amp; data.length &gt;= 32);</span><br><span class="line">        return abi.decode(data, (uint256));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>snapshotCumulativesInside()</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function snapshotCumulativesInside(int24 tickLower, int24 tickUpper)</span><br><span class="line">        external</span><br><span class="line">        view</span><br><span class="line">        override</span><br><span class="line">        noDelegateCall</span><br><span class="line">        returns (</span><br><span class="line">            int56 tickCumulativeInside,</span><br><span class="line">            uint160 secondsPerLiquidityInsideX128,</span><br><span class="line">            uint32 secondsInside</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+
+<p><code>tickCumulativeInside</code>:价格tick随时间的积累，用于计算TWAP</p>
+<p><code>secondsPerLiquidityInsideX128</code>:归一化流动性的时间积累，用于fee分配</p>
+<p><code>secondsInside</code>:区间活跃的时间，判断LP持续的时间</p>
+<p>如果一个LP 设定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tickLower = -200</span><br><span class="line">tickUpper = 200</span><br></pre></td></tr></table></figure>
+
+<p>而价格在区间内持续了3600秒</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">secondsInside = 3600//历史上价格位于这个区间的实际总和</span><br></pre></td></tr></table></figure>
+
+<p><code>tickCumulativeInside</code> &#x3D; 计算TWAP(区间内的时间加权平均价格)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(tickCumulative(end) - tickCumulative(start)) / secondsInside</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>计算UniswapV3代码库中两个价格之间的实际储备</strong></p>
+<p><strong>getAmount0Delta()</strong></p>
+<p>计算给定流动性的两个价格之间的X实际储备</p>
+<p>参数:</p>
+<ul>
+<li>sqrtRatioAX96、 sqrtRatioBX96：两个价格的平方根</li>
+<li>liquidity：该价格区间内的流动性</li>
+<li>roundUp：是否向上取整</li>
+</ul>
+<p>如果是协议把token支付给用户（swap、移除流动性），则向下取整</p>
+<p>如果是用户向协议支付token（如添加流动性），则向上取整</p>
+<p><strong>协议永远占便宜</strong></p>
+<p>函数计算的公式</p>
+<p>$\Large price &#x3D; \frac{sqrt P^2}{2^{192}}$</p>
+<p>$\Large x_r &#x3D; \frac{L}{\sqrt{P_a}} - \frac{L}{\sqrt{P_b}}$</p>
+<p><strong>getAmount1Delta()</strong></p>
+<p>计算给定流动性的两个价格之间的Y实际储备</p>
+<p>这些实际储备的公式实际上取决于价格的平方根，而不是价格本身。我们可以通过对价值进行平方来恢复价格的平方根——但这实际上只在链下完成，链上不需要</p>
+<p>函数计算的公式</p>
+<p>$\Large y_r &#x3D; L\sqrt{P_b} - L\sqrt{P_a}$</p>
+<hr>
+<p><strong>UniswapV3中的仓位</strong></p>
+<p>在UniswapV2中，当LP添加流动性时，会收到池子的份额（LPT），即ERC-20流动性代币，代表他们对池子资产的占比（包括手续费）。这些LP token是可替代代币。</p>
+<p>在UniswapV3中，LP选择一个特定的区间来提供流动性，因此协议必须以不可代替的方式逐个记录每次存入的流动性，这就引入了Position（仓位）的概念</p>
+<p>当LP在一个区间内添加流动性时，可以认为他们在<em>打开</em>或<em>修改</em>一个仓位</p>
+<ul>
+<li>若该仓位不存在，则成为打开</li>
+<li>若该仓位已存在，则称为修改</li>
+</ul>
+<p>UniswapV3存入流动性由mint()实现，含义变成了铸造一个仓位</p>
+<p>仓位存储在UniswapV3Pool合约中的一个名为positions的mappings中</p>
+<p>该position的key由以下三者通过Keccak哈希生成：</p>
+<ul>
+<li>Positon owner的地址</li>
+<li>lower tick</li>
+<li>upper tick</li>
+</ul>
+<p>如果一个地址0xA第一次在tick  -10到tick 10之间添加流动性，那么会创建一个key</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keccak(0xA, -10, 10)</span><br></pre></td></tr></table></figure>
+
+<p>在UniswapV3中，仓位是不可替代的，因为仓位绑定了不同的价格区间，因此当两个LP赎回流动性时，他们的价格区间不同，贡献的真实储备不同，他们可能得到完全不同的代币数量</p>
+<p>仓位可以通过外围合约包装成ERC-721（NFT），例如官方的 <strong>NonfungiblePositionManager</strong>，但核心合约本身不是NFT，也无法转移仓位</p>
+<p>核心合约只负责：</p>
+<ul>
+<li>打开仓位</li>
+<li>修改仓位</li>
+<li>移除流动性</li>
+</ul>
+<p><strong>UniswapV3的手续费</strong></p>
+<p>在V3中，仓位只会获得它区间内的swap所产生的手续费</p>
+<p>协议用以下自段来帮助计算仓位可领取多少手续费：</p>
+<ul>
+<li>feeGrowthInside0LastX128</li>
+<li>feeGrowthInside1LastX128</li>
+</ul>
+<p>原理</p>
+<ul>
+<li>协议记录池子自创建以来累计的手续费</li>
+<li>记录每个tick上方与下方累计的手续费</li>
+<li>从而推算某仓位区间内累计的手续费</li>
+<li>再结合仓位自身的lastX128字段得出该仓位应得多少手续费</li>
+</ul>
+<p><strong>mint()</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function mint(</span><br><span class="line">  address recipient,</span><br><span class="line">  int24 tickLower,</span><br><span class="line">  int24 tickUpper,</span><br><span class="line">  uint128 amount,</span><br><span class="line">  bytes calldata data</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>recipient：仓位拥有者</li>
+<li>tickLower、tickUpper：价格区间</li>
+<li>amount：流动性（非负），用于表示想添加多少流动性</li>
+<li>data：用于回调(非空时开始闪电贷)</li>
+</ul>
+<p>所以，调用者必须实现回调，EOA无法实现回调函数，<strong>EOA调用mint一定会失败</strong></p>
+<p>因此LP必须通过一个中间合约：Position Manager（例如官方的 <strong>NonfungiblePositionManager</strong>）</p>
+<p>流程如下：</p>
+<p>EOA –&gt; PositionManager –&gt; core pool mint –&gt; 回调 –&gt; PositionManager 转账 –&gt;完成mint</p>
+<p>PositionManager负责：</p>
+<ul>
+<li>接收用户指定的token数量</li>
+<li>将token数量转换为liquidity</li>
+<li>再调用core mint</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+        <div class="reward-container">
+  <div>KFC V我 50</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="wordmaya 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="wordmaya 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>wordmaya
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2026/05/15/%E9%9B%86%E4%B8%AD%E6%B5%81%E5%8A%A8%E6%80%A7/" title="UniswapV3">http://example.com/2026/05/15/集中流动性/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/blockchain/" rel="tag"># blockchain</a>
+              <a href="/tags/DeFi/" rel="tag"># DeFi</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/03/24/BetHouse/" rel="prev" title="BetHouse">
+      <i class="fa fa-chevron-left"></i> BetHouse
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/05/15/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6&%E5%9D%8F%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="next" title="访问控制&坏随机数">
+      访问控制&坏随机数 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E4%B8%AD%E6%B5%81%E5%8A%A8%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">集中流动性</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wordmaya"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">wordmaya</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zg870" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zg870" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://chat.openai.com/" title="https:&#x2F;&#x2F;chat.openai.com&#x2F;" rel="noopener" target="_blank">ChatGPT</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.baidu.com/" title="https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">百度</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wordmaya</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:06</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共79k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

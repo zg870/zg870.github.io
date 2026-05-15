@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="数据存储动态存储和静态存储">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据存储">
+<meta property="og:url" content="http://example.com/2026/05/15/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/index.html">
+<meta property="og:site_name" content="AUV wordmaya">
+<meta property="og:description" content="数据存储动态存储和静态存储">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-15T02:36:32.109Z">
+<meta property="article:author" content="wordmaya">
+<meta property="article:tag" content="blockchain">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2026/05/15/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数据存储 | AUV wordmaya</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="AUV wordmaya" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">AUV wordmaya</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">玩得开心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/05/15/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据存储
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-05-15 00:00:00 / 修改时间：10:36:32" itemprop="dateCreated datePublished" datetime="2026-05-15T00:00:00+08:00">2026-05-15</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h1><p>动态存储和静态存储</p>
+<span id="more"></span>
+
+<h2 id="动态存储"><a href="#动态存储" class="headerlink" title="动态存储"></a>动态存储</h2><h2 id="动态数组"><a href="#动态数组" class="headerlink" title="动态数组"></a>动态数组</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uint256[] public numbers;//solt 1</span><br><span class="line">numbers.push(114514);</span><br><span class="line">numbers.push(1919810);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>读取对应插槽内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast storage &lt;合约地址&gt; slot 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x0000000000000000000000000000000000000000000000000000000000000002</span><br></pre></td></tr></table></figure>
+
+<p>动态数组存储在插槽的内容是元素数量</p>
+</li>
+<li><p>返回动态数组第一个元素存储位置（Data）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">➜ bytes32 d</span><br><span class="line">➜ d = keccak256(abi.encode(uint256(1)));</span><br><span class="line">➜ d</span><br><span class="line">Type: bytes32</span><br><span class="line">└ Data: 0xb10e2d527612073b26eecdfd717e6a320cf44b4afac2b0732d9fcbe2b7fa0cf6</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在bash中读取该位置对应的元素数值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast storage &lt;合约地址&gt; [Data]</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x000000000000000000000000000000000000000000000000000000000001bf52</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转为可读形式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">➜ bytes32 e</span><br><span class="line">➜ e = 0x000000000000000000000000000000000000000000000000000000000001bf52</span><br><span class="line">Type: bytes32</span><br><span class="line">└ Data: 0x000000000000000000000000000000000000000000000000000000000001bf52</span><br><span class="line">➜ uint256 f</span><br><span class="line">➜ f = uint256(e)</span><br><span class="line">Type: uint256</span><br><span class="line">├ Hex: 0x1bf52</span><br><span class="line">├ Hex (full word): 0x000000000000000000000000000000000000000000000000000000000001bf52</span><br><span class="line">└ Decimal: 114514</span><br><span class="line">➜ </span><br></pre></td></tr></table></figure>
+
+<p><code>114514</code>即为数组元素内容</p>
+</li>
+</ul>
+<p>&#x3D;&#x3D;<code>arr[i]</code>的存储位置&#x3D;<code>keccak256(p)+i</code>—i是元素索引&#x3D;&#x3D;</p>
+<p>如上<code>p</code>对应的是1，第一个元素对应索引为<code>0</code>，通过计算，数组第一个元素的存储位置是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0xb10e2d527612073b26eecdfd717e6a320cf44b4afac2b0732d9fcbe2b7fa0cf6</span><br></pre></td></tr></table></figure>
+
+<p>我们的数组有两个元素，我们可以得到第二个元素的存储位置为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0xb10e2d527612073b26eecdfd717e6a320cf44b4afac2b0732d9fcbe2b7fa0cf7</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>在bash中读取该位置对应的元素数值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast storage &lt;合约地址&gt; [Data]</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x00000000000000000000000000000000000000000000000000000000001d4b42</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转为可读形式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">➜ bytes32 g</span><br><span class="line">➜ g = 0x00000000000000000000000000000000000000000000000000000000001d4b42</span><br><span class="line">Type: bytes32</span><br><span class="line">└ Data: 0x00000000000000000000000000000000000000000000000000000000001d4b42</span><br><span class="line">➜ uint256 h</span><br><span class="line">➜ h = uint256(g)</span><br><span class="line">Type: uint256</span><br><span class="line">├ Hex: 0x1d4b42</span><br><span class="line">├ Hex (full word): 0x00000000000000000000000000000000000000000000000000000000001d4b42</span><br><span class="line">└ Decimal: 1919810</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mapping(address =&gt; uint256) public balances; //slot 2</span><br><span class="line">balances[0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266] = 10000; // 初始化映射</span><br><span class="line">		balances[0x70997970C51812dc3A010C7d01b50e0d17dc79C8] = 10000; // 初始化映射</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>寻找映射真正的数据单元</p>
+<p><code>数据单元 =keccak256(abi.encode(key,uint256(p)))</code>&#x3D;&#x3D;输入时不用添加数据类型&#x3D;&#x3D;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜bytes32 d=keccak256(abi.encode(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266,2))</span><br><span class="line">➜ d</span><br><span class="line">Type: bytes32</span><br><span class="line">└ Data: 0xbc40fbf4394cd00f78fae9763b0c2c71b21ea442c42fdadc5b720537240ebac1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>读取槽内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast storage 0x5FbDB2315678afecb367f032d93F642f64180aa3 0xbc40fbf4394cd00f78fae9763b0c2c71b21ea442c42fdadc5b720537240ebac1</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x000000000000000000000000000000000000000000000000000000000000271</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转为可读形式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">➜ uint256 e</span><br><span class="line">➜ e = uint256(0x0000000000000000000000000000000000000000000000000000000000002710)</span><br><span class="line">Type: uint256</span><br><span class="line">├ Hex: 0x2710</span><br><span class="line">├ Hex (full word): 0x0000000000000000000000000000000000000000000000000000000000002710</span><br><span class="line">└ Decimal: 10000</span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;该映射位于slot 2，如果直接读取槽内容，会返回一个空地址，即指针的地址&#x3D;&#x3D;</p>
+</li>
+</ul>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="超过31字节"><a href="#超过31字节" class="headerlink" title="超过31字节"></a>超过31字节</h3><p>一个插槽的存储空间为32字节，但是字符串类型的变量最后一字节用来表示字符串的长度，所以一个插槽最多容纳长为31字节的字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string public greeting; //slot 3 </span><br><span class="line">greeting = &quot;DLNUFCG_BlockchainDLNUFCG_Blockchain&quot;; // 初始化字符串</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>读取slot 3内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast storage &lt;合约地址&gt; 3</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x0000000000000000000000000000000000000000000000000000000000000049</span><br></pre></td></tr></table></figure>
+
+<p>前半段为存储内容，末尾<code>49</code>对应十进制下<code>73</code></p>
+<p>是字符串长度*2+1</p>
+<p>因此该字符串长为36字节</p>
+</li>
+<li><p>寻找真正的数据存储位置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜ a=keccak256(abi.encode(uint256(3)))</span><br><span class="line">Type: bytes32</span><br><span class="line">└ Data: 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85b</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>读取内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast storage 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85b</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x444c4e554643475f426c6f636b636861696e444c4e554643475f426c6f636b63</span><br></pre></td></tr></table></figure>
+
+<p>转为可读形式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast --to-ascii 0x444c4e554643475f426c6f636b636861696e444c4e554643475f426c6f636b63</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DLNUFCG_BlockchainDLNUFCG_Blockc</span><br></pre></td></tr></table></figure>
+
+<p>因为一个槽内只能存储32字节，所以输出内容在32字节处截断，而超过32字节的字符串存储方式与动态数组相似，即存储位置<code>+1</code>，我们读出的字符串前32字节存储位置为<code>0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85b</code>，十六进制下，<code>b</code>的后一位是<code>c</code>，因此我们可以读出剩下四字节的存储位置为<code>0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85c</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast storage 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0 0xc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85c</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x6861696e00000000000000000000000000000000000000000000000000000000</span><br></pre></td></tr></table></figure>
+
+<p>转为可读形式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast --to-ascii 0x6861696e00000000000000000000000000000000000000000000000000000000</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hain</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="31字节以内"><a href="#31字节以内" class="headerlink" title="31字节以内"></a>31字节以内</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string public greeting; //slot 3 </span><br><span class="line">greeting = &quot;DLNUFCG_Blockchain&quot;; // 初始化字符串</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>读取插槽内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast storage 0x5FbDB2315678afecb367f032d93F642f64180aa3 3</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x444c4e554643475f426c6f636b636861696e0000000000000000000000000024</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转为可读形式（只截取存储字符串的内容即可）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast --to-ascii 0x444c4e554643475f426c6f636b636861696e</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DLNUFCG_Blockchain</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="静态数组"><a href="#静态数组" class="headerlink" title="静态数组"></a>静态数组</h1><h2 id="私有变量"><a href="#私有变量" class="headerlink" title="私有变量"></a>私有变量</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uint256 private staticValue; //slot 0</span><br><span class="line">staticValue = 2023054127; // 初始化私有状态变量</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>查询插槽内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast storage &lt;合约地址&gt; slot p</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x0000000000000000000000000000000000000000000000000000000078955b2f</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转换为可读形式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">➜ bytes32 a</span><br><span class="line">➜ a =0x0000000000000000000000000000000000000000000000000000000078955b2f</span><br><span class="line">Type: bytes32</span><br><span class="line">└ Data: 0x0000000000000000000000000000000000000000000000000000000078955b2f</span><br><span class="line">➜ uint256 b</span><br><span class="line">➜ b = uint256(a)</span><br><span class="line">Type: uint256</span><br><span class="line">├ Hex: 0x78955b2f</span><br><span class="line">├ Hex (full word): 0x0000000000000000000000000000000000000000000000000000000078955b2f</span><br><span class="line">└ Decimal: 2023054127</span><br><span class="line">➜ </span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="定长数组"><a href="#定长数组" class="headerlink" title="定长数组"></a>定长数组</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">uint64[8] public numbers1; //slot 4</span><br><span class="line">numbers1[0]=0;</span><br><span class="line">numbers1[1]=1;        </span><br><span class="line">numbers1[2]=2;</span><br><span class="line">numbers1[3]=3;</span><br><span class="line">numbers1[4]=4;</span><br><span class="line">numbers1[5]=5;</span><br><span class="line">numbers1[6]=6;</span><br><span class="line">numbers1[7]=7;</span><br></pre></td></tr></table></figure>
+
+<p>定长数组在插槽中是紧凑存储的，由上述代码可知，数组的每一个元素为8个字节，那么每个插槽中存储四个元素，（solidity的存储规则是，按照声明顺序，先写占地位）即：</p>
+<ul>
+<li>solt 4  3-2-1-0</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast storage 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0 4</span><br></pre></td></tr></table></figure>
+
+<p>​	输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x0000000000000003000000000000000200000000000000010000000000000000</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>solt 5 7-6-5-4</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast storage 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0 5</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x0000000000000007000000000000000600000000000000050000000000000004</span><br></pre></td></tr></table></figure>
+
+<h1 id="紧凑存储"><a href="#紧凑存储" class="headerlink" title="紧凑存储"></a>紧凑存储</h1><p>solidity在EVM中降低存储成本的一种优化策略</p>
+<p>每个变量默认占据一个32字节的插槽，solidity会<strong>自动</strong>打包多个小变量到同一插槽中，以节省gas</p>
+<p><strong>基本原则</strong></p>
+<ul>
+<li>同一插槽最多放32字节</li>
+<li>按照声明顺序填充插槽</li>
+<li>不能跨插槽存储单个变量</li>
+<li>动态类型不参与打包，单独占一个插槽</li>
+<li><code>struct</code>内也会打包，<code>struct</code>本身再作为整体填入复结构</li>
+</ul>
+<p>基础结构体</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct Info &#123;</span><br><span class="line">	uint128 debt;//16 bytes</span><br><span class="line">	uint64 time;//8bytes</span><br><span class="line">	bool flag;//1 bytes</span><br><span class="line">	uint256 big;//32 bytes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>slot 0 </code>:<code>bebt</code>,<code>time</code>,<code>flag</code></p>
+<p><code>slot 1</code>:<code>big</code></p>
+<p>嵌套结构体</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">struct A&#123;</span><br><span class="line">	uint128 x;</span><br><span class="line">	uint128 y;</span><br><span class="line">&#125;</span><br><span class="line">struct B&#123;</span><br><span class="line">	A inner;</span><br><span class="line">	uint64 z;8 bytes</span><br><span class="line">	uint64 w;8 bytes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>inner</code>自己内部已是32字节，在<code>B</code>中视为整体</p>
+<p><code>slot 0</code>:<code>inner</code></p>
+<p><code>slot 1</code>:<code>z</code>,<code>w</code></p>
+<p>&#x3D;&#x3D;如果嵌套结构体<code>inner</code>整体不满32字节，且剩余空位能够放下一个参数，不能独占一个插槽&#x3D;&#x3D;  </p>
+<h1 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line">contract StaticDynamicArrayMappingString &#123;</span><br><span class="line">	// 静态私有状态变量</span><br><span class="line">	uint256 private staticValue; //slot 0</span><br><span class="line"> 	// 动态数组</span><br><span class="line">	uint256[] public numbers; //slot 1 插槽存储数组元素数量</span><br><span class="line">	// 映射</span><br><span class="line">	mapping(address =&gt; uint256) public balances; //slot 2</span><br><span class="line"> 	// 字符串</span><br><span class="line">	string public greeting; //slot 3 插槽存储字符串长度</span><br><span class="line">	// 构造函数，初始化合约时设置静态值、字符串和动态数组</span><br><span class="line"></span><br><span class="line">    uint64[8] public numbers1; //slot 4</span><br><span class="line">	constructor() &#123;</span><br><span class="line"> 		staticValue = 2023054127; // 初始化私有状态变量</span><br><span class="line">		numbers.push(114514); // 初始化数组元素</span><br><span class="line">		numbers.push(1919810); // 初始化数组元素</span><br><span class="line">        numbers1[0]=0;</span><br><span class="line">        numbers1[1]=1;</span><br><span class="line">        numbers1[2]=2;</span><br><span class="line">        numbers1[3]=3;</span><br><span class="line">        numbers1[4]=4;</span><br><span class="line">        numbers1[5]=5;</span><br><span class="line">        numbers1[6]=6;</span><br><span class="line">        numbers1[7]=7;</span><br><span class="line">		greeting = &quot;DLNUFCG_BlockchainDLNUFCG_Blockchain&quot;; // 初始化字符串</span><br><span class="line">		balances[0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266] = 10000; // 初始化映射</span><br><span class="line">		balances[0x70997970C51812dc3A010C7d01b50e0d17dc79C8] = 10000; // 初始化映射</span><br><span class="line">	&#125;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+        <div class="reward-container">
+  <div>KFC V我 50</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="wordmaya 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="wordmaya 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>wordmaya
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2026/05/15/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" title="数据存储">http://example.com/2026/05/15/数据存储/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/blockchain/" rel="tag"># blockchain</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/05/15/%E6%B5%8B%E8%AF%95&vm%E6%8E%A5%E5%8F%A3&%E4%BD%9C%E5%BC%8A%E7%A0%81&%E9%A2%84%E6%B5%8B%E5%90%88%E7%BA%A6%E5%9C%B0%E5%9D%80/" rel="prev" title="FuzzingTest">
+      <i class="fa fa-chevron-left"></i> FuzzingTest
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/05/15/%E4%B8%8D%E5%8F%AF%E9%A2%84%E6%9C%9F%E7%9A%84Ether/" rel="next" title="不可预期的Ether">
+      不可预期的Ether <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8"><span class="nav-number">1.</span> <span class="nav-text">数据存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8"><span class="nav-number">1.1.</span> <span class="nav-text">动态存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84"><span class="nav-number">1.2.</span> <span class="nav-text">动态数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%A0%E5%B0%84"><span class="nav-number">1.3.</span> <span class="nav-text">映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.4.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B6%85%E8%BF%8731%E5%AD%97%E8%8A%82"><span class="nav-number">1.4.1.</span> <span class="nav-text">超过31字节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31%E5%AD%97%E8%8A%82%E4%BB%A5%E5%86%85"><span class="nav-number">1.4.2.</span> <span class="nav-text">31字节以内</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E6%95%B0%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">静态数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%81%E6%9C%89%E5%8F%98%E9%87%8F"><span class="nav-number">2.1.</span> <span class="nav-text">私有变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E9%95%BF%E6%95%B0%E7%BB%84"><span class="nav-number">2.2.</span> <span class="nav-text">定长数组</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B4%A7%E5%87%91%E5%AD%98%E5%82%A8"><span class="nav-number">3.</span> <span class="nav-text">紧凑存储</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">源代码</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wordmaya"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">wordmaya</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zg870" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zg870" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://chat.openai.com/" title="https:&#x2F;&#x2F;chat.openai.com&#x2F;" rel="noopener" target="_blank">ChatGPT</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.baidu.com/" title="https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">百度</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wordmaya</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:06</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共79k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

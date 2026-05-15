@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="x402 &amp; ERC8004 &amp; ERC4337 &amp; ERC-7962Web4底层的几个协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web4">
+<meta property="og:url" content="http://example.com/2026/05/15/x402&ERC-8004&ERC-4337&ERC-7962/index.html">
+<meta property="og:site_name" content="AUV wordmaya">
+<meta property="og:description" content="x402 &amp; ERC8004 &amp; ERC4337 &amp; ERC-7962Web4底层的几个协议">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20260312182952178.png">
+<meta property="article:published_time" content="2026-05-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-15T03:01:55.108Z">
+<meta property="article:author" content="wordmaya">
+<meta property="article:tag" content="blockchain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20260312182952178.png">
+
+<link rel="canonical" href="http://example.com/2026/05/15/x402&ERC-8004&ERC-4337&ERC-7962/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Web4 | AUV wordmaya</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="AUV wordmaya" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">AUV wordmaya</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">玩得开心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/05/15/x402&ERC-8004&ERC-4337&ERC-7962/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Web4
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-05-15 00:00:00 / 修改时间：11:01:55" itemprop="dateCreated datePublished" datetime="2026-05-15T00:00:00+08:00">2026-05-15</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="x402-ERC8004-ERC4337-ERC-7962"><a href="#x402-ERC8004-ERC4337-ERC-7962" class="headerlink" title="x402 &amp; ERC8004 &amp; ERC4337 &amp; ERC-7962"></a>x402 &amp; ERC8004 &amp; ERC4337 &amp; ERC-7962</h1><p>Web4底层的几个协议</p>
+<span id="more"></span>
+
+<p>x402 允许代理在没有人工干预的情况下向其他代理付款 </p>
+<p>ERC8004是AI代理的身份证</p>
+<hr>
+<p><strong>HTTP 402（Payment Required）</strong></p>
+<p>用户必须先完成支付，服务器才会返回请求。</p>
+<p>但是在传统的Web中，因为浏览器没有统一的支付协议、Web支付体系不统一、网站一般用的是登录+订阅系统来代替，它几乎没有被真正使用</p>
+<p>随着AI Agent 自动调用API的出现，HTTP 402有了真正的应用场景</p>
+<p><strong>AI Agent</strong>：能自主感知环境、决策并执行任务的AI程序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">常见结构</span><br><span class="line">感知 --&gt; 推理 --&gt; 决策 --&gt; 执行</span><br></pre></td></tr></table></figure>
+
+<p>与普通AI只能回答问题、回应单次请求并且不会调用工具对比，AI Agent 能够自动完成任务，保持持续执行，且会调用API&#x2F;工具</p>
+<p>举一个简单的例子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;帮我分析ETH价格&quot;</span><br><span class="line">Agent：</span><br><span class="line">1. 搜索市场数据</span><br><span class="line">2. 调用分析模型</span><br><span class="line">3. 输出报告</span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;为什么HTTP 402和AI Agent会结合&#x3D;&#x3D;</p>
+<p>核心原因：<strong>Agent需要自动付费访问服务</strong></p>
+<p>如果是人类用户：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注册账户 --&gt; 充值 --&gt; 再调用API</span><br></pre></td></tr></table></figure>
+
+<p>Agent</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">调用API --&gt; 返回402 --&gt; 自动支付 --&gt; 继续执行</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\34420\AppData\Roaming\Typora\typora-user-images\image-20260312182952178.png" alt="image-20260312182952178"></p>
+<p>以前的支付系统不适合机器，AI Agent 无法登录、输入验证码、处理网页，所以需要机器可读的支付协议</p>
+<p>目前最典型的实现思路是： &#x3D;&#x3D;HTTP 402 + 加密货币 + AI Agent + API网关&#x3D;&#x3D;</p>
+<p>很多项目把这一套体系称为 x402  protocol</p>
+<hr>
+<p><strong>x402</strong>：是一个开放的HTTP协议，核心是实现机器自主微支付、链上即时结算，是Web和Web3的价值连接器，兼容多链与ERC-2612等标准，主打稳定币支付</p>
+<p><strong>核心思想</strong>：利用HTTP 402状态码，使用稳定币支付，通过区块链验证支付，支付成功后服务器返回资源</p>
+<p><strong>解决了什么</strong></p>
+<ul>
+<li>机器&#x2F;AI&#x2F;Agent支付难题：实现Agent自主结算，支持小额微支付，摆脱人工干预与预充值束缚</li>
+<li>Web3支付门槛高：用户无需持有主币支付Gas，仅需钱包签名，开发者易集成</li>
+<li>数字服务变现缺陷：替代订阅制&#x2F;广告模式，实现按使用收费，降低变现摩擦</li>
+<li>跨系统信任成本高：基于区块链实现可追溯，防篡改，降低跨生态支付开发成本</li>
+</ul>
+<p><strong>实现细节</strong></p>
+<ul>
+<li>目前主要支付USDC，价格稳定，微支付不会波动</li>
+<li>gasless支付，用户只是签名，relayer提交交易并支付gas（也就是第三方、服务中继、服务器）。</li>
+<li>facilitator(支付中继，支付验证服务器)，用于验证支付、提交链上交易、返回支付状态</li>
+</ul>
+<p><strong>特点</strong> </p>
+<ul>
+<li><p>支付直接集成在HTTP协议中</p>
+</li>
+<li><p>机器对机器支付</p>
+</li>
+<li><p>微支付，实现<code>$0.0001 $0.001 $0.01</code>级别的API收费</p>
+</li>
+<li><p>无账户模式，不需要登录、API key 、订阅，支付就是身份</p>
+</li>
+<li><p>链无关（是协议不绑定区块链，不是跨链交易），x402本身并不依赖某一条链，它只是规定了一种HTTP支付格式</p>
+<p>这不是要求用户立刻发生链上交易，而是要求客户端生成一个支付授权证明，比如服务器返回的是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">402 Payment Required</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  price: 0.001,</span><br><span class="line">  token: 0xUSDC,</span><br><span class="line">  chain: base,</span><br><span class="line">  payTo: 0xMerchant</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用户通过钱包授权，客户端生成支付授权message</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">message = &#123;</span><br><span class="line">  from: userAddress</span><br><span class="line">  to: 0xMerchant</span><br><span class="line">  value: 0.001 USDC</span><br><span class="line">  nonce: random</span><br><span class="line">  deadline: timestamp</span><br><span class="line">  token: 0xUSDC</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>client构造domain</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">domain = &#123;</span><br><span class="line">  name: &quot;USDC&quot;,</span><br><span class="line">  version: &quot;2&quot;,</span><br><span class="line">  chainId: 8453,</span><br><span class="line">  verifyingContract: 0xUSDC</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>要对这个结构体签名，比如使用<strong>EIP-712</strong>，签名后得到<code>v , r , s</code></p>
+<p>用户是通过AI Agent调用服务，客户端把签名 + message提供给AI Agent</p>
+<p>AI Agent发送HTTP请求</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST /api/weather</span><br><span class="line"></span><br><span class="line">x-payment:</span><br><span class="line">&#123;</span><br><span class="line"> signature: 0xabc</span><br><span class="line"> nonce: 0x123</span><br><span class="line"> amount: 0.001</span><br><span class="line"> token: 0xUSDC</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>服务器收到请求后，按规则重建domain。验证签名是否来自message.from,检查nonce、防止重放和金额是否满足price</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">domain = &#123;</span><br><span class="line">  name: &quot;USDC&quot;,</span><br><span class="line">  version: &quot;2&quot;,</span><br><span class="line">  chainId: 8453,</span><br><span class="line">  verifyingContract: 0xUSDC</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>验证通过后，服务器交给relayer或者Facilitator在指定链上执行转账</p>
+<p>一旦执行成功，API返回数据给 AI Agent或客户端，比如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;temperature&quot;: 18,</span><br><span class="line">  &quot;location&quot;: &quot;London&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>x402使用区块链的优势</strong></p>
+<ol>
+<li>去中心化的支付验证，传统系统中，支付需要依赖第三方机构。使用区块链的优势是：签名+链上验证 API 可以安全地验证支付，不依赖中心化网关</li>
+<li>防止重放攻击&#x2F;跨链防篡改，签名里包含<code>chainId</code> <code>nonce</code> <code>deadline</code>,即便AI Agent或者第三方尝试多次使用同一签名，链上和服务器规则会阻止重复支付</li>
+<li>用户不用自己支付手续费</li>
+<li>跨平台和链无关，任何链上验证者都能核实签名和资产状态，传统支付系统无法在不同平台、不同资产间做到同样程度的统一验证</li>
+</ol>
+<hr>
+<p>x402核心解决的是**“如何完成支付”<strong>的问题，与之互补的ERC8004则是专注解决</strong>“支付主体是谁”<strong>以及</strong>“为何可以信任支付方”**的信任与身份验证问题</p>
+<p><strong>ERC8004</strong>：以太坊上“AI智能代理”的无信任协作标准，基于ERC-721，让链上AI代理可以被唯一标识、可信评估、安全协作。在AI经济中，x402负责处理高频微额的支付，而ERC8004负责验证对方的合法性，防止恶意机器人滥用资源。</p>
+<p><strong>核心结构</strong>（三大注册表）</p>
+<ul>
+<li><p>Identity Registry(身份注册表)，典型信息包括</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">agentId</span><br><span class="line">owner wallet</span><br><span class="line">service endpoint //服务端点</span><br><span class="line">metadata//元数据</span><br><span class="line">capabilities//能力声明，Agent必须要声明自己能干什么</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Agent: PriceBot</span><br><span class="line">Wallet: 0xabc...</span><br><span class="line">Service: http://api.pricebot.ai</span><br><span class="line">Capabilities:</span><br><span class="line"> - price query</span><br><span class="line"> - arbitrrage</span><br></pre></td></tr></table></figure>
+
+<pre><code>  在实现时，通常会用ERC721 NFT表示agent identity ，每个AI代理 = 唯一的ERC721 NFT，固定身份，不可篡改，可转移
+</code></pre>
+</li>
+<li><p>Retutation Registry(声誉注册表)，解决的问题是“Agent是否可靠”，链上评分系统</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct Feedback &#123;</span><br><span class="line">    address reviewer;</span><br><span class="line">    int8 score;</span><br><span class="line">    string comment;</span><br><span class="line">&#125;</span><br><span class="line">mapping(uint256 =&gt; Feedback[]) public feedbacks;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//提交评分</span><br><span class="line">function submitFeedback(</span><br><span class="line">    uint256 agentId,</span><br><span class="line">    int8 score,</span><br><span class="line">    string calldata comment</span><br><span class="line">) external</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//信誉计算</span><br><span class="line">reputation = positive - negetive//常见算法</span><br></pre></td></tr></table></figure>
+
+<p>ERC8004有防止刷分的机制</p>
+<ul>
+<li>stake评分：评分需要抵押token<code>stake = 1 token</code>，恶意评分会被slash(没收之前抵押的资金作为惩罚)</li>
+<li>只允许任务参与者评分</li>
+<li>DAO治理评分，由DAO决定</li>
+</ul>
+</li>
+<li><p>Validation Registry(验证注册表)，验证AI是否完成任务，因为AI执行在链下，所以必须验证，简单来说就是把链下AI行为变成链上可验证事件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//任务结构</span><br><span class="line">struct Task&#123;</span><br><span class="line">	uint256 agentId;</span><br><span class="line">	address requester;</span><br><span class="line">	bytes32 taskHash;</span><br><span class="line">	bool validated;</span><br><span class="line">&#125;</span><br><span class="line">mapping(uint256 =&gt; Task) public tasks;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//创建任务</span><br><span class="line">createTask(</span><br><span class="line">	uint256 agentId,</span><br><span class="line">	bytes32 taskHash</span><br><span class="line">)</span><br><span class="line">------</span><br><span class="line">task = &quot;generate report&quot;</span><br><span class="line">taskHash = keccak256(task)</span><br><span class="line">----</span><br><span class="line">//调用</span><br><span class="line">createTask(agentId, taskHash)</span><br></pre></td></tr></table></figure>
+
+<p>用户想让AI生成一份报告，链上不会存完整报告，只存Hash</p>
+<p>合约里会记录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tasks[1] = Task(&#123;</span><br><span class="line">	agentId: 42,</span><br><span class="line">	requester: msg.sender,</span><br><span class="line">	taskHask: 0x1234,</span><br><span class="line">	validated: false</span><br><span class="line">&#125;)	</span><br></pre></td></tr></table></figure>
+
+<p>链上状态</p>
+<pre><code>taskId = 1
+agentId = 42
+validated = false
+</code></pre>
+<p>  <strong>AI Agent 在链下执行任务</strong></p>
+<pre><code>Agent监听到任务，taskId = 1
+Agent调用自己服务器 http://agent.ai/run , 生成task.pdf
+</code></pre>
+<p>现在要<strong>证明</strong>，这个<strong>任务确实被完成</strong>，agent要提交一个proof</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">submitProof(taskId, proof)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><em>方案一：Agent对结果签名</em></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">resultHash = keccakd256(task.pdf)</span><br><span class="line">signature = sign(resultHash)//签名</span><br><span class="line">submitProof(</span><br><span class="line">    1,</span><br><span class="line">    abi.encode(resultHash, signature)</span><br><span class="line">)//提交</span><br></pre></td></tr></table></figure>
+
+<p>合约验证签名是否来自agent owner</p>
+<ul>
+<li><em>方案二：Oracle验证</em></li>
+</ul>
+<p>AI执行后生成task.pdf，第三方Oracle检查是否真的生成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">submitProof(taskId, oracleSignature)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><em>方案三：ZK proof（零知识证明，最理想）</em></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">task.pdf</span><br><span class="line">生成零知识证明</span><br><span class="line">ZK proof ---证明这个报告是根据任务生成的</span><br><span class="line">submitProof(taskId, zkProof)</span><br></pre></td></tr></table></figure>
+
+<p><strong>链上验证任务</strong></p>
+<p>调用<code>validateTask(taskId)</code>，合约检查proof是否有效</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">task[taskId].validated = true //通过的情况</span><br><span class="line">//链上变成</span><br><span class="line">validated = true</span><br><span class="line">//任务完成</span><br></pre></td></tr></table></figure>
+
+<p>如果proof不成立，系统会受惩罚，<code>slash agent stake</code>扣掉agent抵押的钱</p>
+</li>
+</ul>
+<p><strong>ERC8004的完整工作流程</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Developer</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">registerAgent</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">Identity Registry</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">Agent Discovery</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">createTask</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">Agent执行任务（链下）</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">submitProof</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">Validation Registry</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">validateTask</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">Reputation Registry</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>ERC-4337</strong>：以太坊上的账户抽象（Account Abstraction）标准。它允许用户通过智能合约钱包取代传统外部账户（EOA），在无需更改共识层协议的前提下实现更灵活、安全的账户模型。</p>
+<p>外部账号EOA和智能合约账户SCA都仅限于使用以太坊唯一的签名算法，即椭圆曲线算法（ECDSA）。两种账户必须以区块链的原声代币支付gas费用</p>
+<p>ERC-4337是一套通过设立独立的“替代内存池”来实现账户抽象的方案。即账户充当智能合约的钱包，用户可以在不拥有自己的私钥或无需维护以太币已支付交易费用的情况下与以太坊网络进行交互。它使用替代内存池(Alt Mempool)设计接收和解释消息。</p>
+<p>传统交易</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EOA -&gt; Transaction -&gt; mempool -&gt; miner</span><br></pre></td></tr></table></figure>
+
+<p>ERC-4337</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UserOperation（指令） -&gt; alt mempool（独立内存池） -&gt; bundler（打包） -&gt; EntryPoint（核心合约）</span><br></pre></td></tr></table></figure>
+
+<p><strong>特点</strong></p>
+<ul>
+<li><p>多操作：与智能合约的某些交互涉及多个步骤，当与DeFi协议交互时，用户可能需要批准代币转移，然后存入代币，再执行其他操作。每个步骤都需要EOA账户单独发起。ERC-4337引入了”UserOperation”新交易类型来解决这个问题。它允许用户定义应作为单个操作的一部分执行一系列步骤，然后这些步骤由EntryPoint合约执行</p>
+</li>
+<li><p>多签名：传统EOA是一个私钥对应一个账户，如果私钥丢失，那么资金永久丢失。但是ERC-4337钱包是合约，可以自定义验证逻辑，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">constructor() &#123;</span><br><span class="line">    isOwner[Alice] = true;</span><br><span class="line">    isOwner[Alice] = true;</span><br><span class="line">    isOwner[Bob] = true;</span><br><span class="line">    isOwner[Charlie] = true;</span><br><span class="line"></span><br><span class="line">    threshold = 2;</span><br><span class="line">&#125;</span><br><span class="line">function validateUserOp(</span><br><span class="line">    bytes[] calldata signatures</span><br><span class="line">) external returns (bool) &#123;</span><br><span class="line"></span><br><span class="line">    uint valid;</span><br><span class="line"></span><br><span class="line">    for(uint i=0;i&lt;signatures.length;i++)&#123;</span><br><span class="line">        address signer = recoverSigner(signatures[i]);</span><br><span class="line"></span><br><span class="line">        if(isOwner[signer])&#123;</span><br><span class="line">            valid++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    require(valid &gt;= threshold);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;2&#x2F;3 multising&#x3D;&#x3D;区块链里的多签名规则，意思是三个授权者至少两个签名交易才会执行。</p>
+<p>也就是说，在单个私钥泄露时，ERC-4337的多签名规则可以保障账户资金安全。</p>
+<p>多签名还能做一个很重要的功能——社交恢复。当一个私钥丢失时，2&#x2F;3可以恢复账户</p>
+</li>
+<li><p>自定义签名方案：传统以太坊交易使用的签名方式是ECDSA，节点在进入区块前会自动验证签名。但ERC-4337的关键设计是EntryPoint不验证签名，而是调用用户账户中的<code>validateUserOp()</code>，具体的签名逻辑完全由钱包合约自己实现，因此钱包可以自由定义签名规则。换句话说，在ERC-4337中，签名验证从协议层下发到了账户合约层，通过<code>wallet.valudateUserOp()</code>来决定一笔<code>UserOperation</code>是否有效，从而实现高度可定制的账户安全授权机制。</p>
+</li>
+<li><p>Gas成本灵活：ERC-4337支持”赞助交易”即其他人可以支付Gas费用，从而在交易费用处理方面提供    更大的灵活性</p>
+</li>
+<li><p>可升级性：ERC-4337标准使用代理合约，使其可以“升级”。允许在不中断生态系统内互操作性的情况下添加新功能和修复错误</p>
+</li>
+</ul>
+<p><strong>UserOperation</strong>是ERC-4337的交易，结构类似</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">struct UserOperation &#123;</span><br><span class="line">    address sender;//智能合约钱包地址</span><br><span class="line">    uint256 nonce;</span><br><span class="line">    bytes initCode;//如果钱包没有部署，可以自动部署钱包</span><br><span class="line">    bytes callData;//要执行的函数</span><br><span class="line">    uint256 callGasLimit;</span><br><span class="line">    uint256 verificationGasLimit;</span><br><span class="line">    uint256 maxFeePerGas;</span><br><span class="line">    bytes signature;//用户签名，签名规则由钱包自己决定</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>相当于user提供给以太坊账户的待办事项列表，可以包括转账、与智能合约交互，甚至是多个操作的组合</p>
+<p><strong>UserOperation Mempool</strong>用户不是将交易发送到常规以太坊内存池，而是将UserOperation对象发送到称为Alt-Mempool的单独内存池</p>
+<p><strong>Bundler</strong>（捆绑器）是在ERC-4337中负责收集用户提交的UserOperation的节点，它会从UserOperation Mempool中获取多个用户操作，对其进行模拟验证并根据Ges fee等激励机制进行优先级排序，然后将这些操作打包成一次线上交易。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UserOpA  maxFee 100</span><br><span class="line">UserOpB  maxFee 80</span><br><span class="line">UserOpC  maxFee 20</span><br><span class="line">//依据Gas fee 和激励机制</span><br><span class="line">A -&gt; B -&gt; C //打包顺序</span><br></pre></td></tr></table></figure>
+
+<p>Bundler类似于权益证明（PoS）网络中的验证者，都会从待处理池中选择交易、按费用排序并进行打包，只不过验证者打包的是普通交易，而Bundler打包的是UserOperation</p>
+<p><strong>Global Entry Point</strong>全局入口点，Bundler在收集多个UserOperation后，会把他们打包并发送到该合约，通过调用<code>handleOps()</code>统一处理。Entry Point会依次调用各个账户的<code>validateUserOp()</code>进行验证，并在验证通过后执行对应得操作。同时负责Gas结算、Paymaster支付等逻辑。</p>
+<p><strong>Contract Account</strong>合约账户，账户抽象体系中的用户账户实现，它是一个只能合约而不是传统的外部账户（EOA）。与需要用户手动发起交易的EOA不同，它可以根据接收到的UserOperation自动执行逻辑，例如验证签名、调用其他合约或按照预设规则做出决策，因此能够实现多签、社交恢复、自动化交易等复杂功能</p>
+<p><strong>Paymaster</strong>是一个可选的智能合约，用于为用户的UserOperation支付或赞助Gas费用 。它会在UserOperation验证阶段参与流程，并向Builder报销交易执行所消耗的Gas。它的资助规则都可以通过智能合约逻辑自定义实现</p>
+<p><strong>Aggregator</strong>也是一个可选的智能合约，用于优化和聚合多个UserOperation的签名验证过程。它可以将多个用户操作的签名合并或统一验证，从而减少链上验证成本，提高执行效率，尤其适用于需要批量签名验证的场景，例如多签钱包或特定签名算法体系</p>
+<p>一次完整的ERC-4337的交易流程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">用户钱包</span><br><span class="line">   │</span><br><span class="line">   │ 构造 UserOperation</span><br><span class="line">   │  (包含 sender、nonce、callData、gas、signature 等)</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">发送到 UserOperation mempool</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">Bundler 收集多个 UserOperation</span><br><span class="line">   │</span><br><span class="line">   │ simulateValidation()</span><br><span class="line">   │ ├─ Contract Account.validateUserOp()</span><br><span class="line">   │ ├─ Paymaster.validatePaymasterUserOp()（如果使用）</span><br><span class="line">   │ └─ Aggregator 验证或聚合签名（如果使用）</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">Bundler 根据 Gas fee 排序</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">Bundler 打包 UserOperations</span><br><span class="line">并发送链上交易</span><br><span class="line">EntryPoint.handleOps(UserOps[])</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">EntryPoint 开始执行每个 UserOperation</span><br><span class="line">   │</span><br><span class="line">   ├─ Contract Account.validateUserOp()</span><br><span class="line">   │      验证签名、nonce、权限等</span><br><span class="line">   │</span><br><span class="line">   ├─ Paymaster 支付或担保 Gas（可选）</span><br><span class="line">   │</span><br><span class="line">   ├─ Aggregator 统一验证签名（可选）</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">验证通过</span><br><span class="line">EntryPoint 调用</span><br><span class="line">Contract Account.execute()</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">执行真实操作</span><br><span class="line">（调用 DeFi、转账、交互合约等）</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">Gas 结算</span><br><span class="line">Bundler 获得费用</span><br></pre></td></tr></table></figure>
+
+<p>ERC-4337通过可编程账户、灵活签名和Gas抽象，让区块链交易更自动化、更易用。</p>
+<p>ERC-4337为AI Agent提供了可编程的钱包和自动交易的能力，ERC-4337的Contract Account可以根据预设逻辑自动验证和执行UserOperation，AI Agent可以自主构造并提交操作来完成链上交易。同时，Paymaster可以为交易代付Gas，使AI或应用无需持有ETH也能执行操作，而自定义签名和批量执行能力则允许AI实现多签决策、自动投资、自动支付等复杂行为。</p>
+<p><strong>ERC-4337让AI Agent能够安全地管理资产并自动参与区块链经济活动</strong></p>
+<hr>
+<p><strong>ERC-7962</strong>：Key Hash Based Tokens基于密钥哈希的token</p>
+<p>在ERC-20和ERC-721中，所有资产都是用<code>token -&gt; address</code>来表示的，如<code>mapping(address =&gt; uint256) balances</code>，也就是说资产直接绑定到Ethereum地址。</p>
+<p>这种设计存在几个问题：</p>
+<ul>
+<li>地址隐私性差，所有的交易都是公开的，链上分析工具可以追踪资金流、识别用户、关联多个地址</li>
+<li>地址绑定性太强，如果私钥泄露，用户必须用<code>transfer</code>将所有tokes转出，才能迁移财产</li>
+<li>不支持Relayer&#x2F;Gas Sponsor,必须由持有地址私钥的人发送交易</li>
+</ul>
+<p>因此ERC-7962提出“用公钥哈希（keyHash）代替address表示所有权</p>
+<p>ERC-7962的关键改变是<code>token -&gt; keyHash</code>,<code>keyHash = keccak256(publickey)</code>,链上只存储<code>keyHach</code>不存储地址, <code>owner = keyHash</code></p>
+<p>（Ethereum的地址本质是<code>address = last20bytes(keccak256(publicKey))</code>）</p>
+<p>ERC-7962的交易通常包含签名授权结构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">publicKey</span><br><span class="line">signature</span><br><span class="line">nonce</span><br><span class="line">deadline</span><br></pre></td></tr></table></figure>
+
+<p>交易的执行流程：</p>
+<ul>
+<li>资产拥有者签名，例如<code>transfer(keyHash_from, keyHash_to, amount, nonce)</code></li>
+<li>Relayer提交交易，任何地址都可以提交</li>
+<li>合约验证签名，合约执行<code>recover(publicKey, signature)</code>,然后验证<code>keccak256(publicKey) == keyHash</code>，如果成立，<code>transfer success</code></li>
+</ul>
+<p>关键特点：<strong>交易提交者 ！&#x3D; 资产拥有者</strong></p>
+<p>该提案定义了<strong>两个主要接口</strong></p>
+<p><code>IERCKeyHash721</code>:对于非同质化代币（NFT），每个代币都有唯一的<code>tokenId</code>标识，所有权通过keyHash(keccak256(key))进行管理</p>
+<p><code>IERCKeyHash20</code>:对于同质化代币，其余额与keyHash关联</p>
+<p><strong>签名结构</strong> ERC-7962通常使用EIP-712进行签名</p>
+<p>签名结构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TransferAuthorization</span><br><span class="line">&#123;</span><br><span class="line">    publicKey</span><br><span class="line">    signature</span><br><span class="line">    nonce</span><br><span class="line">    deadline</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中引入的<code>nonce</code> ,<code>deadline</code>可以防止重放攻击</p>
+<p>nonce防止重复利用，deadline限制有效时间</p>
+<p>同时ERC-7962支持私钥轮换，传统的像ERC-20，address都是固定的。在ERC-7962中，用户可以修改公钥，提高安全性</p>
+<p>ERC-7962支持<code>meta transaction</code>适用于<code>Gas sponsor</code>和钱包服务</p>
+<p><strong>ERC-7962与ERC-4337</strong>非常兼容</p>
+<p>ERC-4337提供</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">smart wallet</span><br><span class="line">custom signature</span><br><span class="line">meta transaction</span><br></pre></td></tr></table></figure>
+
+<p>ERC-7962提供</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">keyHash ownership</span><br><span class="line">signature transfer</span><br></pre></td></tr></table></figure>
+
+<p>组合后可以实现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AI Agent wallet</span><br><span class="line">gas sponsor</span><br><span class="line">privacy token</span><br></pre></td></tr></table></figure>
+
+<p>总的来说就是，ERC-7962是一种新的token所有权模型，它使用<code>keyHash</code>(公钥哈希)而不是<code>address</code>表示资产所有者，通过签名授权和relayer交易机制，实现更好的隐私性、灵活性以及对<code>meta-transtruction</code>和<code>AI Agent</code>经济的支持</p>
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Web4 = AI Agent Internet</span><br></pre></td></tr></table></figure>
+
+<p>Web4目前还没有一个像Ethereum或Bitcoin那样被正式定义的正式概念，它更多是一个趋势性概念</p>
+<p>简单理解：</p>
+<p>Web4 &#x3D; Web3 + AI Agent，也就是AI  Agent代表用户自动与区块链交互，也可以将Web4称为 Agentic Web（代理型互联网）</p>
+<p>传统Web3的交互模式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户 → 钱包 → 区块链</span><br></pre></td></tr></table></figure>
+
+<p>Web4</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户 → AI Agent → 钱包 → 区块链</span><br></pre></td></tr></table></figure>
+
+<p>AI Agent 成为链上主体，AI可以持有钱包、发送交易、支付费用、与合约交互</p>
+<p>Web4结构图</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">                Web4</span><br><span class="line">                 │</span><br><span class="line">          AI Agent Economy</span><br><span class="line">                 │</span><br><span class="line"> ┌───────────────┼────────────────┐</span><br><span class="line"> │               │                │</span><br><span class="line">Identity       Payment          Wallet</span><br><span class="line">ERC-8004        x402          Account Abstraction</span><br><span class="line"> │               │                │</span><br><span class="line">Discovery      API Payment       Agent Wallet</span><br><span class="line">Reputation     Micropayment      Automation</span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;Web4的核心三层&#x3D;&#x3D;</p>
+<p><strong>ERC-8004</strong> 是身份层，解决</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Agent是谁</span><br><span class="line">Agent能做什么</span><br><span class="line">Agent是否可信</span><br></pre></td></tr></table></figure>
+
+<p>也就是Agent的身份、权限、信任机制</p>
+<p><strong>x402</strong>是支付层，解决AI怎么自动付钱</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">AI Agent 请求API </span><br><span class="line">|</span><br><span class="line">服务器返回402</span><br><span class="line">|</span><br><span class="line">AI Agent自动支付</span><br><span class="line">|</span><br><span class="line">获得支付</span><br></pre></td></tr></table></figure>
+
+<p>这是一种机器支付</p>
+<p><strong>Agent Wallet</strong> 账户层：AI 必须要有钱包，否则AI没办法支付、发送交易、调用合约，通常使用<strong>ERC-4337</strong>（账户抽象）来实现AI钱包</p>
+<p><strong>HTTP 402 +  Web3支付架构工作流程</strong></p>
+<p>当用户向AI Agent发送请求时，AI在执行任务过程中可能需要调用各种API（数据查询、计算服务等），这些API 往往采用小额高频收费模式。在传统模式下，每次调用API时，AI都需要将支付页面推送给用户，用户手动支付完成。不仅极大降低工作效率，同时在执行多笔交易时，会耗费大量gas费</p>
+<p>而在 <strong>HTTP 402 +  Web3</strong>支付架构下，支付流程可以完全自动化。用户只需要在开始时通过钱包进行一次授权签名，之后AI Agent就可以在授权范围内自动完成支付。</p>
+<ol>
+<li><p><strong>用户授权</strong>：用户的钱包弹窗进行一次签名授权。由于使用<strong>ERC-4337</strong>账户抽象钱包，这个签名可以一次性授权多笔交易，而不需要每次调用API都进行签名</p>
+</li>
+<li><p><strong>签名结构</strong>：授权签名遵循<strong>ERC-7962</strong>的设计：</p>
+<ol>
+<li><code>nonce</code>：限制签名可使用的次数</li>
+<li><code>deadline</code>：限制签名的有效时间</li>
+<li>防止签名被重复使用</li>
+</ol>
+</li>
+<li><p><strong>自动支付</strong>：当AI Agent调用收费API时：</p>
+<ol>
+<li>AI将签名附在请求中</li>
+<li>API服务验证签名后即可完成支付</li>
+</ol>
+<p>这一机制结合<strong>HTTP 402</strong> 状态码实现自动结算</p>
+</li>
+<li><p><strong>Gas费用问题</strong>：在<strong>ERC-7962</strong>设计中引入 Gas Sponsor&#x2F; Relayer：</p>
+<ol>
+<li>AI的交易不需要用户支付Gas</li>
+<li>中继者代为支付交易gas</li>
+<li>用户只承担实际API费用</li>
+</ol>
+</li>
+<li><p><strong>身份验证</strong>：AI Agent的身份通过ERC-8004进行验证，确保：</p>
+<ol>
+<li>Agent的身份可信</li>
+<li>Agent的权限明确</li>
+<li>Agent可以被链上验证</li>
+</ol>
+</li>
+<li><p><strong>任务执行与结果记录</strong>：AI Agent完成任务后：</p>
+<ol>
+<li>生成执行报告</li>
+<li>将执行结果上链</li>
+<li>用户可以验证：<ol>
+<li>命令是否执行成功</li>
+<li>Agent是否授权使用资金</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>简单来说就是，在Web4架构中，AI Agent通过<strong>ERC-8004</strong>建立链上身份与信誉系统，用户利用<strong>ERC-4337</strong>抽象账户授权，并通过<strong>ERC-7962</strong>生成可限制次数和时间的签名，使AI能在<strong>HTTP 402</strong>支付模型下自动调用收费API；Gas由中继者赞助，任务执行结果上链并持续更新Agent信誉，从而形成一个可自动支付、可验证、可追责的AI Agent经济体系。</p>
+<p>未来Web4可能广泛应用与自动金融交易、AI Agent市场、机器支付网络、去中心化AI服务以及AI驱动的DAO场景，推动互联网从“人操作网络”逐步演变为“AI代理参与并运行的网络”。</p>
+
+    </div>
+
+    
+    
+    
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+        <div class="reward-container">
+  <div>KFC V我 50</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="wordmaya 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="wordmaya 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>wordmaya
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2026/05/15/x402&ERC-8004&ERC-4337&ERC-7962/" title="Web4">http://example.com/2026/05/15/x402&ERC-8004&ERC-4337&ERC-7962/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/blockchain/" rel="tag"># blockchain</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/05/15/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6&%E5%9D%8F%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="prev" title="访问控制&坏随机数">
+      <i class="fa fa-chevron-left"></i> 访问控制&坏随机数
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/05/15/%E6%BB%91%E7%82%B9/" rel="next" title="UniswapV2">
+      UniswapV2 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#x402-ERC8004-ERC4337-ERC-7962"><span class="nav-number">1.</span> <span class="nav-text">x402 &amp; ERC8004 &amp; ERC4337 &amp; ERC-7962</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wordmaya"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">wordmaya</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zg870" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zg870" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://chat.openai.com/" title="https:&#x2F;&#x2F;chat.openai.com&#x2F;" rel="noopener" target="_blank">ChatGPT</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.baidu.com/" title="https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">百度</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wordmaya</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:06</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共79k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

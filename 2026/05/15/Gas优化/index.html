@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Gas优化Gas是对全网节点资源消耗的付费凭证 节点需要为我们的交易消耗三类核心资源：  计算资源（CPU） 存储资源(storage) 网络与验证成本  &#x3D;&#x3D;其中storage是最贵的&#x3D;&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gas优化">
+<meta property="og:url" content="http://example.com/2026/05/15/Gas%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="AUV wordmaya">
+<meta property="og:description" content="Gas优化Gas是对全网节点资源消耗的付费凭证 节点需要为我们的交易消耗三类核心资源：  计算资源（CPU） 存储资源(storage) 网络与验证成本  &#x3D;&#x3D;其中storage是最贵的&#x3D;&#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-15T01:46:00.000Z">
+<meta property="article:modified_time" content="2026-05-15T02:36:55.960Z">
+<meta property="article:author" content="wordmaya">
+<meta property="article:tag" content="blockchain">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2026/05/15/Gas%E4%BC%98%E5%8C%96/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Gas优化 | AUV wordmaya</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="AUV wordmaya" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">AUV wordmaya</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">玩得开心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/05/15/Gas%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="wordmaya">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AUV wordmaya">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Gas优化
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-05-15 09:46:00 / 修改时间：10:36:55" itemprop="dateCreated datePublished" datetime="2026-05-15T09:46:00+08:00">2026-05-15</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>13k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Gas优化"><a href="#Gas优化" class="headerlink" title="Gas优化"></a>Gas优化</h1><p>Gas是对全网节点资源消耗的付费凭证</p>
+<p>节点需要为我们的交易消耗三类核心资源：</p>
+<ul>
+<li>计算资源（CPU）</li>
+<li>存储资源(storage)</li>
+<li>网络与验证成本</li>
+</ul>
+<p>&#x3D;&#x3D;其中storage是最贵的&#x3D;&#x3D;</p>
+<span id="more"></span>
+
+<p>Gas优化 &#x3D; 尽量少动 storage</p>
+<ol>
+<li>SSTORE（写storage)<ol>
+<li>最高可达20000gas</li>
+<li>永久影响链状态</li>
+</ol>
+</li>
+<li>SLOAD（读storage）<ol>
+<li>冷读 : ~ 2100 gas</li>
+<li>热读 ：~100 gas</li>
+</ol>
+</li>
+<li>KECCAK256<ol>
+<li>mapping&#x2F;array&#x2F;struct slot 计算</li>
+<li>使用频繁</li>
+</ol>
+</li>
+</ol>
+<h2 id="Gas优化常用技巧"><a href="#Gas优化常用技巧" class="headerlink" title="Gas优化常用技巧"></a>Gas优化常用技巧</h2><h3 id="避免从0到1的内存写入"><a href="#避免从0到1的内存写入" class="headerlink" title="避免从0到1的内存写入"></a>避免从0到1的内存写入</h3><p>从零到非零的SSTORE是EVM中最昂贵的常规操作之一(首次占用一个新的 stroage slot)</p>
+<p><code>SSTORE</code>的gas取决于 storage slot的“原始值”与“新值”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 非零 -&gt; 非零: 5000 gas</span><br><span class="line">// 零 -&gt; 非零: 20000 gas</span><br></pre></td></tr></table></figure>
+
+<p><strong>热路径 &#x3D; 合约中被调用频率最高、用户几乎必经的函数执行路径</strong></p>
+<ul>
+<li>99%的用户交互</li>
+<li>都会经过这里</li>
+<li>每多1k gas，都会被无限放大</li>
+</ul>
+<p><strong>冷路径：只执行一次&#x2F;极少执行&#x2F;不影响用户交互的路径</strong></p>
+<p>热路径撞上 0 —&gt; 非0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">contract BadToken &#123;</span><br><span class="line">    mapping(address =&gt; uint256) public balance;</span><br><span class="line">    uint256 public activated; // 0 = not activated, 1 = activated</span><br><span class="line"></span><br><span class="line">    function transfer(address to, uint256 amount) external &#123;</span><br><span class="line">        if (activated == 0) &#123;</span><br><span class="line">            activated = 1; </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        balance[msg.sender] -= amount;</span><br><span class="line">        balance[to] += amount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此处<code>uint256 public activated;</code>所有storage slot在合约部署后都是0，也就是说在部署完成的那一刻，<code>activated == 0</code>就已经存在了，但是只是逻辑上存在，并未发生过<code>SSTORE</code>写入                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </p>
+<p>第一次调用<code>transfer()</code>的时候，是第一次访问<code>activated.slot</code>,并且<code>SSTORE activated.slot = 1</code>写入storage，EVM对比<code>before : 0 , aftrer :1</code>   触发0 —&gt; 非0写入。</p>
+<p>又因为<code>transfer()</code>是绝对热路径，所以第一次访问的人会多花费~20000gas</p>
+<p>在与一些依赖精确gas估算的协议交互时，这种额外的20k gas可能导致交易因gas不足而失败，从而使该代币在实际使用中表现异常</p>
+<p><strong>正确设计</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bool public activated; // 默认 false</span><br><span class="line"></span><br><span class="line">constructor() &#123;</span><br><span class="line">    activated = true; // 冷路径 0→1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在部署完成时，所有的storage slot默认都是0，没有发生<code>SSTORE</code>操作</p>
+<p>在构造函数中（冷路径）进行<code>SSTORE</code>操作，只需要执行一次，不属于任何用户交互且gas费由部署者承担。</p>
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">contract ZeroToOne &#123;</span><br><span class="line">    uint256 public x;</span><br><span class="line"></span><br><span class="line">    function zeroToOne() external &#123;</span><br><span class="line">        x = 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function nonZeroToNonZero() external &#123;</span><br><span class="line">        x = 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function test_ZeroToOne_vs_NonZero() public &#123;</span><br><span class="line">       ZeroToOne z = new ZeroToOne();</span><br><span class="line"></span><br><span class="line">       uint256 g1 = gasleft();</span><br><span class="line">       z.zeroToOne();</span><br><span class="line">       uint256 gasZeroToOne = g1 - gasleft();</span><br><span class="line"></span><br><span class="line">       uint256 g2 = gasleft();</span><br><span class="line">       z.nonZeroToNonZero();</span><br><span class="line">       uint256 gasNonZero = g2 - gasleft();</span><br><span class="line"></span><br><span class="line">       emit log_named_uint(&quot;0 -&gt; 1 SSTORE gas&quot;, gasZeroToOne);</span><br><span class="line">       emit log_named_uint(&quot;non-zero -&gt; non-zero gas&quot;, gasNonZero);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="storage-缓存（减少SLOAD次数）"><a href="#storage-缓存（减少SLOAD次数）" class="headerlink" title="storage 缓存（减少SLOAD次数）"></a>storage 缓存（减少SLOAD次数）</h2><p><code>SLOAD</code>是一条“状态访问指令”，不是普通内存读取</p>
+<p>Solidity不会自动缓存storage变量</p>
+<p>每次访问<code>number</code>都会生成一条<code>SLOAD</code></p>
+<p><strong>未缓存代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">require(number &lt; 10);</span><br><span class="line">number = number + 1;</span><br></pre></td></tr></table></figure>
+
+<p>EVM </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SLOAD        // load number</span><br><span class="line">LT</span><br><span class="line">ISZERO</span><br><span class="line">REVERT?     // require</span><br><span class="line"></span><br><span class="line">SLOAD        // load number again</span><br><span class="line">ADD</span><br><span class="line">SSTORE</span><br></pre></td></tr></table></figure>
+
+<p><strong>缓存代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uint256 n = number;</span><br><span class="line">require(n &lt; 10);</span><br><span class="line">number = n + 1;</span><br></pre></td></tr></table></figure>
+
+<p>EVM</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SLOAD        // 一次</span><br><span class="line">LT</span><br><span class="line">ADD</span><br><span class="line">SSTORE</span><br></pre></td></tr></table></figure>
+
+<p><strong>冷热读问题</strong></p>
+<p>EIP-2929之后的SLOAD成本</p>
+<p>冷读：第一次读取某个地址或者storage slot（~2100 gas）</p>
+<p>热读：已读过，再次读取（~100 gas）</p>
+<p>虽然第一次cold之后再进行读取都是warm，但是因为gas消耗是<code>次数x成本</code>,如果没有进行缓存，并将读取操作放入循环，那么花费的gas将会飙升。</p>
+<p>&#x3D;&#x3D;未缓存&#x3D;&#x3D;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (uint i = 0; i &lt; N; i++) &#123;</span><br><span class="line">    require(number &lt; 100);</span><br><span class="line">    number++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">第一次：2100</span><br><span class="line">后面：100 × (2N - 1)</span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;缓存后&#x3D;&#x3D;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">uint256 n = number;</span><br><span class="line">for (uint i = 0; i &lt; N; i++) &#123;</span><br><span class="line">    require(n &lt; 100);</span><br><span class="line">    n++;</span><br><span class="line">&#125;</span><br><span class="line">number = n;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2100 + SSTORE × 1</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">contract CacheStorage &#123;</span><br><span class="line">    uint256 public number;</span><br><span class="line"></span><br><span class="line">    function noCache() external &#123;</span><br><span class="line">        require(number &lt; 10);</span><br><span class="line">        number = number + 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function cached() external &#123;</span><br><span class="line">        uint256 n = number;</span><br><span class="line">        require(n &lt; 10);</span><br><span class="line">        number = n + 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function test_StorageCache() public &#123;</span><br><span class="line">        CacheStorage c = new CacheStorage();</span><br><span class="line"></span><br><span class="line">        uint256 g1 = gasleft();</span><br><span class="line">        c.noCache();</span><br><span class="line">        uint256 gasNoCache = g1 - gasleft();</span><br><span class="line"></span><br><span class="line">        uint256 g2 = gasleft();</span><br><span class="line">        c.cached();</span><br><span class="line">        uint256 gasCached = g2 - gasleft();</span><br><span class="line"></span><br><span class="line">        emit log_named_uint(&quot;No cache gas&quot;, gasNoCache);</span><br><span class="line">        emit log_named_uint(&quot;Cached gas&quot;, gasCached);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="变量packing"><a href="#变量packing" class="headerlink" title="变量packing"></a>变量packing</h3><p>一个storage slot是32字节，256 bits，solidity按声明顺序填充slot，填不下才换下一个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uint128 a;</span><br><span class="line">uint256 b;</span><br><span class="line">uint8 c;</span><br></pre></td></tr></table></figure>
+
+<p>虽然a，c两个小变量占用storage不到一个slot，但是，因为有一个32字节的变量b在他们之间，所以按照声明顺序，a b c必须各占一个slot</p>
+<p>但是每多一个slot，成本就会上升</p>
+<ul>
+<li>每次读 &#x3D; 多一次<code>SLOAD</code></li>
+<li>每次写&#x3D; 多一次<code>SSTORE</code></li>
+</ul>
+<p><strong>建议在声明时将同类小类型的变量放在一起，<code>bool/uint8/uint16</code>靠前，<code>uint256</code>放在最后</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uint128 a;//slot 0</span><br><span class="line">uint8 c;//slot 0</span><br><span class="line">uint256 b;//slot 1</span><br></pre></td></tr></table></figure>
+
+<p>只需要两个slot</p>
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">contract Packed &#123;</span><br><span class="line">    uint160 public packed;</span><br><span class="line"></span><br><span class="line">    function set(uint80 a, uint80 b) external &#123;</span><br><span class="line">        packed = uint160(a) &lt;&lt; 80 | uint160(b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Unpacked &#123;</span><br><span class="line">    uint80 public a;</span><br><span class="line">    uint80 public b;</span><br><span class="line"></span><br><span class="line">    function set(uint80 _a, uint80 _b) external &#123;</span><br><span class="line">        a = _a;</span><br><span class="line">        b = _b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function test_Packing() public &#123;</span><br><span class="line">        Packed p = new Packed();</span><br><span class="line">        Unpacked u = new Unpacked();</span><br><span class="line"></span><br><span class="line">        uint256 g1 = gasleft();</span><br><span class="line">        p.set(1, 2);</span><br><span class="line">        uint256 gasPacked = g1 - gasleft();</span><br><span class="line"></span><br><span class="line">        uint256 g2 = gasleft();</span><br><span class="line">        u.set(1, 2);</span><br><span class="line">        uint256 gasUnpacked = g2 - gasleft();</span><br><span class="line"></span><br><span class="line">        emit log_named_uint(&quot;Packed gas&quot;, gasPacked);</span><br><span class="line">        emit log_named_uint(&quot;Unpacked gas&quot;, gasUnpacked);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="struct-packing"><a href="#struct-packing" class="headerlink" title="struct packing"></a>struct packing</h3><p>结构体中每个字段：独立分配slot，不会自动重排</p>
+<p>与变量Packing一样，在声明时将同类小类型的变量放在一起，这使读取和写入结构体更便宜</p>
+<p>版本A</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct Position &#123;</span><br><span class="line">    uint64 margin;</span><br><span class="line">    uint128 entry;</span><br><span class="line">    uint256 size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>版本B</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct Position &#123;</span><br><span class="line">    uint64 margin;</span><br><span class="line">    uint256 size;</span><br><span class="line">    uint128 entry;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>版本A中<code>margin</code>和<code>entery</code>被打包到同一个slot,所以版本A更便宜</p>
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">contract StructUnpacked &#123;</span><br><span class="line">    struct S &#123;</span><br><span class="line">        uint64 time;</span><br><span class="line">        uint256 money;</span><br><span class="line">        address user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    S public s;</span><br><span class="line"></span><br><span class="line">    function set() external &#123;</span><br><span class="line">        s = S(1, 100, msg.sender);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract StructPacked &#123;</span><br><span class="line">    struct S &#123;</span><br><span class="line">        uint64 time;</span><br><span class="line">        address user;</span><br><span class="line">        uint256 money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    S public s;</span><br><span class="line"></span><br><span class="line">    function set() external &#123;</span><br><span class="line">        s = S(1, msg.sender, 100);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function test_StructPacking() public &#123;</span><br><span class="line">        StructPacked p = new StructPacked();</span><br><span class="line">        StructUnpacked u = new StructUnpacked();</span><br><span class="line"></span><br><span class="line">        uint256 g1 = gasleft();</span><br><span class="line">        p.set();</span><br><span class="line">        uint256 gasPacked = g1 - gasleft();</span><br><span class="line"></span><br><span class="line">        uint256 g2 = gasleft();</span><br><span class="line">        u.set();</span><br><span class="line">        uint256 gasUnpacked = g2 - gasleft();</span><br><span class="line"></span><br><span class="line">        emit log_named_uint(&quot;Struct packed gas&quot;, gasPacked);</span><br><span class="line">        emit log_named_uint(&quot;Struct unpacked gas&quot;, gasUnpacked);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="array-vs-mapping（读取成本差异）"><a href="#array-vs-mapping（读取成本差异）" class="headerlink" title="array vs mapping（读取成本差异）"></a>array vs mapping（读取成本差异）</h3><p><strong>动态数组读取</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uint256[] public numbers;//solt 1</span><br><span class="line">numbers.push(114514);</span><br><span class="line">numbers.push(1919810);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>读取对应插槽内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast storage &lt;合约地址&gt; slot 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x0000000000000000000000000000000000000000000000000000000000000002</span><br></pre></td></tr></table></figure>
+
+<p>动态数组存储在插槽的内容是元素数量</p>
+</li>
+<li><p>返回动态数组第一个元素存储位置（Data）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">➜ bytes32 d</span><br><span class="line">➜ d = keccak256(abi.encode(uint256(1)));</span><br><span class="line">➜ d</span><br><span class="line">Type: bytes32</span><br><span class="line">└ Data: 0xb10e2d527612073b26eecdfd717e6a320cf44b4afac2b0732d9fcbe2b7fa0cf6</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在bash中读取该位置对应的元素数值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast storage &lt;合约地址&gt; [Data]</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x000000000000000000000000000000000000000000000000000000000001bf52</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转为可读形式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">➜ bytes32 e</span><br><span class="line">➜ e = 0x000000000000000000000000000000000000000000000000000000000001bf52</span><br><span class="line">Type: bytes32</span><br><span class="line">└ Data: 0x000000000000000000000000000000000000000000000000000000000001bf52</span><br><span class="line">➜ uint256 f</span><br><span class="line">➜ f = uint256(e)</span><br><span class="line">Type: uint256</span><br><span class="line">├ Hex: 0x1bf52</span><br><span class="line">├ Hex (full word): 0x000000000000000000000000000000000000000000000000000000000001bf52</span><br><span class="line">└ Decimal: 114514</span><br><span class="line">➜ </span><br></pre></td></tr></table></figure>
+
+<p><code>114514</code>即为数组元素内容</p>
+</li>
+</ul>
+<p>&#x3D;&#x3D;<code>arr[i]</code>的存储位置&#x3D;<code>keccak256(p)+i</code>—i是元素索引&#x3D;&#x3D;</p>
+<p><strong>映射的读取</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mapping(address =&gt; uint256) public balances; //slot 2</span><br><span class="line">balances[0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266] = 10000; // 初始化映射</span><br><span class="line">		balances[0x70997970C51812dc3A010C7d01b50e0d17dc79C8] = 10000; // 初始化映射</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>寻找映射真正的数据单元</p>
+<p><code>数据单元 =keccak256(abi.encode(key,uint256(p)))</code>&#x3D;&#x3D;输入时不用添加数据类型&#x3D;&#x3D;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜bytes32 d=keccak256(abi.encode(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266,2))</span><br><span class="line">➜ d</span><br><span class="line">Type: bytes32</span><br><span class="line">└ Data: 0xbc40fbf4394cd00f78fae9763b0c2c71b21ea442c42fdadc5b720537240ebac1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>读取槽内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast storage 0x5FbDB2315678afecb367f032d93F642f64180aa3 0xbc40fbf4394cd00f78fae9763b0c2c71b21ea442c42fdadc5b720537240ebac1</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x000000000000000000000000000000000000000000000000000000000000271</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转为可读形式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">➜ uint256 e</span><br><span class="line">➜ e = uint256(0x0000000000000000000000000000000000000000000000000000000000002710)</span><br><span class="line">Type: uint256</span><br><span class="line">├ Hex: 0x2710</span><br><span class="line">├ Hex (full word): 0x0000000000000000000000000000000000000000000000000000000000002710</span><br><span class="line">└ Decimal: 10000</span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;该映射位于slot 2，如果直接读取槽内容，会返回一个空地址，即指针的地址&#x3D;&#x3D;</p>
+</li>
+</ul>
+<p>数组和映射的读取操作的底层差异：</p>
+<p>数组：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">uint256[] a;</span><br><span class="line">return a[index];</span><br><span class="line">----</span><br><span class="line">// 1. 读取数组长度</span><br><span class="line">len = SLOAD(a.slot)</span><br><span class="line"></span><br><span class="line">// 2. index &lt; len ?</span><br><span class="line">if index &gt;= len:</span><br><span class="line">    revert Panic(0x32)</span><br><span class="line"></span><br><span class="line">// 3. 计算元素 slot</span><br><span class="line">slot = keccak256(a.slot) + index</span><br><span class="line"></span><br><span class="line">// 4. 读取元素</span><br><span class="line">value = SLOAD(slot)</span><br></pre></td></tr></table></figure>
+
+<p>映射：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mapping(uint256 =&gt; uint256) a;</span><br><span class="line">return a[index];</span><br><span class="line">----</span><br><span class="line">slot = keccak256(index, a.slot)</span><br><span class="line">value = SLOAD(slot)</span><br></pre></td></tr></table></figure>
+
+<p>对比之下，映射的读取操作没有读取长度(<code>SLOAD</code>),没有边界检查</p>
+<p>所以在合约中使用映射的成本低于数组</p>
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">contract ArrayRead &#123;</span><br><span class="line">    uint256[] public arr;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        arr.push(1);</span><br><span class="line">        arr.push(2);</span><br><span class="line">        arr.push(3);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function get(uint256 i) external view returns (uint256) &#123;</span><br><span class="line">        return arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract MappingRead &#123;</span><br><span class="line">    mapping(uint256 =&gt; uint256) public map;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        map[0] = 1;</span><br><span class="line">        map[1] = 2;</span><br><span class="line">        map[2] = 3;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function get(uint256 i) external view returns (uint256) &#123;</span><br><span class="line">        return map[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function test_Array_vs_Mapping() public &#123;</span><br><span class="line">       ArrayRead a = new ArrayRead();</span><br><span class="line">       MappingRead m = new MappingRead();</span><br><span class="line"></span><br><span class="line">       uint256 g1 = gasleft();</span><br><span class="line">       a.get(0);</span><br><span class="line">       uint256 gasArray = g1 - gasleft();</span><br><span class="line"></span><br><span class="line">       uint256 g2 = gasleft();</span><br><span class="line">       m.get(0);</span><br><span class="line">       uint256 gasMapping = g2 - gasleft();</span><br><span class="line"></span><br><span class="line">       emit log_named_uint(&quot;Array read gas&quot;, gasArray);</span><br><span class="line">       emit log_named_uint(&quot;Mapping read gas&quot;, gasMapping);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="storage-pointer-vs-memory-copy"><a href="#storage-pointer-vs-memory-copy" class="headerlink" title="storage pointer vs memory copy"></a>storage pointer vs memory copy</h3><p>solidity中所有复杂类型（struct&#x2F;array&#x2F;mapping)都必须带有数据位置，不是为了可读性，而是为了告诉编译器：数据存在于哪里，访问方式是什么，是否需要拷贝</p>
+<p><strong>memory</strong>（拷贝）</p>
+<p>是一个完整的数据复制过程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User memory u = users[id];//从users中取一个User放到u</span><br></pre></td></tr></table></figure>
+
+<p>真实语义是把<code>users[id]</code>整个struct从storage拷贝到memory</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct User &#123;</span><br><span class="line">    uint256 balance;</span><br><span class="line">    uint256 score;</span><br><span class="line">&#125;</span><br><span class="line">mapping(uint256 =&gt; User) users;</span><br></pre></td></tr></table></figure>
+
+<p>那对于结构体每一个字段，都会触发一次<code>SLOAD</code>,<code>memory</code>中每个字段都单独写入</p>
+<p>&#x3D;&#x3D;struct字段数 &#x3D; SLOAD次数&#x3D;&#x3D;</p>
+<p>相应的Gas成本<code>N 个字段 ≈ 2100 × N + 少量 MSTORE</code>，当struct稍微复杂一点时，拷贝本身就是大头开销</p>
+<p>那如果是动态类型的srtring&#x2F;bytes</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct User &#123;</span><br><span class="line">    uint256 balance;</span><br><span class="line">    string name;</span><br><span class="line">&#125;</span><br><span class="line">//User memory u = users[id];</span><br></pre></td></tr></table></figure>
+
+<p><code>memory</code>拷贝意味着：</p>
+<ul>
+<li>SLOAD:读取<code>name</code>的storage slot</li>
+<li>计算string的实际存储位置(keccak256)</li>
+<li>循环SLOAD，每32字节写一次</li>
+<li>MOSTORE：把所有内容写入memory</li>
+<li>更新 memory pointer</li>
+</ul>
+<p>string越长，拷贝成本越高</p>
+<p><strong>storage pointer</strong></p>
+<p>零拷贝</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User storage u = users[id];</span><br></pre></td></tr></table></figure>
+
+<p>本质：u不是一个数据，而是一个storage slot的地址描述</p>
+<p><code>u.baseSlot = keccak256(id, users.slot)</code></p>
+<p>等价于<code>SLOAD(u.baseSlot + 0)</code></p>
+<p>按需访问，只发生一次<code>SLOAD</code></p>
+<p>&#x3D;&#x3D;对比之下，memory为了读一个字段，付出了整个struct的拷贝成本&#x3D;&#x3D;</p>
+<p><strong>为了节省Gas，最好使用<code>storage pointer</code>而不是<code>memory</code></strong></p>
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">contract StoragePointer &#123;</span><br><span class="line">    struct User &#123;</span><br><span class="line">        uint256 id;</span><br><span class="line">        string name;</span><br><span class="line">        uint256 lastSeen;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    mapping(uint256 =&gt; User) public users;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        users[0] = User(0, &quot;Alice&quot;, block.timestamp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function memoryVersion(uint256 id) external view returns (uint256) &#123;</span><br><span class="line">        User memory u = users[id];</span><br><span class="line">        return block.timestamp - u.lastSeen;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function storageVersion(uint256 id) external view returns (uint256) &#123;</span><br><span class="line">        User storage u = users[id];</span><br><span class="line">        return block.timestamp - u.lastSeen;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function test_StoragePointer() public &#123;</span><br><span class="line">        StoragePointer s = new StoragePointer();</span><br><span class="line"></span><br><span class="line">        uint256 g1 = gasleft();</span><br><span class="line">        s.memoryVersion(0);</span><br><span class="line">        uint256 gasMemory = g1 - gasleft();</span><br><span class="line"></span><br><span class="line">        uint256 g2 = gasleft();</span><br><span class="line">        s.storageVersion(0);</span><br><span class="line">        uint256 gasStorage = g2 - gasleft();</span><br><span class="line"></span><br><span class="line">        emit log_named_uint(&quot;Memory struct gas&quot;, gasMemory);</span><br><span class="line">        emit log_named_uint(&quot;Storage pointer gas&quot;, gasStorage);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="利用Gas差异解决智能合约问题"><a href="#利用Gas差异解决智能合约问题" class="headerlink" title="利用Gas差异解决智能合约问题"></a>利用Gas差异解决智能合约问题</h2><p>对于同一address,第一次读取耗费的gas更高（冷读和热读）</p>
+<p>我们可以利用Gas差异，让前后两次静态调用返回不同的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity 0.8.9;</span><br><span class="line">//sepolia address:0x877e0B8fB7090C5e60eE5f605f8b67281aD4036C</span><br><span class="line">contract Points &#123;</span><br><span class="line">    uint256 public wait = 60 * 60 * 24 * 365;//0</span><br><span class="line">    uint256 private luckynum = 13;</span><br><span class="line">    bool public isBuy;</span><br><span class="line">    mapping(address =&gt; bool) public Flag;</span><br><span class="line">    address owner;</span><br><span class="line"></span><br><span class="line">    mapping(address =&gt; uint256) public lastSignin;</span><br><span class="line">    mapping(address =&gt; uint256) public points;</span><br><span class="line">    mapping(address =&gt; mapping(address =&gt; uint256)) public userContractCallState;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function checkIn() public &#123;</span><br><span class="line">        require(</span><br><span class="line">            lastSignin[msg.sender] + wait &lt;= block.timestamp || lastSignin[msg.sender] == 0,</span><br><span class="line">            &quot;See you next year&quot;</span><br><span class="line">        );</span><br><span class="line">        points[msg.sender] += 1;</span><br><span class="line">        lastSignin[msg.sender] = block.timestamp;</span><br><span class="line">    &#125;//1 </span><br><span class="line"></span><br><span class="line">    function transferPoints(address target, uint256 transferpoints) public &#123;</span><br><span class="line">        require(target != address(0), &quot;Invalid target address&quot;);</span><br><span class="line">        require(points[msg.sender] &gt;= transferpoints, &quot;Insufficient points&quot;);</span><br><span class="line">        require(points[target] + transferpoints &lt;= 3, &quot;Receiver cannot have more than 3 points&quot;);</span><br><span class="line">        points[msg.sender] -= transferpoints;</span><br><span class="line">        points[target] += transferpoints;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function buyPoints() public payable &#123;</span><br><span class="line">        require(!isBuy, &quot;Points can only be purchased once&quot;);</span><br><span class="line">        require(points[msg.sender] &gt;= 3, &quot;Need at least 3 points to purchase&quot;);</span><br><span class="line">        isBuy = true;</span><br><span class="line">        points[msg.sender] += 1;</span><br><span class="line">    &#125;//1 </span><br><span class="line"></span><br><span class="line">    function checkUserContract(address userContract) public &#123;</span><br><span class="line">        uint256 state = userContractCallState[msg.sender][userContract];</span><br><span class="line">        require(state &lt; 2, &quot;Already called twice&quot;);</span><br><span class="line"></span><br><span class="line">        (bool s1, bytes memory d1) = userContract.staticcall(abi.encodeWithSignature(&quot;getValue()&quot;));</span><br><span class="line">        require(s1 &amp;&amp; d1.length == 32, &quot;First call failed&quot;);</span><br><span class="line">        uint256 r1 = abi.decode(d1, (uint256));</span><br><span class="line"></span><br><span class="line">        (bool s2, bytes memory d2) = userContract.staticcall(abi.encodeWithSignature(&quot;getValue()&quot;));</span><br><span class="line">        require(s2 &amp;&amp; d2.length == 32, &quot;Second call failed&quot;);</span><br><span class="line">        uint256 r2 = abi.decode(d2, (uint256));</span><br><span class="line"></span><br><span class="line">        require(r1 == 0 &amp;&amp; r2 == 1, &quot;Invalid return value sequence&quot;);</span><br><span class="line"></span><br><span class="line">        points[msg.sender] += 10;</span><br><span class="line">        userContractCallState[msg.sender][userContract] = 2;</span><br><span class="line">    &#125;//10 </span><br><span class="line"></span><br><span class="line">    function set_luckynum(uint256 _luckynum) external &#123;</span><br><span class="line">        require(msg.sender == owner, &quot;Don&#x27;t do that&quot;);</span><br><span class="line">        luckynum = _luckynum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function good_luck() public &#123;</span><br><span class="line">        uint256 pseudoRandom = uint256(</span><br><span class="line">            keccak256(abi.encodePacked(msg.sender, block.timestamp, luckynum))</span><br><span class="line">        ) % 100;</span><br><span class="line"></span><br><span class="line">        uint256 target = uint256(</span><br><span class="line">            keccak256(abi.encodePacked(msg.sender, block.timestamp, points[msg.sender]))</span><br><span class="line">        ) % 100;</span><br><span class="line"></span><br><span class="line">        require(target == pseudoRandom, &quot;Incorrect lucky number&quot;);</span><br><span class="line">        points[msg.sender] += 10;</span><br><span class="line">    &#125;//10 </span><br><span class="line"></span><br><span class="line">    function getUserPoints(address user) public view returns (uint256) &#123;</span><br><span class="line">        return points[user];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function check() public &#123;</span><br><span class="line">        require(points[msg.sender] &gt;= 25, &quot;Not enough points (need 25)&quot;);</span><br><span class="line">        Flag[msg.sender] = true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+    
+      <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      </div>
+    
+        <div class="reward-container">
+  <div>KFC V我 50</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="wordmaya 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="wordmaya 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>wordmaya
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2026/05/15/Gas%E4%BC%98%E5%8C%96/" title="Gas优化">http://example.com/2026/05/15/Gas优化/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/blockchain/" rel="tag"># blockchain</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/05/15/7.8%E4%BB%A3%E5%B8%81%E6%A0%87%E5%87%86/" rel="prev" title="代币标准">
+      <i class="fa fa-chevron-left"></i> 代币标准
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Gas%E4%BC%98%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">Gas优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gas%E4%BC%98%E5%8C%96%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="nav-number">1.1.</span> <span class="nav-text">Gas优化常用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%BF%E5%85%8D%E4%BB%8E0%E5%88%B01%E7%9A%84%E5%86%85%E5%AD%98%E5%86%99%E5%85%A5"><span class="nav-number">1.1.1.</span> <span class="nav-text">避免从0到1的内存写入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#storage-%E7%BC%93%E5%AD%98%EF%BC%88%E5%87%8F%E5%B0%91SLOAD%E6%AC%A1%E6%95%B0%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">storage 缓存（减少SLOAD次数）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8Fpacking"><span class="nav-number">1.2.1.</span> <span class="nav-text">变量packing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#struct-packing"><span class="nav-number">1.2.2.</span> <span class="nav-text">struct packing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#array-vs-mapping%EF%BC%88%E8%AF%BB%E5%8F%96%E6%88%90%E6%9C%AC%E5%B7%AE%E5%BC%82%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">array vs mapping（读取成本差异）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#storage-pointer-vs-memory-copy"><span class="nav-number">1.2.4.</span> <span class="nav-text">storage pointer vs memory copy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8Gas%E5%B7%AE%E5%BC%82%E8%A7%A3%E5%86%B3%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">利用Gas差异解决智能合约问题</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wordmaya"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">wordmaya</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zg870" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zg870" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://chat.openai.com/" title="https:&#x2F;&#x2F;chat.openai.com&#x2F;" rel="noopener" target="_blank">ChatGPT</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.baidu.com/" title="https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">百度</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wordmaya</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">336k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:06</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共79k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
